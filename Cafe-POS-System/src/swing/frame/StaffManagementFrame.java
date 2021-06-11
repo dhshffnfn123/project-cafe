@@ -25,7 +25,7 @@ import javax.swing.table.TableColumnModel;
 import action.CurrentTimeClock;
 import action.EmployeeInfoAddButton;
 import action.GetTableInfoForMouse;
-import action.SelectEmployeeInfo;
+import jdbc.method.SelectEmployeeInfo;
 
 public class StaffManagementFrame extends DefaultFrame {
    /**
