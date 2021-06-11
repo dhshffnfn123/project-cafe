@@ -17,7 +17,9 @@ import com.sun.tools.javac.Main;
 
 import action.Login_btn_Listener;
 import action.Login_combobox_listener;
+import action.Password_tf_Listener;
 import jdbc.method.Login_combox_data;
+
 
 public class Login_Frame extends DefaultFrame {
 	
@@ -29,9 +31,9 @@ public class Login_Frame extends DefaultFrame {
 	Font font1 = new Font("맑은 고딕", Font.BOLD, 18);
 	Font font2 = new Font("맑은 고딕", Font.BOLD, 30);
 	JButton login_btn;
-	String cbname;
+	String cbname, password;
 	static int count = 0;
-	int exit_count = 0 ;
+	
 	
 	public Login_Frame() {
 		icon = new ImageIcon("./image/커피사진.jpg");
@@ -87,7 +89,9 @@ public class Login_Frame extends DefaultFrame {
 			
 			combox.addActionListener(new Login_combobox_listener(combox));
 			// 콤박 값 받아옴
-			new Login_btn_Listener(login_btn, cbname);
+			Login_combobox_listener lcl = new Login_combobox_listener(combox);
+			cbname = lcl.cbname;
+			
 
 			// ============================================= 텍스트필드
 			pwf = new JPasswordField(5);
@@ -96,6 +100,15 @@ public class Login_Frame extends DefaultFrame {
 			
 			login_panel.add(pwf);
 			
+			
+			// 텍스트필드 값 가져오기
+			password = new String(pwf.getPassword());
+			
+			
+			// passwordfield 엔터 누르기
+			pwf.addActionListener(new Password_tf_Listener(cbname, password));
+			// 로그인 버튼 누르기
+			login_btn.addActionListener(new Login_btn_Listener(login_btn, cbname, password));
 			
 			
 			

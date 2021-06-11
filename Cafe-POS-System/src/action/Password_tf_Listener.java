@@ -15,22 +15,20 @@ import javax.swing.UIManager;
 import jdbc.hikari.HikariCP;
 import swing.frame.DefaultFrame;
 
-
-public class Login_btn_Listener extends DefaultFrame implements ActionListener {
-	private JButton login_btn;
+public class Password_tf_Listener extends DefaultFrame implements ActionListener {
+	
 	private String cbname;
 	private String sql = "SELECT * FROM employees_table WHERE employee_name = '" + cbname + "'";
 	private String password;
 	private Font font1 = new Font("¸¼Àº °íµñ", Font.BOLD, 18);
 	private int exit_count = 0 ;
 	
-	public Login_btn_Listener (JButton login_btn, String cbname, String password) {
-		this.login_btn = login_btn;
+	
+	public Password_tf_Listener(String cbname, String password) {
 		this.cbname = cbname;
 		this.password = password;
-		
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try (
@@ -71,5 +69,7 @@ public class Login_btn_Listener extends DefaultFrame implements ActionListener {
 			e1.printStackTrace();
 		
 		}
+		
 	}
+
 }

@@ -7,6 +7,7 @@ import javax.swing.JComboBox;
 
 public class Login_combobox_listener implements ActionListener {
 	JComboBox combox;
+	public String cbname;
 	
 	public Login_combobox_listener(JComboBox combox) {
 		this.combox = combox;

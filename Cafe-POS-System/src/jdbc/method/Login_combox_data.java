@@ -31,7 +31,7 @@ public class Login_combox_data {
 			while (rs.next()) {
 				combox.addItem(rs.getString(2));
 			}
-			
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
