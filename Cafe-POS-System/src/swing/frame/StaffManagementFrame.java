@@ -24,6 +24,8 @@ import javax.swing.table.TableColumnModel;
 
 import action.CurrentTimeClock;
 import action.EmployeeInfoAddButton;
+import action.EmployeeInfoDelButton;
+import action.EmployeeInfoUpdateButton;
 import action.GetTableInfoForMouse;
 import jdbc.method.SelectEmployeeInfo;
 
@@ -35,7 +37,7 @@ public class StaffManagementFrame extends DefaultFrame {
 
 	public StaffManagementFrame() {
       setLayout(new BorderLayout());
-      setTitle("Staff Management");
+      setTitle("Employees Management");
       
       // -- CENTER
       // 가운데 공간에 패널 생성(1행 2열)
@@ -75,8 +77,8 @@ public class StaffManagementFrame extends DefaultFrame {
       right_panel_tab.setFont(new Font("맑은 고딕", Font.BOLD, 30));
       right_panel_tab.setBackground(new Color(161, 192, 90));
       right_panel_tab.addTab("등록", createTab("등록"));
-      right_panel_tab.addTab("수정", createTab("수　　정"));
-      right_panel_tab.addTab("삭제", createTab("삭　　제"));
+      right_panel_tab.addTab("수정", createTab("수정"));
+      right_panel_tab.addTab("삭제", createTab("삭제"));
       
       // -- CENTER-TOP 뒤로 가기 버튼
       JPanel top_panel_body = new JPanel(new GridLayout());
@@ -138,7 +140,7 @@ public class StaffManagementFrame extends DefaultFrame {
          right_panel.add(fields.get(i));
          
       }
-      // 직급라벨은 콤보박스때문에 따로추가
+      // 직급 라벨은 콤보박스때문에 따로 추가
       JLabel grade = new JLabel("직　　급");
       grade.setHorizontalAlignment(JLabel.CENTER);
       grade.setFont(new Font("맑은 고딕", Font.BOLD, 30));
@@ -159,10 +161,16 @@ public class StaffManagementFrame extends DefaultFrame {
       btn.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 
       
-      // 버튼에 액션추가
+      // 버튼에 등록, 수정, 삭제 액션 추가
       switch (tab_name) {
       case "등록":
     	  btn.addActionListener(new EmployeeInfoAddButton(fields, grade_box));
+    	  break;
+      case "수정":
+    	  btn.addActionListener(new EmployeeInfoUpdateButton(fields, grade_box));
+    	  break;
+      case "삭제":
+    	  btn.addActionListener(new EmployeeInfoDelButton(fields, grade_box));
     	  break;
       }
       
