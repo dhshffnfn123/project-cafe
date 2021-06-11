@@ -18,7 +18,7 @@ import com.zaxxer.hikari.HikariDataSource;
  * 	PreparedStatement pstmt = conn.prepareStatement(sql);
  * ) {
  * 
- * 	원하는 기능 작성.
+ * 	원하는 명령문 작성.
  * 
  * } catch (SQLException e1) {
  * 	e1.printStackTrace();
