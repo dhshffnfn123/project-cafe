@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,7 +33,8 @@ public class Password_tf_Listener extends DefaultFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try (
-				Connection conn = HikariCP.getConnection();
+				//Connection conn = HikariCP.getConnection();
+				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1","cafe_project", "1234");
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery();
 		) {

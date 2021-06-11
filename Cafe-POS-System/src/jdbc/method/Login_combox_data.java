@@ -1,6 +1,7 @@
 package jdbc.method;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +25,8 @@ public class Login_combox_data {
 		combox.addItem("ID를 선택하세요");
 		
 		try (
-				Connection conn = HikariCP.getConnection();
+				//Connection conn = HikariCP.getConnection();
+				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1","cafe_project", "1234");
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery();
 		) {

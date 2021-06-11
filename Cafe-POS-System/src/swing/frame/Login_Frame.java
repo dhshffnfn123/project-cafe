@@ -23,7 +23,7 @@ import jdbc.method.Login_combox_data;
 
 public class Login_Frame extends DefaultFrame {
 	
-	JPanel panel, login_panel;
+	JPanel panel, login_panel, test_panel;
 	JScrollPane scrollPane;
 	ImageIcon icon;
 	JComboBox combox;
@@ -38,7 +38,11 @@ public class Login_Frame extends DefaultFrame {
 	public Login_Frame() {
 		icon = new ImageIcon("./image/커피사진.jpg");
 		
-		
+//		test_panel = new JPanel();
+//		test_panel.setBounds(10, 10,  50, 50);
+//		test_panel.setLayout(null);
+//		test_panel.setBackground(Color.black);
+//		add(test_panel);
 		
 		// ============================================= 배경화면 이미지 삽입
 		 panel = new JPanel() {	
@@ -53,7 +57,7 @@ public class Login_Frame extends DefaultFrame {
 			scrollPane = new JScrollPane(panel);
 			setContentPane(scrollPane);
 			
-			add(panel);
+			add(scrollPane);
 			
 			// ============================================= 로그인 패널
 			login_panel = new JPanel();
