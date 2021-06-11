@@ -15,6 +15,10 @@ import javax.swing.border.TitledBorder;
 
 import com.sun.tools.javac.Main;
 
+import action.Login_btn_Listener;
+import action.Login_combobox_listener;
+import jdbc.method.Login_combox_data;
+
 public class Login_Frame extends DefaultFrame {
 	
 	JPanel panel, login_panel;
@@ -47,6 +51,9 @@ public class Login_Frame extends DefaultFrame {
 			scrollPane = new JScrollPane(panel);
 			setContentPane(scrollPane);
 			
+			add(panel);
+			
+			// ============================================= 로그인 패널
 			login_panel = new JPanel();
 			login_panel.setBounds(100, 600, 400, 200);
 			login_panel.setBackground(new Color(255, 255, 255, 255));
@@ -58,6 +65,36 @@ public class Login_Frame extends DefaultFrame {
 			
 			
 			panel.add(login_panel);
+			
+			// ============================================= 로그인 버튼
+			login_btn = new JButton("LOGIN");
+			login_btn.setBackground(new Color (0,0,0));
+			login_btn.setFont(font1);
+			login_btn.setBounds(130,150,150,30);
+			login_btn.setForeground(Color.white);
+			
+			login_panel.add(login_btn);
+			
+			// ============================================= 콤보 박스
+			
+			
+			combox = new Login_combox_data().getComboBox();
+			
+			combox.setBounds(80,30, 250, 35);
+			combox.setFont(font1);
+			
+			login_panel.add(combox);
+			
+			combox.addActionListener(new Login_combobox_listener(combox));
+			// 콤박 값 받아옴
+			new Login_btn_Listener(login_btn, cbname);
+
+			// ============================================= 텍스트필드
+			pwf = new JPasswordField(5);
+			pwf.setBounds(80, 80 , 250, 35);
+			pwf.setFont(font1);
+			
+			login_panel.add(pwf);
 			
 			
 			
@@ -72,7 +109,7 @@ public class Login_Frame extends DefaultFrame {
 		 } // login _Frame
 			 
 		 public static void main(String args[]) {
-			 
+			 new Login_Frame();
 		 }
 		 
 		 
