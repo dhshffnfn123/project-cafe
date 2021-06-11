@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
+import action.ChangePageButton;
+
 public class ChoosePageFrame extends DefaultFrame {
 	
 	public ChoosePageFrame() {
@@ -21,24 +23,17 @@ public class ChoosePageFrame extends DefaultFrame {
 			btns.add(new JButton(btns_name[i]));
 		}
 		
+		// 다른 프레임으로 이동하는 액션 리스너
+		ChangePageButton channel = new ChangePageButton(this);
+		
 		for (int i = 0; i < btns_name.length; i++) {
 			btns.get(i).setBounds(250 * (i + 1), 300, 230, 300);
 			btns.get(i).setFont(new Font("맑은 고딕", Font.BOLD|Font.ITALIC, 50));
 			btns.get(i).setForeground(Color.WHITE);
 			btns.get(i).setBackground(new Color(53, 84, 0));
 			btns.get(i).setBackground(new Color(53, 84, 0));
-			btns.get(i).addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					if (e.getActionCommand().equals(btns_name[0])) {
-						System.out.println("직원 관리 버튼");
-					} else if (e.getActionCommand().equals(btns_name[1])) {
-						System.out.println("판매 등록 버튼");
-					} else {
-						System.out.println("매출 조회 버튼");
-					}
-				}
-			});
+			// 버튼 선택 시 실행되는 액션 추가
+			btns.get(i).addActionListener(channel);
 			
 			add(btns.get(i));
 		}
@@ -51,4 +46,5 @@ public class ChoosePageFrame extends DefaultFrame {
 	public static void main(String[] args) {
 		new ChoosePageFrame();
 	}
+	
 }

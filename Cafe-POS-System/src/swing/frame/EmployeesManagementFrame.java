@@ -29,13 +29,13 @@ import action.EmployeeInfoUpdateButton;
 import action.GetTableInfoForMouse;
 import jdbc.method.SelectEmployeeInfo;
 
-public class StaffManagementFrame extends DefaultFrame {
+public class EmployeesManagementFrame extends DefaultFrame {
    /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public StaffManagementFrame() {
+	public EmployeesManagementFrame() {
       setLayout(new BorderLayout());
       setTitle("Employees Management");
       
@@ -181,6 +181,6 @@ public class StaffManagementFrame extends DefaultFrame {
    }
    
    public static void main(String[] args) {
-      new StaffManagementFrame();
+      new EmployeesManagementFrame();
    }
 }
