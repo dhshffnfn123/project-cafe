@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -17,7 +18,8 @@ import jdbc.hikari.HikariCP;
 import swing.frame.DefaultFrame;
 
 
-public class Login_btn_Listener extends DefaultFrame implements ActionListener {
+public class Login_btn_Listener  implements ActionListener {
+	private JFrame frame;
 	private JButton login_btn;
 	private String cbname;
 	private String sql = "SELECT * FROM employees_table WHERE employee_name = '" + cbname + "'";
@@ -25,18 +27,18 @@ public class Login_btn_Listener extends DefaultFrame implements ActionListener {
 	private Font font1 = new Font("맑은 고딕", Font.BOLD, 18);
 	private int exit_count = 0 ;
 	
-	public Login_btn_Listener (JButton login_btn, String cbname, String password) {
+	public Login_btn_Listener (JButton login_btn, String cbname, String password, JFrame frame) {
 		this.login_btn = login_btn;
 		this.cbname = cbname;
 		this.password = password;
+		this.frame = frame;
 		
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try (
-				//onnection conn = HikariCP.getConnection();
-				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1","cafe_project", "1234");
+				Connection conn = HikariCP.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery();
 		) {
@@ -45,7 +47,7 @@ public class Login_btn_Listener extends DefaultFrame implements ActionListener {
 				if(password.equals(rs.getString(3))) {
 					System.out.println("로그인 성공");
 					System.out.println("얻어온 비밀번호 = " + password);
-					setVisible(false);
+					frame.setVisible(false);
 					//new OrderView().setVisible(true);
 					break;
 					

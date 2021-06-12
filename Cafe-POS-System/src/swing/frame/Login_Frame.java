@@ -36,28 +36,26 @@ public class Login_Frame extends DefaultFrame {
 	
 	
 	public Login_Frame() {
+		
+		  
 		icon = new ImageIcon("./image/커피사진.jpg");
-		
-//		test_panel = new JPanel();
-//		test_panel.setBounds(10, 10,  50, 50);
-//		test_panel.setLayout(null);
-//		test_panel.setBackground(Color.black);
-//		add(test_panel);
-		
+			
 		// ============================================= 배경화면 이미지 삽입
-		 panel = new JPanel() {	
-			 public void paintComponent(Graphics g) {
+		
+	
+		JPanel panel = new JPanel() {
+			public void paintComponent(Graphics g) {
 
-					g.drawImage(icon.getImage(), 0, 0, null);
-					setOpaque(false);
-					super.paintComponent(g);
-				}
-			};
+				g.drawImage(icon.getImage(), 0, 0, null);
+				setOpaque(false);
+				super.paintComponent(g);
+			}
+		};
+		
+		scrollPane = new JScrollPane(panel);
+		setContentPane(scrollPane);
+		panel.setLayout(null);
 			
-			scrollPane = new JScrollPane(panel);
-			setContentPane(scrollPane);
-			
-			add(scrollPane);
 			
 			// ============================================= 로그인 패널
 			login_panel = new JPanel();
@@ -66,7 +64,6 @@ public class Login_Frame extends DefaultFrame {
 			login_panel.setBorder(new TitledBorder
 					(new LineBorder(Color.DARK_GRAY,10),"Log_in")); // 패널의 테두리
 			
-			panel.setLayout(null);
 			login_panel.setLayout(null);
 			
 			
@@ -110,23 +107,24 @@ public class Login_Frame extends DefaultFrame {
 			
 			
 			// passwordfield 엔터 누르기
-			pwf.addActionListener(new Password_tf_Listener(cbname, password));
+			pwf.addActionListener(new Password_tf_Listener(cbname, password, this));
 			// 로그인 버튼 누르기
-			login_btn.addActionListener(new Login_btn_Listener(login_btn, cbname, password));
+			login_btn.addActionListener(new Login_btn_Listener(login_btn, cbname, password, this));
 			
 			
 			
 			
 			
 			
-			
+			setVisible(true);
 			
 			
 			
 		 } // login _Frame
 			 
 		 public static void main(String args[]) {
-			 new Login_Frame();
+			new Login_Frame();
+			 
 		 }
 		 
 		 
