@@ -19,7 +19,8 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import action.AccumulatedTextFieldButton;
+import action.AccumulatedTextFiel;
+import action.AccumulatedButton;
 
 
 public class AccumulatedFundFrame extends DefaultFrame{
@@ -76,21 +77,18 @@ public class AccumulatedFundFrame extends DefaultFrame{
 				numBtns.add(new JButton(Integer.toString(i + 1)));
 				num_button_style(numBtns,i);
 			}
-			numBtns.get(i).addActionListener(new AccumulatedTextFieldButton(textField, numBtns));
-			
+
+			numBtns.get(i).addMouseListener(new AccumulatedButton(textField, numBtns));
 		}
 		
 		for (JButton btn : numBtns) {
 			num_panel.add(btn);	
-			
 		}
 		
 		textField.setText("전화번호를 입력하세요");  //마우스가 올라갔을 때 액션으로 글자 없애기,글자색 진하게 바꾸기
 	
-		
-		
 		//텍스트필드액션 불러오기
-		textField.addMouseListener(new AccumulatedTextFieldButton(textField, numBtns));
+		textField.addMouseListener(new AccumulatedTextFiel(textField));
 		
 		//프레임에 패널이랑 텍스트필드 추가
 		add(num_panel);
