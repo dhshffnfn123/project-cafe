@@ -77,7 +77,6 @@ public class AccumulatedFundFrame extends DefaultFrame{
 				numBtns.add(new JButton(Integer.toString(i + 1)));
 				num_button_style(numBtns,i);
 			}
-
 			numBtns.get(i).addMouseListener(new AccumulatedButton(textField, numBtns));
 		}
 		
@@ -85,7 +84,7 @@ public class AccumulatedFundFrame extends DefaultFrame{
 			num_panel.add(btn);	
 		}
 		
-		textField.setText("전화번호를 입력하세요");  //마우스가 올라갔을 때 액션으로 글자 없애기,글자색 진하게 바꾸기
+		textField.setText("전화번호를 입력하세요");  
 	
 		//텍스트필드액션 불러오기
 		textField.addMouseListener(new AccumulatedTextFiel(textField));
