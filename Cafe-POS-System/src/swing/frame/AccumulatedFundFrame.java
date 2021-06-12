@@ -19,9 +19,10 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import action.accumulatedTextFieldLisner;
+import action.AccumulatedTextFieldButton;
 
-public class accumulatedFundFrame extends DefaultFrame{
+
+public class AccumulatedFundFrame extends DefaultFrame{
 	
 	/*
 	 * setSize(), setPreferredSize() 둘다 크기를 지정해주는 메서드.
@@ -29,7 +30,7 @@ public class accumulatedFundFrame extends DefaultFrame{
 	 * 
 	 * */
 	
-	public accumulatedFundFrame() {
+	public AccumulatedFundFrame() {
 	
 		//기본 프레임 설정
 		setTitle("적립 화면");
@@ -75,7 +76,7 @@ public class accumulatedFundFrame extends DefaultFrame{
 				numBtns.add(new JButton(Integer.toString(i + 1)));
 				num_button_style(numBtns,i);
 			}
-			numBtns.get(i).addActionListener(null);
+			numBtns.get(i).addActionListener(new AccumulatedTextFieldButton(textField, numBtns));
 			
 		}
 		
@@ -89,8 +90,7 @@ public class accumulatedFundFrame extends DefaultFrame{
 		
 		
 		//텍스트필드액션 불러오기
-		accumulatedTextFieldLisner textAction = new accumulatedTextFieldLisner(textField);
-		textField.addMouseListener(textAction);
+		textField.addMouseListener(new AccumulatedTextFieldButton(textField, numBtns));
 		
 		//프레임에 패널이랑 텍스트필드 추가
 		add(num_panel);
@@ -110,7 +110,7 @@ public class accumulatedFundFrame extends DefaultFrame{
 	}
 	
 	public static void main(String[] args) {
-		new accumulatedFundFrame();
+		new AccumulatedFundFrame();
 		
 	}
 
