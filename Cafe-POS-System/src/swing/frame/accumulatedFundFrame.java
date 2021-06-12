@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.awt.image.ColorConvertOp;
 import java.util.ArrayList;
 
@@ -17,6 +18,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+
+import action.accumulatedTextFieldLisner;
 
 public class accumulatedFundFrame extends DefaultFrame{
 	
@@ -31,7 +34,7 @@ public class accumulatedFundFrame extends DefaultFrame{
 		//기본 프레임 설정
 		setTitle("적립 화면");
 		setSize(450,610);
-		setLocation(700,300);
+		setLocation(500,100);
 		setResizable(false);
 		getContentPane().setBackground(new Color(245, 235, 208));
 		
@@ -49,11 +52,10 @@ public class accumulatedFundFrame extends DefaultFrame{
 		num_panel.setLayout(new GridLayout(4,3,8,8));
 		num_panel.setBackground(new Color(245, 235, 208));
 		
-		
 		//번호 버튼 생성
 		ArrayList<JButton> numBtns = new ArrayList<>();
 		
-		
+		//numBtns의 인덱스 9,10,11은 ←,0,적립으로 글자 변경 or 각각의 맞는 스타일로 다시 변경.
 		for (int i = 0; i < 12; i++) {
 			if (i == 10) {
 				numBtns.add(new JButton("0"));
@@ -67,22 +69,30 @@ public class accumulatedFundFrame extends DefaultFrame{
 				numBtns.add(new JButton("적립"));
 				num_button_style(numBtns,i);
 				numBtns.get(i).setBackground(new Color(115,185,112));
-				numBtns.get(i).setForeground(Color.white);
+				numBtns.get(i).setForeground(Color.white);  //버튼 글자색 변경
 				
 			}else {
 				numBtns.add(new JButton(Integer.toString(i + 1)));
 				num_button_style(numBtns,i);
 			}
+			numBtns.get(i).addActionListener(null);
+			
 		}
 		
 		for (JButton btn : numBtns) {
 			num_panel.add(btn);	
+			
 		}
 		
-		
 		textField.setText("전화번호를 입력하세요");  //마우스가 올라갔을 때 액션으로 글자 없애기,글자색 진하게 바꾸기
+	
 		
 		
+		//텍스트필드액션 불러오기
+		accumulatedTextFieldLisner textAction = new accumulatedTextFieldLisner(textField);
+		textField.addMouseListener(textAction);
+		
+		//프레임에 패널이랑 텍스트필드 추가
 		add(num_panel);
 		add(textField);
 
