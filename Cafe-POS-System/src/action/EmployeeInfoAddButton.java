@@ -44,22 +44,28 @@ public class EmployeeInfoAddButton implements ActionListener {
 			String check = String.format("이름과 패스워드 중 입력하지 않은 곳이 있습니다.\n입력 정보를 확인해주세요.");
 			JOptionPane.showMessageDialog(null, check, "Guide Message", JOptionPane.INFORMATION_MESSAGE);
 		} else {
-			try (
-					Connection conn = HikariCP.getConnection();
-					PreparedStatement pstmt = conn.prepareStatement(sql);
-				) {
-				
-				this.employee_name = fields.get(0).getText();
-				this.employee_pw = fields.get(1).getText();
-				this.employee_grade = (String) grade_box.getSelectedItem();
-
-				pstmt.setString(1, employee_name);
-				pstmt.setString(2, employee_pw);
-				pstmt.setString(3, employee_grade);
-
-				pstmt.executeQuery();
-			} catch (SQLException e2) {
-				e2.printStackTrace();
+			String check = String.format("이 름: %s\n패스워드: %s\n직 급: %s\n등록하시겠습니까?", fields.get(0).getText(), fields.get(1).getText(),
+					(String)grade_box.getSelectedItem());
+			int result = JOptionPane.showConfirmDialog(null, "등록 하시겠습니까?", "Confirm Message", JOptionPane.YES_NO_OPTION);
+			
+			if (result == JOptionPane.YES_OPTION) {
+				try (
+						Connection conn = HikariCP.getConnection();
+						PreparedStatement pstmt = conn.prepareStatement(sql);
+						) {
+					
+					this.employee_name = fields.get(0).getText();
+					this.employee_pw = fields.get(1).getText();
+					this.employee_grade = (String)grade_box.getSelectedItem();
+					
+					pstmt.setString(1, employee_name);
+					pstmt.setString(2, employee_pw);
+					pstmt.setString(3, employee_grade);
+					
+					pstmt.executeQuery();
+				} catch (SQLException e2) {
+					e2.printStackTrace();
+				}
 			}
 		}
 		
