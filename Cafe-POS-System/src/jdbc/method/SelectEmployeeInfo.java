@@ -25,6 +25,18 @@ public class SelectEmployeeInfo {
 		return table;
 	}
 	
+	public DefaultTableModel getModel() {
+		model = new DefaultTableModel(data, title) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		selectDB();
+
+		return model;
+	}
+	
 	private void inputData() {
 		// isCellEditable() @Override해서 더블클릭 수정 금지
 		model = new DefaultTableModel(data, title) {
