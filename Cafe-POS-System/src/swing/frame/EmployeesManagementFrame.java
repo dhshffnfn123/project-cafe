@@ -245,7 +245,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		}
 		
 		btn = makeButton("»è¡¡¡¡Á¦");
-		btn.addActionListener(new EmployeeInfoDelButton(fields));
+		btn.addActionListener(new EmployeeInfoDelButton(fields, staff_info));
 		
 		right_panel.add(btn, BorderLayout.SOUTH);
 		
