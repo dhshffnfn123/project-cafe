@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.event.TableModelEvent;
@@ -41,26 +42,30 @@ public class EmployeeInfoUpdateButton implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		try (
-				Connection conn = HikariCP.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql);
-		) {
-			this.employee_id = fields.get(0).getText();
-			this.employee_name = fields.get(1).getText();
-			this.employee_pw = fields.get(2).getText();
-			this.employee_grade = (String)grade_box.getSelectedItem();
-			
-			pstmt.setString(1, employee_pw);
-			pstmt.setString(2, employee_grade);
-			pstmt.setString(3, employee_id);
-			pstmt.setString(4, employee_name);
-			
-			pstmt.executeQuery();
-			
-		} catch (SQLException e2) {
-			e2.printStackTrace();
-		}
+		String message = String.format("직원 아이디: %s\n이름: %s\n수정하시겠습니까?", fields.get(0).getText(), fields.get(1).getText());
+		int result = JOptionPane.showConfirmDialog(null, message, "Guide Message", JOptionPane.YES_NO_OPTION);
 		
+		if (result == JOptionPane.YES_OPTION) {
+			try (
+					Connection conn = HikariCP.getConnection();
+					PreparedStatement pstmt = conn.prepareStatement(sql);
+					) {
+				this.employee_id = fields.get(0).getText();
+				this.employee_name = fields.get(1).getText();
+				this.employee_pw = fields.get(2).getText();
+				this.employee_grade = (String)grade_box.getSelectedItem();
+				
+				pstmt.setString(1, employee_pw);
+				pstmt.setString(2, employee_grade);
+				pstmt.setString(3, employee_id);
+				pstmt.setString(4, employee_name);
+				
+				pstmt.executeQuery();
+				
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
 		new RenewalToTable(table);
 	}
 }

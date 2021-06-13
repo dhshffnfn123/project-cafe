@@ -1,5 +1,7 @@
 package action;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -36,23 +39,29 @@ public class EmployeeInfoDelButton implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		try (
-				Connection conn = HikariCP.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql);
-		) {
-			this.employee_id = fields.get(0).getText();
-			this.employee_name = fields.get(1).getText();
-			this.employee_pw = fields.get(2).getText();
-			this.employee_grade = fields.get(3).getText();
-			
-			pstmt.setString(1, employee_id);
-			pstmt.setString(2, employee_name);
-			pstmt.setString(3, employee_pw);
-			pstmt.setString(4, employee_grade);
-			
-			pstmt.executeQuery();
-		} catch (SQLException e2) {
-			e2.printStackTrace();
+		String check = String.format("직원 아이디: %s\n이 름: %s\n삭제하는 것이 맞습니까?", fields.get(0).getText(), fields.get(1).getText());
+		// 사용자의 응답을 int로 반환
+		int result = JOptionPane.showConfirmDialog(null, check, "Confirm Message", JOptionPane.YES_NO_OPTION);
+		// YES인 경우에만 정보 삭제
+		if (result == JOptionPane.YES_OPTION) {
+			try (
+					Connection conn = HikariCP.getConnection();
+					PreparedStatement pstmt = conn.prepareStatement(sql);
+					) {
+				this.employee_id = fields.get(0).getText();
+				this.employee_name = fields.get(1).getText();
+				this.employee_pw = fields.get(2).getText();
+				this.employee_grade = fields.get(3).getText();
+				
+				pstmt.setString(1, employee_id);
+				pstmt.setString(2, employee_name);
+				pstmt.setString(3, employee_pw);
+				pstmt.setString(4, employee_grade);
+				
+				pstmt.executeQuery();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
 		}
 		
 		new RenewalToTable(table);
