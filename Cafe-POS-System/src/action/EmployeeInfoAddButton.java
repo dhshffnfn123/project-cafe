@@ -5,10 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.JComboBox;
+import javax.swing.JTable;
 
 import jdbc.hikari.HikariCP;
 
@@ -20,10 +23,12 @@ public class EmployeeInfoAddButton implements ActionListener {
 	private String employee_grade;
 	private ArrayList<TextField> fields = new ArrayList<>();
 	private JComboBox<String> grade_box;
+	private JTable table;
 	
-	public EmployeeInfoAddButton(ArrayList<TextField> fields, JComboBox<String> grade_box) {
+	public EmployeeInfoAddButton(ArrayList<TextField> fields, JComboBox<String> grade_box, JTable table) {
 		this.fields = fields;
 		this.grade_box = grade_box;
+		this.table = table;
 	}
 	
 	@Override
@@ -31,6 +36,7 @@ public class EmployeeInfoAddButton implements ActionListener {
 		try (
 				Connection conn = HikariCP.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery();
 		) {
 			this.employee_name = fields.get(0).getText();
 			this.employee_pw = fields.get(1).getText();
@@ -41,6 +47,10 @@ public class EmployeeInfoAddButton implements ActionListener {
 			pstmt.setString(3, employee_grade);
 			
 			pstmt.executeQuery();
+			
+			
+			
+			
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}

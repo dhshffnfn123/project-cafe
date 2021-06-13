@@ -180,10 +180,11 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		JComboBox<String> grade_box = new JComboBox<>(grade_list);
 		grade_box.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 30));
 		grade_box.setPreferredSize(new Dimension(365, 80));
+		grade_box.setBackground(Color.white);
 		right_panel.add(grade_box);
 
 		btn = makeButton("µî¡¡¡¡·Ï");
-		btn.addActionListener(new EmployeeInfoAddButton(fields, grade_box));
+		btn.addActionListener(new EmployeeInfoAddButton(fields, grade_box, staff_info));
 		
 		right_panel.add(btn, BorderLayout.SOUTH);
 
@@ -216,7 +217,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		right_panel.add(grade_box);
 		
 		btn = makeButton("¼ö¡¡¡¡Á¤");
-		btn.addActionListener(new EmployeeInfoUpdateButton(fields, grade_box));
+		btn.addActionListener(new EmployeeInfoUpdateButton(fields, grade_box, staff_info));
 		
 		right_panel.add(btn, BorderLayout.SOUTH);
 		

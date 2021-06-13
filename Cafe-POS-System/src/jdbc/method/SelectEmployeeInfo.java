@@ -35,6 +35,7 @@ public class SelectEmployeeInfo {
 		};
 		table = new JTable(model);
 		// 변경된 데이터를 반영
+		table.setModel(model);
 		model.fireTableDataChanged();
 		table.updateUI();
 	}
@@ -43,16 +44,16 @@ public class SelectEmployeeInfo {
 		try (
 				Connection conn = HikariCP.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
-				ResultSet rs = pstmt.executeQuery();
 		) {
 			
+			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				String[] row = {Integer.toString(rs.getInt(1)), rs.getString(2), 
 						rs.getString(3), rs.getString(4)};
 				model.addRow(row);
 			}
-			
-		} catch (SQLException e) {
+			rs.close();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
