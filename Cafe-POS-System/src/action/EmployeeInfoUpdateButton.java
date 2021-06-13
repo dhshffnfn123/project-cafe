@@ -7,24 +7,36 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.event.TableModelEvent;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 import jdbc.hikari.HikariCP;
+import jdbc.method.RenewalToTable;
+import jdbc.method.SelectEmployeeInfo;
 
 public class EmployeeInfoUpdateButton implements ActionListener {
 
-	private String sql = "UPDATE employees_table SET empoloyee_id = ?, employee_name = ? WHERE employee_pw = ? AND employee_grade = ?";
+	private String sql = "UPDATE employees_table SET employee_pw = ?, employee_grade = ? WHERE employee_id = ? AND employee_name = ?";
 	private String employee_id;
 	private String employee_name;
 	private String employee_pw;
 	private String employee_grade;
 	private ArrayList<TextField> fields = new ArrayList<>();
 	private JComboBox<String> grade_box;
+	private JTable table;
 	
-	public EmployeeInfoUpdateButton(ArrayList<TextField> fields, JComboBox<String> grade_box) {
+	public EmployeeInfoUpdateButton(ArrayList<TextField> fields, JComboBox<String> grade_box, JTable table) {
 		this.fields = fields;
 		this.grade_box = grade_box;
+		this.table = table;
 	}
 	
 	@Override
@@ -38,14 +50,17 @@ public class EmployeeInfoUpdateButton implements ActionListener {
 			this.employee_pw = fields.get(2).getText();
 			this.employee_grade = (String)grade_box.getSelectedItem();
 			
-			pstmt.setString(1, employee_id);
-			pstmt.setString(2, employee_name);
-			pstmt.setString(3, employee_pw);
-			pstmt.setString(4, employee_grade);
+			pstmt.setString(1, employee_pw);
+			pstmt.setString(2, employee_grade);
+			pstmt.setString(3, employee_id);
+			pstmt.setString(4, employee_name);
 			
 			pstmt.executeQuery();
+			
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
+		
+		new RenewalToTable(table);
 	}
 }

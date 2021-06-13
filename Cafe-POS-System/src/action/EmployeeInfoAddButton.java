@@ -9,8 +9,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 import jdbc.hikari.HikariCP;
+import jdbc.method.RenewalToTable;
+import jdbc.method.SelectEmployeeInfo;
 
 public class EmployeeInfoAddButton implements ActionListener {
 	
@@ -20,10 +27,12 @@ public class EmployeeInfoAddButton implements ActionListener {
 	private String employee_grade;
 	private ArrayList<TextField> fields = new ArrayList<>();
 	private JComboBox<String> grade_box;
+	private JTable table;
 	
-	public EmployeeInfoAddButton(ArrayList<TextField> fields, JComboBox<String> grade_box) {
+	public EmployeeInfoAddButton(ArrayList<TextField> fields, JComboBox<String> grade_box, JTable table) {
 		this.fields = fields;
 		this.grade_box = grade_box;
+		this.table = table;
 	}
 	
 	@Override
@@ -44,6 +53,7 @@ public class EmployeeInfoAddButton implements ActionListener {
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
+		
+		new RenewalToTable(table);
 	}
-
 }

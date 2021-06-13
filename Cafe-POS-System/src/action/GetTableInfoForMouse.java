@@ -5,9 +5,10 @@ import java.awt.TextField;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Vector;
 
-import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class GetTableInfoForMouse implements MouseListener {
 
@@ -26,6 +27,7 @@ public class GetTableInfoForMouse implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		int row = table.getSelectedRow();
+		
 		employee_id = (String)table.getModel().getValueAt(row, 0);
 		employee_name = (String)table.getModel().getValueAt(row, 1);
 		employee_password = (String)table.getModel().getValueAt(row, 2);

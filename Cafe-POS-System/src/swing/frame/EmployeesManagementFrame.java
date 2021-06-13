@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
+import action.ChangePageButton;
 import action.CurrentTimeClock;
 import action.EmployeeInfoAddButton;
 import action.EmployeeInfoDelButton;
@@ -92,6 +93,8 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		back_btn.setFont(new Font("궁서", Font.BOLD, 30));
 		back_btn.setBackground(new Color(0, 60, 0));
 		back_btn.setForeground(Color.WHITE);
+		back_btn.addActionListener(new ChangePageButton(this));
+		
 		top_panel_body.add(back_btn, BorderLayout.WEST);
 		// 가운데 시스템시계
 		JLabel clock = new CurrentTimeClock().setClock();
@@ -177,10 +180,11 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		JComboBox<String> grade_box = new JComboBox<>(grade_list);
 		grade_box.setFont(new Font("맑은 고딕", Font.PLAIN, 30));
 		grade_box.setPreferredSize(new Dimension(365, 80));
+		grade_box.setBackground(Color.white);
 		right_panel.add(grade_box);
 
 		btn = makeButton("등　　록");
-		btn.addActionListener(new EmployeeInfoAddButton(fields, grade_box));
+		btn.addActionListener(new EmployeeInfoAddButton(fields, grade_box, staff_info));
 		
 		right_panel.add(btn, BorderLayout.SOUTH);
 
@@ -213,7 +217,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		right_panel.add(grade_box);
 		
 		btn = makeButton("수　　정");
-		btn.addActionListener(new EmployeeInfoUpdateButton(fields, grade_box));
+		btn.addActionListener(new EmployeeInfoUpdateButton(fields, grade_box, staff_info));
 		
 		right_panel.add(btn, BorderLayout.SOUTH);
 		
@@ -241,7 +245,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		}
 		
 		btn = makeButton("삭　　제");
-		btn.addActionListener(new EmployeeInfoDelButton(fields));
+		btn.addActionListener(new EmployeeInfoDelButton(fields, staff_info));
 		
 		right_panel.add(btn, BorderLayout.SOUTH);
 		
