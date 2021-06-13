@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,10 +19,11 @@ import jdbc.hikari.HikariCP;
 
 public class TotalInfo {
 	
-	private String sql = "select order_total, order_date from order_table";
+	private String sql = "SELECT order_time, COUNT(order_total), SUM(order_total) FROM order_table"
+			+ "WHERE order_time like ?";
 	private DefaultTableModel model;
 	private JTable table; 
-	private	String header[] = {"날짜", "판매건수", "판매금액"};
+	private	String[] header = {"날짜", "판매건수", "판매금액"};
 	private String[][] data = new String[0][0];
 	
 	public JTable getTotalInfo() {
@@ -43,10 +45,8 @@ public class TotalInfo {
 		) {
 			
 			while (rs.next()) {
-				String[] row  = new String[3];
-				row[0] = rs.getString("order_date");
-				row[1] = rs.getString("");
-				row[2] = rs.getString("order_total");
+				String[] row = {rs.getString("order_date"), rs.getString(2), 
+						rs.getString("order_total")};
 				model.addRow(row);
 			}
 			
