@@ -5,15 +5,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 import jdbc.hikari.HikariCP;
+import jdbc.method.RenewalToTable;
+import jdbc.method.SelectEmployeeInfo;
 
 public class EmployeeInfoAddButton implements ActionListener {
 	
@@ -36,7 +40,6 @@ public class EmployeeInfoAddButton implements ActionListener {
 		try (
 				Connection conn = HikariCP.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
-				ResultSet rs = pstmt.executeQuery();
 		) {
 			this.employee_name = fields.get(0).getText();
 			this.employee_pw = fields.get(1).getText();
@@ -47,13 +50,10 @@ public class EmployeeInfoAddButton implements ActionListener {
 			pstmt.setString(3, employee_grade);
 			
 			pstmt.executeQuery();
-			
-			
-			
-			
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
+		
+		new RenewalToTable(table);
 	}
-
 }

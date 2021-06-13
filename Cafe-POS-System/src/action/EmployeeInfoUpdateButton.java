@@ -11,10 +11,16 @@ import java.util.Vector;
 
 import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.event.TableModelEvent;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 import jdbc.hikari.HikariCP;
+import jdbc.method.RenewalToTable;
+import jdbc.method.SelectEmployeeInfo;
 
 public class EmployeeInfoUpdateButton implements ActionListener {
 
@@ -51,19 +57,10 @@ public class EmployeeInfoUpdateButton implements ActionListener {
 			
 			pstmt.executeQuery();
 			
-			Vector<String> row = new Vector<String>();
-			DefaultTableModel model = new DefaultTableModel();
-			
-			
-			
-			
-			fields.get(0).setText("");
-			fields.get(1).setText("");
-			fields.get(2).setText("");
-			
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
 		
+		new RenewalToTable(table);
 	}
 }
