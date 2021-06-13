@@ -3,7 +3,6 @@ package jdbc.method;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -15,7 +14,7 @@ public class SelectEmployeeInfo {
 	private String sql = "SELECT * FROM employees_table ORDER BY employee_id";
 	private DefaultTableModel model;
 	private JTable table;
-	private String[] title = {"직원 번호", "이　　름", "패스워드", "직　　급"};
+	private String[] title = {"직원 아이디", "이　　름", "패스워드", "직　　급"};
 	private String[][] data = new String[0][0];
 	
 	public JTable getEmployeeInfo() {

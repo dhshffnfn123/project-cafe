@@ -1,14 +1,11 @@
 package action;
 
-import java.awt.Font;
 import java.awt.TextField;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 public class GetTableInfoForMouse implements MouseListener {
 
@@ -33,14 +30,7 @@ public class GetTableInfoForMouse implements MouseListener {
 		employee_password = (String)table.getModel().getValueAt(row, 2);
 		employee_grade = (String)table.getModel().getValueAt(row, 3);
 		
-		if (fields.size() == 2) {
-			fields.get(0).setText(employee_name);
-			fields.get(0).setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 30));
-			fields.get(0).update(null);
-			fields.get(1).setText(employee_password);
-			fields.get(1).setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 30));
-		}
-		// ¼öÁ¤ ÅÇÀÎ °æ¿ì, »èÁ¦ ÅÇÀÎ °æ¿ì ±¸ºÐ
+		// ¼öÁ¤, »èÁ¦ ÅÇ °æ¿ì ±¸ºÐ
 		if (fields.size() == 3) {
 			fields.get(0).setText(employee_id);
 			fields.get(1).setText(employee_name);
