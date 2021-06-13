@@ -141,7 +141,7 @@ public class Stock_Frame extends DefaultFrame {
 		};
 		
 		table_model = new DefaultTableModel(header, 0);
-		
+		table = new JTable(contents, header);
 		
 		
 		
@@ -189,7 +189,7 @@ public class Stock_Frame extends DefaultFrame {
 		ts.getColumn(1).setCellRenderer(dtcr_center);
 		ts.getColumn(2).setCellRenderer(dtcr_center);
 		
-			
+		//table_panel.add(table);
 		table_panel.add(table_scrollpane);
 		//table_panel.add(table);
 		
