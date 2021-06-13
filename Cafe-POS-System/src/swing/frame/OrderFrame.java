@@ -12,7 +12,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -23,15 +22,18 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-
 import action.CurrentTimeClock;
 import jdbc.hikari.HikariCP;
 import jdbc.view.button.DrinkButton;
-import jdbc.view.button.EspressoButton;
 
 public class OrderFrame extends DefaultFrame {
 	
 	static int i=0;
+	static int sum =0 ;
+	// 총합계금액 
+	JLabel totalmoney = new JLabel(""); 
+	
+	
 	public OrderFrame() {
 		
 		// 기본프레임설정 
@@ -49,7 +51,7 @@ public class OrderFrame extends DefaultFrame {
 		DefaultTableModel model = new DefaultTableModel(header,0); //테이블 데이터
 		JTable table =new JTable(model);
 		table.setOpaque(true);
-		table.setBackground(new Color(62,110,255));
+		table.setBackground(new Color(204,153,255));
 		table.setRowHeight(45);
 		JScrollPane scrollpane = new JScrollPane(table);
 		// 스크롤바 크기 설정
@@ -97,21 +99,40 @@ public class OrderFrame extends DefaultFrame {
         
         // Menu 탭 생성 
         JTabbedPane Menu = new JTabbedPane();  //JTabbedPane생성
-        Menu.setFont(new Font("맑은 고딕", Font.BOLD, 30));
-         
+        Menu.setFont(new Font("맑은 고딕", Font.BOLD, 30)); 
         
         //음료탭 설정 
         JTabbedPane drinkmenu = new JTabbedPane();  //JTabbedPane생성
         drinkmenu.setFont(new Font("맑은 고딕", Font.BOLD, 30));
         
+        //베이커리 탭 설정 
+        JTabbedPane bakerymenu = new JTabbedPane();  //JTabbedPane생성
+        bakerymenu.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+        
+        //RTD 탭설정 
+        JTabbedPane RTDmenu = new JTabbedPane();  //JTabbedPane생성
+        RTDmenu.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+        
+        //옵션 탭설정 
+        JTabbedPane optionmenu = new JTabbedPane();  //JTabbedPane생성
+        optionmenu.setFont(new Font("맑은 고딕", Font.BOLD, 30));
        
         Menu.addTab("음료", drinkmenu);
+        Menu.addTab("베이커리", bakerymenu);
+        Menu.addTab("RTD", RTDmenu);
+        Menu.addTab("옵션", optionmenu);
         
         JPanel drink1 = new JPanel(); //JPanel 생성
         JPanel drink2 = new JPanel(); //JPanel 생성
         drink1.setLayout(new GridLayout(3,3));
         drink2.setLayout(new GridLayout(3,3));
         
+        JPanel bakery1 = new JPanel();
+        bakery1.setLayout(new GridLayout(3,3));
+        
+        JPanel option1 = new JPanel();
+        option1.setLayout(new GridLayout(3,3));
+                
         // 리저브에스프레소 버튼 
         drinkmenu.addTab("리저브에스프레소", drink1);	
 		String 리저브에스프레소 = "SELECT * FROM drink_table WHERE M_TYPE_ID = 10";
@@ -138,6 +159,10 @@ public class OrderFrame extends DefaultFrame {
 		        	   row[3]= ((DrinkButton)e.getSource()).getPrice();
 		        	   model.addRow(row);  
 		        	   
+		         	   //총합계 ++ 액션
+		        	   String str = ((DrinkButton)e.getSource()).getPrice();
+		        	   sum += (Integer.parseInt(str));
+		        	   totalmoney.setText(String.format("%s", sum));
 		           }
 		           	
 		       });
@@ -174,6 +199,49 @@ public class OrderFrame extends DefaultFrame {
 		        	   row[4]= "";
 		        	   model.addRow(row);  
 		        	   
+		        	   //총합계 ++ 액션
+		        	   String str = ((DrinkButton)e.getSource()).getPrice();
+		        	   sum += (Integer.parseInt(str));
+		        	   totalmoney.setText(String.format("%s", sum));
+		        	   
+		           }
+		           	
+		       });
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+       
+		// 옵션 테이블 
+		String 옵션 = "SELECT * FROM drink_table WHERE M_TYPE_ID = 120";
+		try (
+				Connection conn = HikariCP.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(옵션);
+				ResultSet rs = pstmt.executeQuery();
+				) {
+			while (rs.next()) {
+				JButton 옵션버튼= new DrinkButton(rs.getString(3), rs.getString(4));
+				option1.add(옵션버튼);
+				
+				// 리저브에스프레소버튼액션 리스너
+				옵션버튼.addActionListener( new ActionListener(){ 
+		           public void actionPerformed(ActionEvent e) {     	   
+		
+		        	   String[] row = new String[5];
+		        	   
+		        	   //{"주문번호","상품명","상품수량","가격","옵션"
+		        	   row[0]= "A00000000000000"+i;
+		        	   i++;
+		        	   row[1]=  "1";
+		        	   row[2]= ((DrinkButton)e.getSource()).getMenuName();
+		        	   row[3]= ((DrinkButton)e.getSource()).getPrice();
+		        	   model.addRow(row);  
+		        	   
+		         	   //총합계 ++ 액션
+		        	   String str = ((DrinkButton)e.getSource()).getPrice();
+		        	   sum += (Integer.parseInt(str));
+		        	   totalmoney.setText(String.format("%s", sum));
 		           }
 		           	
 		       });
@@ -183,12 +251,17 @@ public class OrderFrame extends DefaultFrame {
 			e.printStackTrace();
 		} 
 		
-		
-       
         Menu.setBounds(660, 110, 800, 500);
         add(Menu);
         
+        // 총합계 라벨 설정
+        JLabel 총합계 = new JLabel("총합계");
         
+        총합계.setBounds(400,700, 100, 100);
+        totalmoney.setBounds(500,700, 100, 100);
+        add(총합계);
+        add(totalmoney);
+         
         //결제 버튼 설정 
 		JButton 결제= new JButton("결제");
 		결제.setBounds(670, 630, 100, 100);
@@ -201,20 +274,16 @@ public class OrderFrame extends DefaultFrame {
 		
 		//삭제 액션 리스너
 		삭제.addActionListener( new ActionListener(){ 
-		           public void actionPerformed(ActionEvent e) {
-		        	   
+		           public void actionPerformed(ActionEvent e) {    	   
 		        	   if( table.getSelectedRow() != -1){
 		        		   model.removeRow(table.getSelectedRow());
-		        	   }
-		        	   
+		        	   }  	   
 		           }  	
-		 });
-	
+		 });	
 		
 		setVisible(true);
 		repaint();
 	}
-	
 	
 	public static void main(String[] args) {
 		new OrderFrame();
