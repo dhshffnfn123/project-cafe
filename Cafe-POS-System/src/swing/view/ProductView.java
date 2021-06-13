@@ -4,36 +4,41 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import jdbc.hikari.HikariCP;
 import jdbc.model.Product;
 
 public class ProductView extends Product {
 	
-	public ProductView(String product_name, int product_price) {
+	private String sql = "SELECT * FROM product_table WHERE m_type_id = ?";
+	private ArrayList<String> products = new ArrayList<>();
+	
+	private void getProduct(String product_name, int product_price) {
 		setProduct_name(product_name);
 		setProduct_price(product_price);
 		getProduct_name();
 		getProduct_price();
 	}
 	
-	public static void productSearchView(String group_name) {
-		
-		String search_name = group_name;
-		String sql = "SELECT product_name, product_price FROM product_table "
-				+ "INNER JOIN menu_type USING (m_type_id) WHERE m_name LIKE ?";
-		
+	public ArrayList<String> getProducts(){
+		return products;
+	}
+	
+	public ProductView(int type_id) {
 		try (
 				Connection conn = HikariCP.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 		) {
 			
-			pstmt.setString(1, search_name);
+			pstmt.setInt(1, type_id);
 			
-			ResultSet rs = pstmt.executeQuery(sql);
+			ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				System.out.println(new DrinkView(rs.getString(1), rs.getInt(2)));
+				getProduct(rs.getString(3), rs.getInt(4));
+				String product = String.format("<HTML><body style='text-align:center;'>%s<br>%d</body></HTML>", getProduct_name(), getProduct_price());
+				products.add(product);
 			}
 			
 			rs.close();
@@ -42,9 +47,9 @@ public class ProductView extends Product {
 		} 
 	}
 	
-	@Override
-	public String toString() {
-		return String.format("%s\n%s", super.getProduct_name(), super.getProduct_price());
+	public static void main(String[] args) {
+		ArrayList<String> food = new ProductView(140).getProducts();
+		System.out.println(food.toString());
 	}
 
 }

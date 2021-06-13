@@ -2,41 +2,23 @@ package jdbc.model;
 
 public class Menu {
 	
-	private int menu_id;
-	private Drink dink;
-	private Product product;
-	private Rtd rtd;
+	private int m_type_id;
+	private String m_name;
 	
-	public int getMenu_id() {
-		return menu_id;
+	public int getM_type_id() {
+		return m_type_id;
 	}
 	
-	public void setMenu_id(int menu_id) {
-		this.menu_id = menu_id;
+	public void setM_type_id(int m_type_id) {
+		this.m_type_id = m_type_id;
 	}
 	
-	public Drink getDink() {
-		return dink;
+	public String getM_name() {
+		return m_name;
 	}
 	
-	public void setDink(Drink dink) {
-		this.dink = dink;
-	}
-	
-	public Product getProduct() {
-		return product;
-	}
-	
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-	
-	public Rtd getRtd() {
-		return rtd;
-	}
-	
-	public void setRtd(Rtd rtd) {
-		this.rtd = rtd;
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
 	}
 	
 }

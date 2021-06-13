@@ -4,36 +4,42 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import jdbc.hikari.HikariCP;
 import jdbc.model.Drink;
 
 public class DrinkView extends Drink {
 
-	public DrinkView(String drink_name, int drink_price) {
+	private String sql = "SELECT * FROM drink_table WHERE m_type_id = ?";
+	private ArrayList<String> drinks = new ArrayList<>();
+	
+	private void getSetValue(String drink_name, int drink_price) {
 		setDrink_name(drink_name);
-		setDrink_price(getDrink_price());
+		setDrink_price(drink_price);
 		getDrink_name();
 		getDrink_price();
 	}
 	
-	public static void drinkSearchView(String group_name) {
-		
-		String search_name = group_name;
-		String sql = "SELECT drink_name, drink_price FROM drink_table "
-				+ "INNER JOIN menu_type USING (m_type_id) WHERE m_name LIKE ?";
-		
+	public ArrayList<String> getDrinks() {
+		return drinks;
+	}
+	
+	public DrinkView(int type_id) {
 		try (
 				Connection conn = HikariCP.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(null);
+				PreparedStatement pstmt = conn.prepareStatement(sql);
 		) {
 			
-			pstmt.setString(1, search_name);
+			pstmt.setInt(1, type_id);
 			
 			ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				System.out.println(new DrinkView(rs.getString(1), rs.getInt(2)));
+				getSetValue(rs.getString(3), rs.getInt(4));
+				// HTML, CSS문법 사용해서 버튼 텍스트 중앙 정렬
+				String drink = String.format("<HTML><body style='text-align:center;'>%s<br>%d</body></HTML>", getDrink_name(), getDrink_price());
+				drinks.add(drink);
 			}
 			
 			rs.close();
@@ -42,9 +48,9 @@ public class DrinkView extends Drink {
 		}
 	}
 	
-	@Override
-	public String toString() {
-		return String.format("%s\n%s", super.getDrink_name(), super.getDrink_price());
+	public static void main(String[] args) {
+		// ArrayList로 사용
+		ArrayList<String> test = new DrinkView(10).getDrinks();
 	}
 	
 }

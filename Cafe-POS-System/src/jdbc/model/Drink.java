@@ -3,6 +3,7 @@ package jdbc.model;
 public class Drink {
 	
 	private int drink_id;
+	private int m_type_id;
 	private String drink_name;
 	private int drink_price;
 	
@@ -12,6 +13,14 @@ public class Drink {
 	
 	public void setDrink_id(int drink_id) {
 		this.drink_id = drink_id;
+	}
+	
+	public int getM_type_id() {
+		return m_type_id;
+	}
+	
+	public void setM_type_id(int m_type_id) {
+		this.m_type_id = m_type_id;
 	}
 	
 	public String getDrink_name() {

@@ -3,6 +3,7 @@ package jdbc.model;
 public class Rtd {
 	
 	private int rtd_id;
+	private int m_type_id;
 	private String rtd_name;
 	private int rtd_price;
 	
@@ -12,6 +13,14 @@ public class Rtd {
 	
 	public void setRtd_id(int rtd_id) {
 		this.rtd_id = rtd_id;
+	}
+	
+	public int getM_type_id() {
+		return m_type_id;
+	}
+	
+	public void setM_type_id(int m_type_id) {
+		this.m_type_id = m_type_id;
 	}
 	
 	public String getRtd_name() {
