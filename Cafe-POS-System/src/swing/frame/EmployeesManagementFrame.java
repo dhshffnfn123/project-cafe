@@ -69,7 +69,6 @@ public class EmployeesManagementFrame extends DefaultFrame {
       // 테이블에 값 선택하면 값 가져오기 이벤트 설정
       staff_info.addMouseListener(new GetTableInfoForMouse(staff_info));
       
-      
       // -- CENTER-RIGHT
       // 센터 패널의 오른쪽 공간 생성(1, 2)번째
       // JTabbedPane() 탭 만들기 -> 오른쪽 패널 탭으로 만들기
