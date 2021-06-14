@@ -4,8 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,9 +14,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import action.ChecksalesSelectButton;
 import jdbc.method.TotalInfo;
 
-public class ChecksalesFrame extends JFrame{		
+public class ChecksalesFrame extends DefaultFrame{		
 	
 	public ChecksalesFrame() {
 		// 부모 프레임 생성 및 기본 스타일 지정 실시
@@ -26,9 +25,9 @@ public class ChecksalesFrame extends JFrame{
 		setJFrameStyle(frm);
 
 		// 대분류 ---------------------------------------------------
-		JLabel big_txt = new JLabel("구 분");
-		big_txt.setBounds(0, 68, 100, 40);
-		setJLabelStyle(big_txt);
+		JLabel sortation_txt = new JLabel("구 분");
+		sortation_txt.setBounds(0, 68, 100, 40);
+		setJLabelStyle(sortation_txt);
 				
 		ImageIcon icon_logo = new ImageIcon("./data/Logo1.png");
 		Image img_logo = icon_logo.getImage();
@@ -40,29 +39,33 @@ public class ChecksalesFrame extends JFrame{
 		imglb.setOpaque(true);
 		imglb.setBounds(0, 0, 1500, 68);
 		
-		String big_arr[] = {"연 매출", "월 매출", "일 매출", "총 매출"};
-		JComboBox<String> big_combo = new JComboBox<String>(big_arr);
-		big_combo.setBounds(100, 68, 1300, 40);
-		setJComboBoxStyle(big_combo);
+		String combo_arr[] = {"연 매출", "월 매출", "일 매출", "총 매출"};
+		JComboBox<String> select_combo = new JComboBox<String>(combo_arr);
+		select_combo.setBounds(100, 68, 1300, 40);
+		setJComboBoxStyle(select_combo);
+		
+		DefaultTableModel model = new TotalInfo().getTotalInfo();
+		JTable jt = new JTable(model);
+		model.fireTableDataChanged();
+		jt.updateUI();
+		JScrollPane jscroll = new JScrollPane(jt);
+		jscroll.setBounds(0, 110, 500, 650);					
 				
-		JButton big_select_btn = new JButton("조회");			
-		big_select_btn.setBounds(1400, 68, 100, 40);
-		setJButtonStyle(big_select_btn); // 기본 버튼 스타일 지정 메소드 호출
-				
+		JButton select_btn = new JButton("조회");			
+		select_btn.setBounds(1400, 68, 100, 40);
+		setJButtonStyle(select_btn); // 기본 버튼 스타일 지정 메소드 호출
+		select_btn.addActionListener(new ChecksalesSelectButton(frm,select_btn, select_combo, model));		
 		// if ((big_combo.getSelectedItem().equals("연 매출")) && (e.getSource() == big_select_btn)) {
 
 		// -----------------------------------------------------------
 				
 
 				
-		JTable jt = new TotalInfo().getTotalInfo();
-		JScrollPane jscroll = new JScrollPane(jt);
-		jscroll.setBounds(0, 110, 500, 650);					
 				
 		frm.getContentPane().add(imglb);
-		frm.getContentPane().add(big_txt);
-		frm.getContentPane().add(big_combo);
-		frm.getContentPane().add(big_select_btn);
+		frm.getContentPane().add(sortation_txt);
+		frm.getContentPane().add(select_combo);
+		frm.getContentPane().add(select_btn);
 		frm.getContentPane().add(jscroll, BorderLayout.CENTER);
 				
 				

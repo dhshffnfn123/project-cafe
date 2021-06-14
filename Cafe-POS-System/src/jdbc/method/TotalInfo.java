@@ -19,10 +19,16 @@ import jdbc.hikari.HikariCP;
 
 public class TotalInfo {
 	
-	private String sql = "SELECT TO_CHAR(order_time, 'yy-mm-dd'), COUNT(order_total), SUM(order_total) "
+	private String sql = "SELECT TO_CHAR(order_time, 'yy'), COUNT(order_total), SUM(order_total)"
 			+ "FROM order_table "
-			+ "GROUP BY TO_CHAR(order_time, 'yy-mm-dd') "
-			+ "ORDER BY TO_CHAR(order_time, 'yy-mm-dd')";
+			+ "GROUP BY TO_CHAR(order_time, 'yy') "
+			+ "ORDER BY TO_CHAR(order_time, 'yy')";
+	/*
+	 * "SELECT TO_CHAR(order_time, ?), COUNT(order_total), SUM(order_total) "
+			+ "FROM order_table "
+			+ "GROUP BY TO_CHAR(order_time, ?) "
+			+ "ORDER BY TO_CHAR(order_time, ?)"
+	 */
 	private DefaultTableModel model;
 	private JTable table; 
 	private	String[] header = {"날짜", "판매건수", "판매금액"};
@@ -31,17 +37,16 @@ public class TotalInfo {
 	private int result = 0;
 	private int count = 0;
 	
-	public JTable getTotalInfo() {
+	// if ((big_combo.getSelectedItem().equals("연 매출")) && (e.getSource() == big_select_btn))
+	public DefaultTableModel getTotalInfo() {
 		in_Order();
-		select_Order();
-		return table;
+		//select_Order();
+		return model;
 	}
 	
 	private void in_Order() {
 		model = new DefaultTableModel(data, header);
-		table = new JTable(model);
-		model.fireTableDataChanged();
-		table.updateUI();
+		
 	}
 	    
 	private void select_Order() {
@@ -50,7 +55,6 @@ public class TotalInfo {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery();
 		) {
-			
 			while (rs.next()) {
 				date = rs.getString(1);
 				count = rs.getInt(2);
