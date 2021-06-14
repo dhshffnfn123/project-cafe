@@ -15,9 +15,10 @@ import javax.swing.border.TitledBorder;
 
 import com.sun.tools.javac.Main;
 
-import action.Login_btn_Listener;
-import action.Login_combobox_listener;
-import action.Password_tf_Listener;
+import action.LoginButtonListener;
+import action.LoginComboBoxListener;
+import action.PasswordTextFieldListener;
+
 
 import action.get_Password;
 import jdbc.method.Login_combox_data;
@@ -90,11 +91,6 @@ public class Login_Frame extends DefaultFrame {
 			
 			login_panel.add(combox);
 			
-			combox.addActionListener(new Login_combobox_listener(combox));
-			// 콤박 값 받아옴
-			Login_combobox_listener lcl = new Login_combobox_listener(combox);
-			cbname = lcl.cbname;
-			
 
 			// ============================================= 텍스트필드
 			pwf = new JPasswordField(5);
@@ -103,12 +99,12 @@ public class Login_Frame extends DefaultFrame {
 			
 			login_panel.add(pwf);
 			
-			//pwf.addActionListener(new get_Password(pwf));
+			
 			
 			// passwordfield 엔터 누르기
-			pwf.addActionListener(new Password_tf_Listener(pwf ,cbname, this));
+			pwf.addActionListener(new PasswordTextFieldListener(combox, cbname, pwf, this));
 			// 로그인 버튼 누르기
-			login_btn.addActionListener(new Login_btn_Listener(pwf, cbname, this));
+			login_btn.addActionListener(new LoginButtonListener(combox, pwf, cbname, this));
 			
 			
 			
