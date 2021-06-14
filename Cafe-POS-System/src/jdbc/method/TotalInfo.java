@@ -19,8 +19,7 @@ import jdbc.hikari.HikariCP;
 
 public class TotalInfo {
 	
-	private String sql = "SELECT order_time, COUNT(order_total), SUM(order_total) FROM order_table"
-			+ "WHERE order_time like ?";
+	private String sql = "SELECT * FROM order_table";
 	private DefaultTableModel model;
 	private JTable table; 
 	private	String[] header = {"날짜", "판매건수", "판매금액"};

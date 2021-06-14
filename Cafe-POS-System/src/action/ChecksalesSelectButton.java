@@ -23,7 +23,7 @@ public class ChecksalesSelectButton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		int row = table.getSelectedRow();
 		order_time = (String) table.getModel().getValueAt(row, 0);
-		order_total = (String) table.getModel().getValueAt(row, 0);
+		order_total = (String) table.getModel().getValueAt(row, 2);
 		
 	}
 }

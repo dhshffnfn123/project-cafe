@@ -57,7 +57,7 @@ public class ChecksalesFrame extends JFrame{
 				
 		JTable jt = new TotalInfo().getTotalInfo();
 		JScrollPane jscroll = new JScrollPane(jt);
-		jscroll.setBounds(0, 110, 1500, 850);					
+		jscroll.setBounds(0, 110, 500, 650);					
 				
 		frm.getContentPane().add(imglb);
 		frm.getContentPane().add(big_txt);
