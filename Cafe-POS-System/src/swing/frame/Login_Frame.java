@@ -18,6 +18,8 @@ import com.sun.tools.javac.Main;
 import action.Login_btn_Listener;
 import action.Login_combobox_listener;
 import action.Password_tf_Listener;
+
+import action.get_Password;
 import jdbc.method.Login_combox_data;
 
 
@@ -101,15 +103,12 @@ public class Login_Frame extends DefaultFrame {
 			
 			login_panel.add(pwf);
 			
-			
-			// 텍스트필드 값 가져오기
-			password = new String(pwf.getPassword());
-			
+			//pwf.addActionListener(new get_Password(pwf));
 			
 			// passwordfield 엔터 누르기
-			pwf.addActionListener(new Password_tf_Listener(cbname, password, this));
+			pwf.addActionListener(new Password_tf_Listener(pwf ,cbname, this));
 			// 로그인 버튼 누르기
-			login_btn.addActionListener(new Login_btn_Listener(login_btn, cbname, password, this));
+			login_btn.addActionListener(new Login_btn_Listener(pwf, cbname, this));
 			
 			
 			

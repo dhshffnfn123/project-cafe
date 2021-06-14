@@ -33,11 +33,19 @@ public class Stock_Table_addData implements MouseListener {
 	}
 	
 	private void make_model() {
-		model = new DefaultTableModel(data, header);
-		table = new JTable(model);
-		// 변경된 데이터를 반영
-		model.fireTableDataChanged();
-		table.updateUI();
+		model = new DefaultTableModel(data, header) {
+				public boolean isCellEditable(int row, int column) {
+					return false; // 불가능
+				}
+				
+				
+			};
+		
+		 table = new JTable(model);
+		 model.fireTableDataChanged();
+		 table.updateUI();
+		
+		
 	}
 	
 	private void Select_addData() {

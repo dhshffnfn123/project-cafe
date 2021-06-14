@@ -39,7 +39,7 @@ public class Stock_Frame extends DefaultFrame {
 	Container contentPane;
 	DefaultTableModel table_model;
 	DefaultTableCellRenderer dtcr_center, dtcr_right; // cell 위치 정렬을 위한
-	
+	String search;
 	
 	
 	Font bigger_font = new Font("맑은 고딕", Font.BOLD, 50);
@@ -134,14 +134,6 @@ public class Stock_Frame extends DefaultFrame {
 		
 		main_panel.add(find_btn);
 		
-		// ============================================== 테이블에 데이터 넣기 실험용 (삭제예정)
-		
-		 
-		
-		
-		
-		
-		
 		
 		// ============================================== 테이블
 		
@@ -186,6 +178,10 @@ public class Stock_Frame extends DefaultFrame {
 	      ts.getColumn(0).setCellRenderer(dtcr_center);// product_id 컬럼을 센터 정렬
 	      ts.getColumn(1).setCellRenderer(dtcr_center);
 	      ts.getColumn(2).setCellRenderer(dtcr_center);
+	      
+	      // ================================================ 검색 기능
+	      search = find_tf.getText(); 
+	      
 			  
 	      table_panel.add(scrollpane);
 		
