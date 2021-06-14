@@ -19,11 +19,17 @@ import jdbc.hikari.HikariCP;
 
 public class TotalInfo {
 	
-	private String sql = "SELECT * FROM order_table";
+	private String sql = "SELECT TO_CHAR(order_time, 'yy-mm-dd'), COUNT(order_total), SUM(order_total) "
+			+ "FROM order_table "
+			+ "GROUP BY TO_CHAR(order_time, 'yy-mm-dd') "
+			+ "ORDER BY TO_CHAR(order_time, 'yy-mm-dd')";
 	private DefaultTableModel model;
 	private JTable table; 
 	private	String[] header = {"날짜", "판매건수", "판매금액"};
-	private String[][] data = new String[0][0];
+	private Object[][] data = new String[0][0];
+	private String date;
+	private int result = 0;
+	private int count = 0;
 	
 	public JTable getTotalInfo() {
 		in_Order();
@@ -34,8 +40,10 @@ public class TotalInfo {
 	private void in_Order() {
 		model = new DefaultTableModel(data, header);
 		table = new JTable(model);
+		model.fireTableDataChanged();
+		table.updateUI();
 	}
-	
+	    
 	private void select_Order() {
 		try (
 				Connection conn = HikariCP.getConnection();
@@ -44,8 +52,10 @@ public class TotalInfo {
 		) {
 			
 			while (rs.next()) {
-				String[] row = {rs.getString("order_date"), rs.getString(2), 
-						rs.getString("order_total")};
+				date = rs.getString(1);
+				count = rs.getInt(2);
+				result = rs.getInt(3);
+				Object[] row = {date,count,result};
 				model.addRow(row);
 			}
 			
@@ -53,4 +63,6 @@ public class TotalInfo {
 			e.printStackTrace();
 		}
 	}
+	
+	
 }
