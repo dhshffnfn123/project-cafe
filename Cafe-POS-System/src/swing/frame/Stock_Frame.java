@@ -19,7 +19,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 
+import action.Stock_Table_addData;
 import tool.RoundJTextField;
 import tool.RoundedButton;
 
@@ -37,6 +39,7 @@ public class Stock_Frame extends DefaultFrame {
 	Container contentPane;
 	DefaultTableModel table_model;
 	DefaultTableCellRenderer dtcr_center, dtcr_right; // cell 위치 정렬을 위한
+	
 	
 	
 	Font bigger_font = new Font("맑은 고딕", Font.BOLD, 50);
@@ -133,15 +136,8 @@ public class Stock_Frame extends DefaultFrame {
 		
 		// ============================================== 테이블에 데이터 넣기 실험용 (삭제예정)
 		
-		String header[] = {"PRODUCT_ID","PRODUCT_NAME","STOCK"};
-		String contents[][] = {
-				{"1","아메리카노","220"},
-				{"2","처음처럼","120"},
-				{"3","에스프레소","210"}
-		};
+		 
 		
-		table_model = new DefaultTableModel(header, 0);
-		table = new JTable(contents, header);
 		
 		
 		
@@ -149,64 +145,54 @@ public class Stock_Frame extends DefaultFrame {
 		
 		// ============================================== 테이블
 		
-		table_panel.setPreferredSize(new Dimension(430, 400));
-		table = new JTable(table_model);
-		JScrollPane table_scrollpane = new JScrollPane(table);
 		
-		scrollPane.setLocation(20, 20);
-		scrollPane.setSize(1160, 610);
-		table.setFont(nomal_font);
-		table.setRowHeight(40);	// 테이블 열 높이 설정
+	
+		// 테이블 설정  
+	      
+	      //DefaultTableModel model = new DefaultTableModel(header,0); //테이블 데이터
+	      JTable table = new Stock_Table_addData().getStockTable();
+	      table.setOpaque(true);
+	      table.setBackground(new Color(204,153,255));
+	      table.setRowHeight(40);
+	      JScrollPane scrollpane = new JScrollPane(table);
+	      // 스크롤바 크기 설정
+	      scrollpane.setPreferredSize(new Dimension(430,400));
+	      //테이블 출력위치 설정 
+	      scrollpane.setLocation(20,20);
+	      scrollpane.setSize(1160,610);
+	      
+	      table.getTableHeader().setReorderingAllowed(false); // 테이블 헤더 이동 안되게 하기
+	      table.getTableHeader().setBackground(Color.pink);// 컬럼의 색상을 설정
+	      table.getTableHeader().setFont(small_font);
+	      table.getTableHeader().setForeground(Color.black);
+	      
+	      
+	      String[] header = new Stock_Table_addData().give_header();
+	      
+	      table.getColumn(header[0]).setPreferredWidth(100); // 컬럼당 넓이 설정인데 모든 컬럼을 테이블의 넓이에 '얼추' 맞게 설정해야함
+	      table.getColumn(header[1]).setPreferredWidth(900); 
+	      table.getColumn(header[2]).setPreferredWidth(160);
+	      table.setFont(nomal_font);
+	     
+	      
+	      
+	      dtcr_center = new DefaultTableCellRenderer();
+	      dtcr_right = new DefaultTableCellRenderer();
+			
+	      dtcr_center.setHorizontalAlignment(SwingConstants.CENTER); // dtcr_center의 위치를 center로 지정
+	      dtcr_right.setHorizontalAlignment(SwingConstants.RIGHT);
+	      
+	      TableColumnModel ts = table.getColumnModel(); // 정렬할 테이블의 columnModel을 가져옴
+	      ts.getColumn(0).setCellRenderer(dtcr_center);// product_id 컬럼을 센터 정렬
+	      ts.getColumn(1).setCellRenderer(dtcr_center);
+	      ts.getColumn(2).setCellRenderer(dtcr_center);
+			  
+	      table_panel.add(scrollpane);
 		
-		table.getTableHeader().setReorderingAllowed(false); // 테이블 헤더 이동 안되게 하기
-		table.getTableHeader().setBackground(Color.pink);// 컬럼의 색상을 설정
-		table.getTableHeader().setFont(small_font);
-		table.getTableHeader().setForeground(Color.black);;
-		
-		// ------------------------------------------------------- 테이블 선택은 가능하지만 수정은 안되게 하기
-//		table.setModel(new DefaultTableModel() {
-//			public boolean isCellEditable(int row, int column) {
-//				if(column == 2) { // column == 2는 stock이므로 stock만 수정이 가능하게 함 
-//					return true; // 수정 가능
-//				} else {
-//				return false; // 불가능
-//			}
-//		}
-//		});
-		table.getColumn(header[0]).setPreferredWidth(100); // 컬럼당 넓이 설정인데 모든 컬럼을 테이블의 넓이에 '얼추' 맞게 설정해야함
-		table.getColumn(header[1]).setPreferredWidth(900); 
-		table.getColumn(header[2]).setPreferredWidth(110);
-		
-		// ------------------------------------------------------- 컬럼 정렬
-		dtcr_center = new DefaultTableCellRenderer();
-		dtcr_right = new DefaultTableCellRenderer();
-		
-		dtcr_center.setHorizontalAlignment(SwingConstants.CENTER); // dtcr_center의 위치를 center로 지정
-		dtcr_right.setHorizontalAlignment(SwingConstants.RIGHT);
-		
-		TableColumnModel ts = table.getColumnModel(); // 정렬할 테이블의 columnModel을 가져옴
-		ts.getColumn(0).setCellRenderer(dtcr_center);// product_id 컬럼을 센터 정렬
-		ts.getColumn(1).setCellRenderer(dtcr_center);
-		ts.getColumn(2).setCellRenderer(dtcr_center);
-		
-		//table_panel.add(table);
-		table_panel.add(table_scrollpane);
-		//table_panel.add(table);
-		
-		//테이블에서 선택한 값 가져오기
-		//table.getColumn(header[2]).getCellEditor();
-		
-		
-		
-		repaint();
-		setVisible(true);
+	      repaint();
+	      setVisible(true);
 		
 	}
-	
-	
-	
-	
-	
 	
 	
 	public static void main(String[] args) {
@@ -214,18 +200,6 @@ public class Stock_Frame extends DefaultFrame {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

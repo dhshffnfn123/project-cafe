@@ -15,15 +15,30 @@ import javax.swing.table.DefaultTableModel;
 import jdbc.hikari.HikariCP;
 
 public class Stock_Table_addData implements MouseListener {
-	private String colNames[] = {"아이디", "품 명", "재고 수량"};
-	private DefaultTableModel model = new DefaultTableModel(colNames, 0);
+	private String header[] = {"아이디", "품 명", "재고 수량"};
+	private DefaultTableModel model;
+	private String[][] data = new String[0][0];
 	private JTable table;
 	private String select_sql;
 	
-	public DefaultTableModel getStockTable() {
-		return model;
+	public JTable getStockTable() {
+		make_model();
+		Select_addData();
+		
+		return table;
 	}
 	
+	public String[] give_header() {
+		return header;
+	}
+	
+	private void make_model() {
+		model = new DefaultTableModel(data, header);
+		table = new JTable(model);
+		// 변경된 데이터를 반영
+		model.fireTableDataChanged();
+		table.updateUI();
+	}
 	
 	private void Select_addData() {
 		select_sql = 
@@ -35,16 +50,21 @@ public class Stock_Table_addData implements MouseListener {
 				ResultSet rs = pstmt.executeQuery();
 		) {
 			while (rs.next()) {
-				model.addRow(new Object[] {rs.getString("STOCK_ID"), rs.getString("STOCK_NAME"),
-						rs.getString("STOCK_COUNT")
+				model.addRow(new Object[] {rs.getInt("STOCK_ID"), rs.getString("STOCK_NAME"),
+						rs.getInt("STOCK_COUNT")
 				});
 				
 			} // while
+			
+
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		} 
+		
+		
 	}
 	
 
