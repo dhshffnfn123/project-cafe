@@ -132,7 +132,7 @@ public class Stock_Frame extends DefaultFrame {
 
 		// 테이블 설정
 
-		// DefaultTableModel model = new DefaultTableModel(header,0); //테이블 데이터
+		// 
 		JTable table = new Stock_Table_addData().getStockTable();
 		table.setOpaque(true);
 		table.setBackground(new Color(204, 153, 255));
@@ -144,6 +144,7 @@ public class Stock_Frame extends DefaultFrame {
 		scrollpane.setLocation(20, 20);
 		scrollpane.setSize(1160, 610);
 
+		
 		table.getTableHeader().setReorderingAllowed(false); // 테이블 헤더 이동 안되게 하기
 		table.getTableHeader().setBackground(Color.pink);// 컬럼의 색상을 설정
 		table.getTableHeader().setFont(small_font);
@@ -161,7 +162,7 @@ public class Stock_Frame extends DefaultFrame {
 
 		dtcr_center.setHorizontalAlignment(SwingConstants.CENTER); // dtcr_center의 위치를 center로 지정
 		dtcr_right.setHorizontalAlignment(SwingConstants.RIGHT);
-
+		
 		TableColumnModel ts = table.getColumnModel(); // 정렬할 테이블의 columnModel을 가져옴
 		ts.getColumn(0).setCellRenderer(dtcr_center);// product_id 컬럼을 센터 정렬
 		ts.getColumn(1).setCellRenderer(dtcr_center);
