@@ -8,6 +8,7 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -21,20 +22,23 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
-import action.Stock_Table_addData;
+import action.ExitButtonListener;
+import action.StockAddListener;
+import action.StockTableAddData;
 import tool.RoundJTextField;
 import tool.RoundedButton;
 
-public class Stock_Frame extends DefaultFrame {
+public class StockFrame extends DefaultFrame {
 
+	JFrame add_frame;
 	JPanel main_panel, table_panel, table_panel2;
+	JTable table;
 	JLabel title_label;
 	JScrollPane scrollPane;
-	RoundedButton all_btn, drink_btn, product_btn, rtd_btn, exit_btn;
+	RoundedButton add_btn, update_btn, delete_btn, exit_btn;
 	JButton find_btn;
 	JComboBox cate_combox;
 	RoundJTextField find_tf;
-	JTable table;
 	JTableHeader table_header;
 	Container contentPane;
 	DefaultTableModel table_model;
@@ -46,8 +50,8 @@ public class Stock_Frame extends DefaultFrame {
 	Font nomal_font = new Font("맑은 고딕", Font.BOLD, 20);
 	Font small_font = new Font("맑은 고딕", Font.BOLD, 15);
 
-	public Stock_Frame() {
-
+	public StockFrame() {
+		table = new StockTableAddData().getStockTable();	// DB값 받아온 거
 		// ====================================================== main panel
 		main_panel = new JPanel();
 		scrollPane = new JScrollPane(main_panel);
@@ -76,35 +80,31 @@ public class Stock_Frame extends DefaultFrame {
 		main_panel.add(table_panel);
 
 		// ======================================================= 버튼 분류
-		all_btn = new RoundedButton("ALL");
-		drink_btn = new RoundedButton("DRINK");
-		product_btn = new RoundedButton("FOOD");
-		rtd_btn = new RoundedButton("RTD");
+		add_btn = new RoundedButton("ADD");
+		update_btn = new RoundedButton("UPDATE");
+		delete_btn = new RoundedButton("DELETE");
 		exit_btn = new RoundedButton("EXIT");
 
 		// ======================================================= all_btn
-		all_btn.setFont(big_font);
-		all_btn.setBounds(1270, 250, 200, 100);
+		add_btn.setFont(big_font);
+		add_btn.setBounds(1270, 250, 200, 100);
 
-		main_panel.add(all_btn);
+		main_panel.add(add_btn);
+		
+		add_btn.addActionListener(new StockAddListener(table));
 
-		// ==================================== 제품(product) 버튼
-		product_btn.setFont(big_font);
-		product_btn.setBounds(1270, 370, 200, 100);
+		// ==================================== 갱신 (update) 버튼
+		update_btn.setFont(big_font);
+		update_btn.setBounds(1270, 370, 200, 100);
 
-		main_panel.add(product_btn);
+		main_panel.add(update_btn);
 
-		// ==================================== RTD 버튼
-		rtd_btn.setFont(big_font);
-		rtd_btn.setBounds(1270, 490, 200, 100);
+		// ==================================== delete 버튼
+		delete_btn.setFont(big_font);
+		delete_btn.setBounds(1270, 490, 200, 100);
 
-		main_panel.add(rtd_btn);
+		main_panel.add(delete_btn);
 
-		// ==================================== drink 버튼
-		drink_btn.setFont(big_font);
-		drink_btn.setBounds(1270, 610, 200, 100);
-
-		main_panel.add(drink_btn);
 
 		// ==================================== EXIT (뒤로가기) 버튼
 		exit_btn.setFont(big_font);
@@ -113,27 +113,15 @@ public class Stock_Frame extends DefaultFrame {
 		exit_btn.setForeground(Color.black);
 
 		main_panel.add(exit_btn);
-
-		// ============================================== 검색 텍스트필드
-		find_tf = new RoundJTextField(10);
-		find_tf.setFont(nomal_font);
-		find_tf.setBounds(880, 200, 300, 40);
-
-		main_panel.add(find_tf);
-
-		// ============================================== 검색 버튼
-		ImageIcon image = new ImageIcon("./image/돋보기.jpeg");
-		find_btn = new JButton(image);
-		find_btn.setBounds(1190, 200, 60, 40);
-
-		main_panel.add(find_btn);
+		
+		exit_btn.addActionListener(new ExitButtonListener(this));
 
 		// ============================================== 테이블
 
 		// 테이블 설정
 
 		// 
-		JTable table = new Stock_Table_addData().getStockTable();
+		
 		table.setOpaque(true);
 		table.setBackground(new Color(204, 153, 255));
 		table.setRowHeight(40);
@@ -150,7 +138,7 @@ public class Stock_Frame extends DefaultFrame {
 		table.getTableHeader().setFont(small_font);
 		table.getTableHeader().setForeground(Color.black);
 
-		String[] header = new Stock_Table_addData().give_header();
+		String[] header = new StockTableAddData().give_header();
 
 		table.getColumn(header[0]).setPreferredWidth(100); // 컬럼당 넓이 설정인데 모든 컬럼을 테이블의 넓이에 '얼추' 맞게 설정해야함
 		table.getColumn(header[1]).setPreferredWidth(900);
@@ -169,8 +157,8 @@ public class Stock_Frame extends DefaultFrame {
 		ts.getColumn(2).setCellRenderer(dtcr_center);
 
 		// ================================================ 검색 기능
-		search = find_tf.getText();
-
+		
+		
 		table_panel.add(scrollpane);
 
 		repaint();
@@ -179,7 +167,42 @@ public class Stock_Frame extends DefaultFrame {
 	}
 
 	public static void main(String[] args) {
-		new Stock_Frame();
+		new StockFrame();
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//		// ============================================== 검색 텍스트필드
+//		find_tf = new RoundJTextField(10);
+//		find_tf.setFont(nomal_font);
+//		find_tf.setBounds(880, 200, 300, 40);
+//
+//		//main_panel.add(find_tf);
+//
+//		// ============================================== 검색 버튼
+//		ImageIcon image = new ImageIcon("./image/돋보기.jpeg");
+//		find_btn = new JButton(image);
+//		find_btn.setBounds(1190, 200, 60, 40);
+//		
+//		
+//		//main_panel.add(find_btn);
+//

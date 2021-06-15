@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 import jdbc.hikari.HikariCP;
 
-public class Stock_Table_addData implements MouseListener {
+public class StockTableAddData implements MouseListener {
 	private String header[] = { "아이디", "품 명", "재고 수량" };
 	private DefaultTableModel model;
 	private String[][] data = new String[0][0];
@@ -46,8 +46,8 @@ public class Stock_Table_addData implements MouseListener {
 
 	}
 
-	private void Select_addData() {
-		select_sql = "select stock_id, stock_name, stock_count from stock_table";
+	void Select_addData() {
+		select_sql = "select stock_id, stock_name, stock_count from stock_table order by stock_id";
 
 		try (Connection conn = HikariCP.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(select_sql);

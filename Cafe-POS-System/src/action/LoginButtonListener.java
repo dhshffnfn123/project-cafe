@@ -44,7 +44,8 @@ public class LoginButtonListener implements ActionListener {
 		password = pwf.getPassword();
 		pass = new String(password); // 입력한 값
 
-		try (Connection conn = HikariCP.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
+		try (Connection conn = HikariCP.getConnection(); 
+				PreparedStatement pstmt = conn.prepareStatement(sql);) {
 
 			pstmt.setString(1, cbname);
 			ResultSet rs = pstmt.executeQuery();

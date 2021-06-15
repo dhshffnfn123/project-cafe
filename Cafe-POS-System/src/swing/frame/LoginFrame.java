@@ -20,11 +20,11 @@ import action.LoginComboBoxListener;
 import action.PasswordTextFieldListener;
 
 
-import action.get_Password;
+
 import jdbc.method.Login_combox_data;
 
 
-public class Login_Frame extends DefaultFrame {
+public class LoginFrame extends DefaultFrame {
 	
 	JPanel panel, login_panel, test_panel;
 	JScrollPane scrollPane;
@@ -38,7 +38,7 @@ public class Login_Frame extends DefaultFrame {
 	static int count = 0;
 	
 	
-	public Login_Frame() {
+	public LoginFrame() {
 		
 		  
 		icon = new ImageIcon("./image/커피사진.jpg");
@@ -118,7 +118,7 @@ public class Login_Frame extends DefaultFrame {
 		 } // login _Frame
 			 
 		 public static void main(String args[]) {
-			new Login_Frame();
+			new LoginFrame();
 			 
 		 }
 		 
