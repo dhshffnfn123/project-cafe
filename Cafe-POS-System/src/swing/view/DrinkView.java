@@ -12,17 +12,15 @@ import jdbc.model.Drink;
 public class DrinkView extends Drink {
 
 	private String sql = "SELECT * FROM drink_table WHERE m_type_id = ?";
-	private ArrayList<String> drinks = new ArrayList<>();
+	private ArrayList<String> name = new ArrayList<>();
+	private ArrayList<Integer> price = new ArrayList<>();
 	
-	private void getSetValue(String drink_name, int drink_price) {
-		setDrink_name(drink_name);
-		setDrink_price(drink_price);
-		getDrink_name();
-		getDrink_price();
+	public ArrayList<String> getName() {
+		return name;
 	}
 	
-	public ArrayList<String> getDrinks() {
-		return drinks;
+	public ArrayList<Integer> getPrice() {
+		return price;
 	}
 	
 	public DrinkView(int type_id) {
@@ -36,10 +34,8 @@ public class DrinkView extends Drink {
 			ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				getSetValue(rs.getString(3), rs.getInt(4));
-				// HTML, CSS문법 사용해서 버튼 텍스트 중앙 정렬
-				String drink = String.format("<HTML><body style='text-align:center;'>%s<br>%d</body></HTML>", getDrink_name(), getDrink_price());
-				drinks.add(drink);
+				name.add(rs.getString(3));
+				price.add(rs.getInt(4));
 			}
 			
 			rs.close();
@@ -50,7 +46,13 @@ public class DrinkView extends Drink {
 	
 	public static void main(String[] args) {
 		// ArrayList로 사용
-		ArrayList<String> test = new DrinkView(10).getDrinks();
+		ArrayList<String> name = new DrinkView(10).getName();
+		System.out.println(name.toString());
+		System.out.println(name.size());
+		
+		ArrayList<Integer> price = new DrinkView(10).getPrice();
+		System.out.println(price.toString());
+		System.out.println(price.size());
 	}
 	
 }

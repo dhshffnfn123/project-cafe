@@ -12,17 +12,15 @@ import jdbc.model.Product;
 public class ProductView extends Product {
 	
 	private String sql = "SELECT * FROM product_table WHERE m_type_id = ?";
-	private ArrayList<String> products = new ArrayList<>();
-	
-	private void getProduct(String product_name, int product_price) {
-		setProduct_name(product_name);
-		setProduct_price(product_price);
-		getProduct_name();
-		getProduct_price();
+	private ArrayList<String> name = new ArrayList<>();
+	private ArrayList<Integer> price = new ArrayList<>();
+		
+	public ArrayList<String> getName() {
+		return name;
 	}
 	
-	public ArrayList<String> getProducts(){
-		return products;
+	public ArrayList<Integer> getPrice() {
+		return price;
 	}
 	
 	public ProductView(int type_id) {
@@ -36,9 +34,8 @@ public class ProductView extends Product {
 			ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				getProduct(rs.getString(3), rs.getInt(4));
-				String product = String.format("<HTML><body style='text-align:center;'>%s<br>%d</body></HTML>", getProduct_name(), getProduct_price());
-				products.add(product);
+				name.add(rs.getString(3));
+				price.add(rs.getInt(4));
 			}
 			
 			rs.close();
@@ -48,8 +45,13 @@ public class ProductView extends Product {
 	}
 	
 	public static void main(String[] args) {
-		ArrayList<String> food = new ProductView(140).getProducts();
-		System.out.println(food.toString());
+		ArrayList<String> name = new ProductView(140).getName();
+		System.out.println(name.toString());
+		System.out.println(name.size());
+		
+		ArrayList<Integer> price = new ProductView(140).getPrice();
+		System.out.println(price.toString());
+		System.out.println(price.size());
 	}
 
 }

@@ -10,19 +10,17 @@ import jdbc.hikari.HikariCP;
 import jdbc.model.Rtd;
 
 public class RtdView extends Rtd {
-	
+	// RTD는 타입이 한개라서 타입id 안받아도 됨
 	private String sql = "SELECT * FROM rtd_table WHERE m_type_id = 210";
-	private ArrayList<String> rtds = new ArrayList<>();
+	private ArrayList<String> name = new ArrayList<>();
+	private ArrayList<Integer> price = new ArrayList<>();
 	
-	private void getRtd(String rtd_name, int rtd_price) {
-		setRtd_name(rtd_name);
-		setRtd_price(rtd_price);
-		getRtd_name();
-		getRtd_price();
+	public ArrayList<String> getName() {
+		return name;
 	}
 	
-	public ArrayList<String> getRtds() {
-		return rtds;
+	public ArrayList<Integer> getPrice() {
+		return price;
 	}
 	
 	public RtdView() {
@@ -34,9 +32,8 @@ public class RtdView extends Rtd {
 			ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				getRtd(rs.getString(3), rs.getInt(4));
-				String rtd = String.format("<HTML><body style='text-align:center;'>%s<br>%d</body></HTML>", getRtd_name(), getRtd_price());
-				rtds.add(rtd);
+				name.add(rs.getNString(3));
+				price.add(rs.getInt(4));
 			}
 			
 			rs.close();
@@ -46,8 +43,13 @@ public class RtdView extends Rtd {
 	}
 	
 	public static void main(String[] args) {
-		ArrayList<String> test = new RtdView().getRtds();
-		System.out.println(test.toString());
+		ArrayList<String> name = new RtdView().getName();
+		System.out.println(name.toString());
+		System.out.println(name.size());
+		
+		ArrayList<Integer> price = new RtdView().getPrice();
+		System.out.println(price.toString());
+		System.out.println(price.size());
 	}
 
 }
