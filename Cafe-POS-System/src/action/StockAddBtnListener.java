@@ -69,7 +69,7 @@ public class StockAddBtnListener implements ActionListener {
 		cancel_btn.setBounds(375, 110, 65, 30);
 		addFrame.add(cancel_btn);
 		
-		confirm_btn.addActionListener(new AddConfirmBtn(name, count, table));
+		confirm_btn.addActionListener(new AddConfirmBtn(name, count, table, addFrame));
 		cancel_btn.addActionListener(new AddCancelBtn(addFrame));
 		
 		return addFrame;

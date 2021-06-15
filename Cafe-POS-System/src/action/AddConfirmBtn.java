@@ -9,9 +9,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -21,6 +24,8 @@ import com.zaxxer.hikari.HikariConfig;
 import jdbc.hikari.HikariCP;
 
 public class AddConfirmBtn implements ActionListener {
+	
+	private JFrame frame;
 	private JTextField name, count;
 	private String nameVal, countVal;
 	private int countint;
@@ -32,7 +37,8 @@ public class AddConfirmBtn implements ActionListener {
 	Font small_font = new Font("맑은 고딕", Font.BOLD, 15);
 	private String sql = "INSERT INTO stock_table VALUES (stock_id_seq.nextVal, ?, ?)";
 
-	public AddConfirmBtn(JTextField name, JTextField count, JTable table) {
+	public AddConfirmBtn(JTextField name, JTextField count, JTable table, JFrame frame) {
+		this.frame = frame;
 		this.table = table;
 		this.name = name;
 		this.count = count;
@@ -88,6 +94,11 @@ public class AddConfirmBtn implements ActionListener {
 		ts.getColumn(2).setCellRenderer(dtcr_center);
 
 		updatemodel.fireTableDataChanged();
+		
+		UIManager.put("OptionPane.messageFont", nomal_font);
+		JOptionPane.showMessageDialog(null, "데이터가 추가되었습니다", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
+		frame.dispose();
+	
 		
 
 	}

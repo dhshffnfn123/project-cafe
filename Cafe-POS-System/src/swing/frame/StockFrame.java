@@ -102,11 +102,7 @@ public class StockFrame extends DefaultFrame {
 
 		main_panel.add(update_btn);
 		
-		//업데이트에 테이블에서 선택한 값 가져오기
-		id = new StockGetTableVal(table).GetStockIdData();
-		name = new StockGetTableVal(table).GetStockNameData();
-		count = new StockGetTableVal(table).GetStockCountData();
-		update_btn.addActionListener(new StockUpdateBtnListener(table, id, name, count));
+		
 
 		// ==================================== delete 버튼
 		delete_btn.setFont(big_font);
@@ -166,6 +162,8 @@ public class StockFrame extends DefaultFrame {
 		ts.getColumn(2).setCellRenderer(dtcr_center);
 
 		// ================================================ 검색 기능
+		//업데이트에 테이블에서 선택한 값 가져오기
+		update_btn.addActionListener(new StockUpdateBtnListener(table, id, name, count));
 		
 		table.addMouseListener(new StockGetTableVal(table));
 		table_panel.add(scrollpane);
