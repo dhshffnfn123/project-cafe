@@ -21,8 +21,8 @@ public class ChecksalesFrame extends DefaultFrame{
 	
 	public ChecksalesFrame() {
 		// 부모 프레임 생성 및 기본 스타일 지정 실시
-		JFrame frm = new JFrame("주문 관리 프로그램");
-		setJFrameStyle(frm);
+		
+		setTitle("매출관리");
 
 		// 대분류 ---------------------------------------------------
 		JLabel sortation_txt = new JLabel("구 분");
@@ -35,11 +35,10 @@ public class ChecksalesFrame extends DefaultFrame{
 		ImageIcon cicon_logo = new ImageIcon(cimg_logo);
 		
 		JLabel imglb = new JLabel(cicon_logo);
-		
 		imglb.setOpaque(true);
 		imglb.setBounds(0, 0, 1500, 68);
 		
-		String combo_arr[] = {"연 매출", "월 매출", "일 매출", "총 매출"};
+		String combo_arr[] = {"","연 매출", "월 매출", "일 매출"};
 		JComboBox<String> select_combo = new JComboBox<String>(combo_arr);
 		select_combo.setBounds(100, 68, 1300, 40);
 		setJComboBoxStyle(select_combo);
@@ -49,12 +48,21 @@ public class ChecksalesFrame extends DefaultFrame{
 		model.fireTableDataChanged();
 		jt.updateUI();
 		JScrollPane jscroll = new JScrollPane(jt);
-		jscroll.setBounds(0, 110, 500, 650);					
+		jscroll.setBounds(0, 110, 500, 650);				
+		
+		DefaultTableModel total_model = new TotalInfo().getTotalInfoTotal();
+		JTable jt2 = new JTable(total_model);
+		total_model.fireTableDataChanged();
+		jt2.updateUI();
+		JScrollPane jscroll2 = new JScrollPane(jt2);
+		jscroll2.setBounds(0, 800, 500, 50);					
 				
 		JButton select_btn = new JButton("조회");			
 		select_btn.setBounds(1400, 68, 100, 40);
 		setJButtonStyle(select_btn); // 기본 버튼 스타일 지정 메소드 호출
-		select_btn.addActionListener(new ChecksalesSelectButton(frm,select_btn, select_combo, model));		
+		select_btn.addActionListener(
+				new ChecksalesSelectButton(
+						this,select_btn, select_combo, model, jt));		
 		// if ((big_combo.getSelectedItem().equals("연 매출")) && (e.getSource() == big_select_btn)) {
 
 		// -----------------------------------------------------------
@@ -62,27 +70,17 @@ public class ChecksalesFrame extends DefaultFrame{
 
 				
 				
-		frm.getContentPane().add(imglb);
-		frm.getContentPane().add(sortation_txt);
-		frm.getContentPane().add(select_combo);
-		frm.getContentPane().add(select_btn);
-		frm.getContentPane().add(jscroll, BorderLayout.CENTER);
+		getContentPane().add(imglb);
+		getContentPane().add(sortation_txt);
+		getContentPane().add(select_combo);
+		getContentPane().add(select_btn);
+		getContentPane().add(jscroll, BorderLayout.CENTER);
+		getContentPane().add(jscroll2, BorderLayout.CENTER);
 				
-				
-		frm.setVisible(true);
-				
+		this.repaint();
+		
 	}
 				
-			
-	// JFrame 부모 기본 스타일 지정 메소드
-	public static void setJFrameStyle(JFrame frame) {
-		frame.setSize(1500, 1000); // 부모 프레임 크기 설정 (가로, 세로) 및 배경색 지정
-		frame.setBackground(Color.BLACK); // 부모 프레임을 화면 가운데에 배치		 
-		frame.setLocationRelativeTo(null); // 부모 프레임을 닫았을 때 메모리에서 제거되도록 설정 
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 부모 프레임 창 크기 고정 실시				
-		frame.setResizable(false); // 부모 레이아웃 설정		 
-		frame.getContentPane().setLayout(null);
-	}	
 			
 	// JLabel 기본 스타일 지정 메소드
 	public static void setJLabelStyle(JLabel txt) {		
