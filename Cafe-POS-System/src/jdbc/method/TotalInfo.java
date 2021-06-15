@@ -32,7 +32,7 @@ public class TotalInfo {
 	private DefaultTableModel model, total_model;
 	private JTable table; 
 	private	String[] header = {"날짜", "판매건수", "판매금액"};
-	private	String[] total_header = {"비고", "판매건수 합계", "판매금액 총액"};	
+	private	String[] total_header = {"판매건수 합계", "판매금액 총액"};	
 	private Object[][] data = new String[0][0];
 	private String date;
 	private int result = 0;
