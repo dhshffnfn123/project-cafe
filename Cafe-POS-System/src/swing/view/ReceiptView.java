@@ -22,28 +22,39 @@ import com.sun.xml.internal.ws.api.pipe.NextAction;
 
 import javafx.scene.layout.Border;
 import jdbc.hikari.HikariCP;
+import jdbc.method.RoadEmployeeName;
 import jdbc.method.SelectDrinkInfo;
-import jdbc.method.SelectEtcInfo;
+import jdbc.method.SelectOptionInfo;
 import jdbc.method.SelectProductInfo;
 import jdbc.method.SelectRtdInfo;
+import jdbc.model.Order;
+import sun.applet.Main;
 import swing.frame.DefaultFrame;
 
 public class ReceiptView{
-	String sql = "SELECT m_type_id FROM receipt_table ORDER BY receipt_id";
-
-	Random ran = new Random();
-	SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd a HH:mm:ss");
-	SimpleDateFormat f2 = new SimpleDateFormat("yyyyMMdd");
+	private String sql = "SELECT m_type_id FROM receipt_table ORDER BY receipt_id";
+	private String order_name;
+	private int drinkIndex;
+	private int productIndex;
+	private int rtdIndex;
+	private int optionIndex;
+	
+	private Random ran = new Random();
+	private SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private SimpleDateFormat f2 = new SimpleDateFormat("yyyyMMdd");
 	
 	int sum = 0;
 	public ReceiptView() {
+		this.order_name = new RoadEmployeeName().getEmployeeName();
 		printReceipt();
 	}
 	
 	public void printReceipt() {	
 		try (
 				Connection conn = HikariCP.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql);
+				PreparedStatement pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, 
+			             ResultSet.CONCUR_UPDATABLE);
+
 				ResultSet rs = pstmt.executeQuery();
 
 		) {
@@ -52,22 +63,31 @@ public class ReceiptView{
 			System.out.println("│[사업자]　123-45-67890		     		│");
 			System.out.println("│[주   소]　서울특별시 강남구 역삼동 826-27 11, 12층		│");
 			System.out.println("│[대표자]　서예림		[TEL]　010-1234-5678	│");
-			System.out.printf("│[매출일]　%s\t%11s%s│\n", f1.format(Calendar.getInstance().getTime()), "[결제자]", "이승운");
-			System.out.printf("│[영수증]　%s-%d-%d				│\n", f2.format(Calendar.getInstance().getTime()), 01, 01);
+			System.out.printf("│[매출일]　%s\t%9s%5s│\n", f1.format(Calendar.getInstance().getTime()), "[결제자]", order_name);
+			System.out.printf("│[영수증]　%s-%s-%d				│\n", f2.format(Calendar.getInstance().getTime()), 'A', 01);
 			System.out.println("│===============================================│");
 			System.out.printf("│\t%s\t\t%7s\t%5s\t%11s\t│\n", "삼  품  명", "단  가", "수  량", "금  액");
 			System.out.println("│-----------------------------------------------│");
+
 			while (rs.next()) {
 				if (rs.getInt(1) <= 110) {
-					sum += new SelectDrinkInfo().getSum();
+					SelectDrinkInfo selDrink = new SelectDrinkInfo(drinkIndex);
+					sum += selDrink.getSum();
+					drinkIndex++;
 				} else if (rs.getInt(1) <= 130) {
-					sum += new SelectEtcInfo().getSum();
+					SelectOptionInfo selOption = new SelectOptionInfo(optionIndex);
+					sum += selOption.getSum();
+					optionIndex++;
 				} else if (rs.getInt(1) <= 200) {
-					sum += new SelectProductInfo().getSum();
+					SelectProductInfo selProduct = new SelectProductInfo(productIndex);
+					sum += selProduct.getSum();
+					productIndex++;
 				} else if (rs.getInt(1) == 210){
-					sum += new SelectRtdInfo().getSum();
-				}
+					SelectRtdInfo selRtd = new SelectRtdInfo(rtdIndex);
+					sum += selRtd.getSum();						
+				}				
 			}
+
 			System.out.println("│-----------------------------------------------│");
 			System.out.printf("│%s\t\t\t\t%8d│\n", "합  계  금  액", sum);
 			System.out.println("│-----------------------------------------------│");
@@ -84,15 +104,13 @@ public class ReceiptView{
 			System.out.printf("│%s : %s\t\t\t\t\t│\n", "결  제  방  법", "일시불");
 			System.out.printf("│%s :\t\t\t\t%8d│\n", "결  제  금  액", sum);
 			System.out.printf("│%s : %8d\t\t\t\t│\n", "승  인  번  호", ran.nextInt(89999999) + 10000000);
-			System.out.printf("│%s : %s\t\t│\n", "결  제  일  시", f1.format(Calendar.getInstance().getTime()));
+			System.out.printf("│%s : %s\t\t\t│\n", "결  제  일  시", f1.format(Calendar.getInstance().getTime()));
 			System.out.println("└───────────────────────────────────────────────┘");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}	
-	
 	public static void main(String[] args) {
 		new ReceiptView();
 	}
