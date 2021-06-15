@@ -6,9 +6,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -46,9 +49,14 @@ public class OrderFrame extends DefaultFrame {
    private ArrayList<JPanel> menuPanels;
    
 
-   public orderview() {
+   public OrderFrame() {
       setLayout(new BorderLayout());
-      setTitle("Point-Of-Sale");
+      setTitle("Cafe-Project");
+      
+      // 프레임아이콘 설정 
+   		Toolkit toolkit = Toolkit.getDefaultToolkit();
+   		Image img = toolkit.getImage("./image/icon.png");
+   		setIconImage(img);
 
       // [CENTER]패널 생성
       center = new JPanel(new GridLayout());
@@ -56,7 +64,45 @@ public class OrderFrame extends DefaultFrame {
 
       // [TOP]패널 생성
       top = new JPanel(new GridLayout());
-
+      
+      // info 
+      ImageIcon infoImg = new ImageIcon("./image/icon.png");
+      JLabel info = new JLabel(infoImg); 
+      info.setOpaque(true);
+      info.setBounds(10, 10, 250, 80);
+      info.setBackground(new Color(0,110,63));
+      info.setHorizontalAlignment(JLabel.LEFT);
+      top.add(info);
+      
+      // infoTime 
+      JLabel infoTime = new CurrentTimeClock().setClock();
+      infoTime.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+      infoTime.setBounds(260, 10, 540, 80);
+      infoTime.setHorizontalAlignment(JLabel.CENTER);
+      infoTime.setOpaque(true); 
+      infoTime.setBackground(new Color(0,110,63));
+      infoTime.setForeground(new Color(255,255,255));
+      top.add(infoTime);
+      
+      // info
+      JLabel infouser = new JLabel(" 사용자 : 관리자 ");
+      infouser.setOpaque(true);
+      infouser.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+      infouser.setBounds(800, 10, 540, 80);
+      infouser.setHorizontalAlignment(JLabel.CENTER);
+      infouser.setBackground(new Color(0,110,63));
+      infouser.setForeground(new Color(255,255,255));
+      top.add(infouser);
+      
+      //뒤로가기 버튼 
+      ImageIcon backbtn = new ImageIcon("./image/backbtn.jpg");
+      JButton choosepage = new JButton(backbtn);
+      choosepage.setOpaque(true);
+      choosepage.setBounds(1340, 10, 140, 80);
+      choosepage.setBackground(new Color(0,110,63));
+      choosepage.setBorderPainted(false);
+      top.add(choosepage);
+      
       // [CENTER-LEFT]테이블 생성
       String[] header = { "번호", "상품명", "상품수량", "가격" };
       DefaultTableModel model = new DefaultTableModel(header, 0);
@@ -115,14 +161,7 @@ public class OrderFrame extends DefaultFrame {
       // RTD버튼 추가 (타입 210)
       rtds.addTab("RTD", makeItemButtons("RTD", 210));
 
-      // [TOP]시계 생성
-      JLabel time = new CurrentTimeClock().setClock();
-      time.setFont(new Font("맑은 고딕", Font.BOLD, 30));
-      time.setHorizontalAlignment(JLabel.CENTER);
-      time.setOpaque(true);
-      time.setBackground(new Color(110, 88, 68));
-      time.setForeground(Color.WHITE);
-      top.add(time);
+    
 
       center.add(scrollPane);
       center.add(menu);
