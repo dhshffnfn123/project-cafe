@@ -32,7 +32,7 @@ public class TotalInfo {
 	private DefaultTableModel model, total_model;
 	private JTable table; 
 	private	String[] header = {"날짜", "판매건수", "판매금액"};
-	private	String[] total_header = {"판매건수 합계", "판매금액 총액"};	
+	private	String[] total_header = {"전체 판매건수", "총 매출액"};	
 	private Object[][] data = new String[0][0];
 	private String date;
 	private int result = 0;
@@ -51,12 +51,21 @@ public class TotalInfo {
 	}
 	
 	private void in_Order() {
-		model = new DefaultTableModel(data, header);
-		
+		model = new DefaultTableModel(data, header) {
+			@Override
+			public boolean isCellEditable(int row, int column) { 
+				return false;
+			}
+		};
 	}
 	
 	private void in_Order_total() {
-		total_model = new DefaultTableModel(data, total_header);
+		total_model = new DefaultTableModel(data, total_header) {
+			@Override
+			public boolean isCellEditable(int row, int column) { 
+				return false;
+			}
+		};
 		
 	}
 	    
