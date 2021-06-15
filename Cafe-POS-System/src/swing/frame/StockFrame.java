@@ -23,8 +23,11 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 import action.ExitButtonListener;
-import action.StockAddListener;
+import action.StockAddBtnListener;
+import action.StockGetTableVal;
 import action.StockTableAddData;
+import action.StockUpdateBtnListener;
+import jdbc.model.Stock;
 import tool.RoundJTextField;
 import tool.RoundedButton;
 
@@ -36,14 +39,14 @@ public class StockFrame extends DefaultFrame {
 	JLabel title_label;
 	JScrollPane scrollPane;
 	RoundedButton add_btn, update_btn, delete_btn, exit_btn;
-	JButton find_btn;
 	JComboBox cate_combox;
 	RoundJTextField find_tf;
 	JTableHeader table_header;
 	Container contentPane;
 	DefaultTableModel table_model;
 	DefaultTableCellRenderer dtcr_center, dtcr_right; // cell 위치 정렬을 위한
-	String search;
+	String search, name;
+	int id, count;
 
 	Font bigger_font = new Font("맑은 고딕", Font.BOLD, 50);
 	Font big_font = new Font("맑은 고딕", Font.BOLD, 30);
@@ -91,13 +94,19 @@ public class StockFrame extends DefaultFrame {
 
 		main_panel.add(add_btn);
 		
-		add_btn.addActionListener(new StockAddListener(table));
+		add_btn.addActionListener(new StockAddBtnListener(table));
 
 		// ==================================== 갱신 (update) 버튼
 		update_btn.setFont(big_font);
 		update_btn.setBounds(1270, 370, 200, 100);
 
 		main_panel.add(update_btn);
+		
+		//업데이트에 테이블에서 선택한 값 가져오기
+		id = new StockGetTableVal(table).GetStockIdData();
+		name = new StockGetTableVal(table).GetStockNameData();
+		count = new StockGetTableVal(table).GetStockCountData();
+		update_btn.addActionListener(new StockUpdateBtnListener(table, id, name, count));
 
 		// ==================================== delete 버튼
 		delete_btn.setFont(big_font);
@@ -158,7 +167,7 @@ public class StockFrame extends DefaultFrame {
 
 		// ================================================ 검색 기능
 		
-		
+		table.addMouseListener(new StockGetTableVal(table));
 		table_panel.add(scrollpane);
 
 		repaint();

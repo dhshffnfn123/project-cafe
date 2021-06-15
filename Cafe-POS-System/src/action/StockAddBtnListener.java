@@ -15,7 +15,7 @@ import javax.swing.*;
 import jdbc.hikari.HikariCP;
 import tool.RoundJTextField;
 
-public class StockAddListener implements ActionListener {
+public class StockAddBtnListener implements ActionListener {
 	
 	private JFrame addFrame;
 	private JTextField name, count;
@@ -25,7 +25,7 @@ public class StockAddListener implements ActionListener {
 	
 	private Font font = new Font("¸¼Àº °íµñ", Font.BOLD, 15);
 	
-	public StockAddListener(JTable table) {
+	public StockAddBtnListener(JTable table) {
 		this.table = table;
 	}
 	
@@ -70,6 +70,7 @@ public class StockAddListener implements ActionListener {
 		addFrame.add(cancel_btn);
 		
 		confirm_btn.addActionListener(new AddConfirmBtn(name, count, table));
+		cancel_btn.addActionListener(new AddCancelBtn(addFrame));
 		
 		return addFrame;
 	}
