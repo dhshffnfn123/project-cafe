@@ -52,5 +52,6 @@ public class StockUpdateBtnListener implements ActionListener {
 			new StockUpdateFrame(name, id, count, table);
 		}
 
+
 	}
 }
