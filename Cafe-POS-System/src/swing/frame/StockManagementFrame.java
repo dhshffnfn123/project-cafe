@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
+import action.ChangePageButton;
 import action.CurrentTimeClock;
 import action.StockAddBtnListener;
 import action.StockDeleteBtnListener;
@@ -55,6 +56,7 @@ public class StockManagementFrame extends DefaultFrame {
 		back_btn.setBorderPainted(false);
 		topPanel.add(back_btn, BorderLayout.WEST);
 		back_btn.setHorizontalAlignment(SwingConstants.LEFT);
+		back_btn.addActionListener(new ChangePageButton(this));
 
 		// 가운데 시스템시계
 		JLabel clock = new CurrentTimeClock().setClock();
