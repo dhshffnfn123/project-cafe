@@ -22,11 +22,11 @@ public class CheckSalesSelectButton implements ActionListener {
 	private JFrame check_frame;
 	private JTable select_table, total_table;
 	private JButton button;
-	private JComboBox<String> ybox, mbox, dbox;
+	private JComboBox ybox;
+	private JComboBox<String> mbox, dbox;
 	private JScrollPane table_scroll;
-	private String sql = "SELECT TO_CHAR(order_time, 'YYYY'), COUNT(order_total), SUM(order_total)" + "FROM order_table"
-			+ "WHERE "
-			+ "GROUP BY TO_CHAR(order_time, 'YYYY')" + "ORDER BY TO_CHAR(order_time, 'YYYY')";
+	private String sql = "SELECT TO_CHAR(order_time, 'YYYY'), COUNT(order_total), SUM(order_total)"
+			+ "FROM order_table " + "GROUP BY TO_CHAR(order_time, 'YYYY')" + "ORDER BY TO_CHAR(order_time, 'YYYY')";
 
 	private String sql2 = "SELECT TO_CHAR(order_time, 'YYYY-MM'), COUNT(order_total), SUM(order_total)"
 			+ "FROM order_table " + "GROUP BY TO_CHAR(order_time, 'YYYY-MM')" + "ORDER BY TO_CHAR(order_time, 'YYYY-MM')";
@@ -35,7 +35,19 @@ public class CheckSalesSelectButton implements ActionListener {
 			+ "FROM order_table " + "GROUP BY TO_CHAR(order_time, 'YYYY-MM-DD')"
 			+ "ORDER BY TO_CHAR(order_time, 'YYYY-MM-DD')";
 
-	private String sql4 = "select count(*), to_char(sum(order_total), '999,999,999L') from order_table";
+	private String sql_total = "select count(*), to_char(sum(order_total), '999,999,999L') from order_table";
+	
+	private String sql_year = "SELECT TO_CHAR(order_time, 'YYYY'), COUNT(order_total), SUM(order_total) FROM order_table" +
+	        "WHERE order_time like ?" +
+	        "GROUP BY TO_CHAR(order_time, 'YYYY') ORDER BY TO_CHAR(order_time, 'YYYY')";
+	
+	private String sql_month = "SELECT TO_CHAR(order_time, 'YYYY'), COUNT(order_total), SUM(order_total) FROM order_table" +
+	        "WHERE order_time like ?" +
+	        "GROUP BY TO_CHAR(order_time, 'YYYY') ORDER BY TO_CHAR(order_time, 'YYYY')";
+	
+	private String sql_day = "SELECT TO_CHAR(order_time, 'YYYY'), COUNT(order_total), SUM(order_total) FROM order_table" +
+	        "WHERE order_time like ?" +
+	        "GROUP BY TO_CHAR(order_time, 'YYYY') ORDER BY TO_CHAR(order_time, 'YYYY')";
 
 	private DefaultTableModel model, total_model;
 	private Object[][] data = new String[0][0];
@@ -46,7 +58,7 @@ public class CheckSalesSelectButton implements ActionListener {
 
 	public CheckSalesSelectButton(JFrame check_frame, JButton button, DefaultTableModel model,
 			DefaultTableModel total_model, JTable select_table, JTable total_table, 
-			JComboBox<String> ybox,JComboBox<String> mbox,JComboBox<String> dbox) {
+			JComboBox ybox,JComboBox<String> mbox,JComboBox<String> dbox) {
 		this.check_frame = check_frame;
 		this.button = button;
 		this.ybox = ybox;
@@ -64,20 +76,41 @@ public class CheckSalesSelectButton implements ActionListener {
 		model.setNumRows(0);
 		total_model.setNumRows(0);
 		try (Connection conn = HikariCP.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql);
-				PreparedStatement pstmt2 = conn.prepareStatement(sql2);
-				PreparedStatement pstmt3 = conn.prepareStatement(sql3);
-				PreparedStatement pstmt4 = conn.prepareStatement(sql4);
+				PreparedStatement pstmt = conn.prepareStatement(sql);	// 전체 연 매출
+				PreparedStatement pstmt2 = conn.prepareStatement(sql2); // 전체 월 매출 
+				PreparedStatement pstmt3 = conn.prepareStatement(sql3);	// 전체 일 매출
+				
+//				PreparedStatement pstmt_y = conn.prepareStatement(sql_year);
+//				PreparedStatement pstmt_m = conn.prepareStatement(sql_month);
+//				PreparedStatement pstmt_d = conn.prepareStatement(sql_day);
+				
+				PreparedStatement pstmt_total = conn.prepareStatement(sql_total); // 총 매출 계산
 
 				ResultSet rs = pstmt.executeQuery();
 				ResultSet rs2 = pstmt2.executeQuery();
 				ResultSet rs3 = pstmt3.executeQuery();
-				ResultSet rs4 = pstmt4.executeQuery();
+				
+//				ResultSet rs_y = pstmt_y.executeQuery();
+//				ResultSet rs_m = pstmt_m.executeQuery();
+//				ResultSet rs_d = pstmt_d.executeQuery();
+				
+				ResultSet rs_total = pstmt_total.executeQuery();
 
 		) {
-			if (ybox.getSelectedItem().toString().equals("ALL") 
-					&& mbox.getSelectedItem().toString().equals("None")
-					&& dbox.getSelectedItem().toString().equals("None")) {
+			
+			String year = ybox.getSelectedItem().toString();
+			String month = mbox.getSelectedItem().toString();
+			String day = dbox.getSelectedItem().toString();
+			
+			
+			if(year.equals("년도 선택")) {
+			System.out.println("select");
+			}
+			
+			//// ALL 출력
+			if (year.equals("ALL") 
+					&& month.equals("None")
+					&& day.equals("None")) {
 				while (rs.next()) {
 					date = rs.getString(1);
 					count = rs.getInt(2);
@@ -85,15 +118,15 @@ public class CheckSalesSelectButton implements ActionListener {
 					Object[] row = { date, count, result };
 					model.addRow(row);
 				}
-				while (rs4.next()) {
-					total_count = rs4.getInt(1);
-					total_result = rs4.getString(2);
+				while (rs_total.next()) {
+					total_count = rs_total.getInt(1);
+					total_result = rs_total.getString(2);
 					Object[] row2 = { total_count, total_result };
 					total_model.addRow(row2);
 				}
-			} else if (ybox.getSelectedItem().toString().equals("ALL") 
-					&& mbox.getSelectedItem().toString().equals("ALL")
-					&& dbox.getSelectedItem().toString().equals("None")) {
+			} else if (year.equals("ALL") 
+					&& month.toString().equals("ALL")
+					&& day.equals("None")) {
 				while (rs2.next()) {
 					date = rs2.getString(1);
 					count = rs2.getInt(2);
@@ -101,15 +134,15 @@ public class CheckSalesSelectButton implements ActionListener {
 					Object[] row = { date, count, result };
 					model.addRow(row);
 				}
-				while (rs4.next()) {
-					total_count = rs4.getInt(1);
-					total_result = rs4.getString(2);
+				while (rs_total.next()) {
+					total_count = rs_total.getInt(1);
+					total_result = rs_total.getString(2);
 					Object[] row2 = { total_count, total_result };
 					total_model.addRow(row2);
 				}
-			} else if (ybox.getSelectedItem().toString().equals("ALL") 
-					&& mbox.getSelectedItem().toString().equals("ALL")
-					&& dbox.getSelectedItem().toString().equals("ALL")) {
+			} else if (year.equals("ALL") 
+					&& month.equals("ALL")
+					&& day.equals("ALL")) {
 				while (rs3.next()) {
 					date = rs3.getString(1);
 					count = rs3.getInt(2);
@@ -117,13 +150,35 @@ public class CheckSalesSelectButton implements ActionListener {
 					Object[] row = { date, count, result };
 					model.addRow(row);
 				}
-				while (rs4.next()) {
-					total_count = rs4.getInt(1);
-					total_result = rs4.getString(2);
+				while (rs_total.next()) {
+					total_count = rs_total.getInt(1);
+					total_result = rs_total.getString(2);
 					Object[] row2 = { total_count, total_result };
 					total_model.addRow(row2);
 				}
+			} else if (year.equals("년도 선택")){
+				
+				System.out.println("aaaa");
+			} else {
+				System.out.println("원하는 값");
 			}
+			
+			
+			
+			
+			
+			
+			// (year.equals("ALL")
+			// where 
+			// ? == year
+			
+			
+			
+			
+			
+			
+			
+			
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}

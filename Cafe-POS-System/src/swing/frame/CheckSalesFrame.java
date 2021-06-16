@@ -22,6 +22,7 @@ import javax.swing.table.TableColumnModel;
 import action.ChangePageButton;
 import action.CheckSalesSelectButton;
 import action.CurrentTimeClock;
+import jdbc.method.TotalComboAddData;
 import jdbc.method.TotalInfo;
 
 public class CheckSalesFrame extends DefaultFrame {
@@ -40,16 +41,13 @@ public class CheckSalesFrame extends DefaultFrame {
       JLabel sortation_txt = new JLabel("구　　분");
       setJLabelStyle(sortation_txt);
 
-      String year_arr[] = {"년도 선택","ALL"};
-      JComboBox<String> year_combo = new JComboBox<String>(year_arr);
+      JComboBox year_combo = new TotalComboAddData().year_getComboBox();
       setJComboBoxStyle(year_combo);
       
-      String month_arr[] = {"월 선택", "ALL", "None"};
-      JComboBox<String> month_combo = new JComboBox<String>(month_arr);
+      JComboBox month_combo = new TotalComboAddData().month_getComboBox();
       setJComboBoxStyle(month_combo);
       
-      String day_arr[] = {"일 선택", "ALL", "None"};
-      JComboBox<String> day_combo = new JComboBox<String>(day_arr);
+      JComboBox day_combo = new TotalComboAddData().day_getComboBox();
       setJComboBoxStyle(day_combo);
       
       
