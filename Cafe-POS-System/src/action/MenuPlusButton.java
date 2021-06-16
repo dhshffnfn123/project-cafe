@@ -10,32 +10,33 @@ import javax.swing.table.DefaultTableModel;
 public class MenuPlusButton implements ActionListener {
 
 	JTable table;
-	JLabel totalmoney;
-	DefaultTableModel model;
-	static int pluscount =0;
-	static int plusprice =0;
-	int i= 1;
+	int price;
+	int quantity;
+	int originalPrice;
 	int tablemoney;
-	
-	public MenuPlusButton(JTable table, JLabel totalmoney ,int tablemoney) {
+	JLabel totalmoney;
+
+	public MenuPlusButton(JTable table ) {
 		this.table = table;
-		this.totalmoney = totalmoney;
-		this.tablemoney = tablemoney;
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (table.getSelectedRow() != -1) {
-			int row = table.getSelectedRow();
-			model = (DefaultTableModel) table.getModel();
-			pluscount = Integer.parseInt((String) model.getValueAt(row, 2));
-			plusprice = Integer.parseInt((String) model.getValueAt(row, 3));
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		int row = table.getSelectedRow();
+
+		if (row != -1) {
+			quantity = Integer.parseInt(String.valueOf(model.getValueAt(row, 2)));
+			price = Integer.parseInt(String.valueOf(model.getValueAt(row, 3)));
+			originalPrice = price / quantity;
+
+			quantity++;
+			price += originalPrice;
 			
-			model.setValueAt(pluscount+i, row, 2);
-			model.setValueAt((plusprice*(pluscount+i)), row, 3);
-			
-			tablemoney = plusprice*(pluscount+i);
-			totalmoney.setText(String.format("%s", tablemoney));
+			model.setValueAt(quantity, row, 2);
+			model.setValueAt(price, row, 3);
+			model.fireTableDataChanged();
 		}
+
 	}
 }

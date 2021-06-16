@@ -26,9 +26,10 @@ public class MenuButtonAction implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		model = (DefaultTableModel) table.getModel();
+
 		
 		String[] row = new String[4];
-		row[0] = "1";
+		row[0] =  Integer.toString(model.getRowCount()+1);
 		row[1] = name;
 		row[2] = "1";
 		row[3] = Integer.toString(price);
@@ -39,6 +40,7 @@ public class MenuButtonAction implements ActionListener{
 		sum += (Integer.parseInt(str));
 		
  	    totalmoney.setText(String.format("%s", sum));
+ 	    model.fireTableDataChanged();
 		
 	}
 }

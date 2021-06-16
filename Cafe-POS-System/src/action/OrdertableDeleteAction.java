@@ -13,8 +13,8 @@ public class OrdertableDeleteAction implements ActionListener {
 	DefaultTableModel model;
 	JLabel totalmoney;
 	int price;
-	int totalprice;
-	int count;
+	int quantity;
+	int originalPrice;
 	int tablemoney;
 
 	public OrdertableDeleteAction(JTable table, JLabel totalmoney, int tablemoney) {
@@ -24,18 +24,35 @@ public class OrdertableDeleteAction implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (table.getSelectedRow() != -1) {
-
-			int row = table.getSelectedRow();
-			model = (DefaultTableModel) table.getModel();
-			count = Integer.parseInt((String) model.getValueAt(row, 2));
-			price = Integer.parseInt((String) model.getValueAt(row, 3));
-
-			model.removeRow(table.getSelectedRow());
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		int row = table.getSelectedRow();
+		
+		
+		if(row != -1) {			
+			quantity = Integer.parseInt(String.valueOf(model.getValueAt(row, 2)));
 			
-	
-
+			
+			if (quantity == 1) {
+				// 선택된 행만 지운다. model.setRowCount(0);는 1개인 음료도 다 지워버림 
+				model.removeRow(row);
+			}else if(quantity != 1) {
+				
+				
+				price = Integer.parseInt(String.valueOf(model.getValueAt(row, 3)));
+				originalPrice = price / quantity;
+				
+				quantity--;
+				price -= originalPrice;
+				
+				model.setValueAt(quantity, row, 2);
+				model.setValueAt(price, row, 3);
+				model.fireTableDataChanged();
+			}
 		}
+		
+			
+		}
+		
 
 	}
-}
+

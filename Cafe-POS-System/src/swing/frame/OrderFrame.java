@@ -54,7 +54,7 @@ public class OrderFrame extends DefaultFrame {
    private ArrayList<JPanel> menuPanels;
    private DefaultTableModel model;
    static int tablemoney = 0;
-   static JLabel totalmoney = new JLabel("");
+   static JLabel totalmoney = new JLabel(String.valueOf(tablemoney));
 
    public OrderFrame() {
       setLayout(new BorderLayout());
@@ -206,17 +206,15 @@ public class OrderFrame extends DefaultFrame {
       left_south.add(∞·¡¶);
       
       
-      tplus.addActionListener(new MenuPlusButton(table ,totalmoney, tablemoney));
-      
+      tplus.addActionListener(new MenuPlusButton(table));
       
       center.add(center_left);
-      center.add(menu);
-      
+      center.add(menu);    
       
       add(top, BorderLayout.NORTH);
       add(center, BorderLayout.CENTER);
       
-      totalmoney.setText(String.format("%s",tablemoney));
+      totalmoney.setText(String.valueOf(tablemoney));
 
       setVisible(true);
       repaint();
