@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import jdbc.hikari.HikariCP;
 
 public class StockTableAddData implements MouseListener {
-	private String header[] = { "아이디", "품 명", "재고 수량" };
+	private String header[] = { "아이디", "품목명", "재고 수량" };
 	private DefaultTableModel model;
 	private String[][] data = new String[0][0];
 	private JTable table;
