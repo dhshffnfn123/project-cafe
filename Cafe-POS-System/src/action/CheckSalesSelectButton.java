@@ -22,7 +22,7 @@ public class CheckSalesSelectButton implements ActionListener {
 	private JFrame check_frame;
 	private JTable select_table, total_table;
 	private JButton button;
-	private JComboBox<String> box;
+	private JComboBox<String> ybox, mbox, dbox;
 	private JScrollPane table_scroll;
 	private String sql = "SELECT TO_CHAR(order_time, 'YYYY'), COUNT(order_total), SUM(order_total)" + "FROM order_table "
 			+ "GROUP BY TO_CHAR(order_time, 'YYYY')" + "ORDER BY TO_CHAR(order_time, 'YYYY')";
@@ -43,11 +43,14 @@ public class CheckSalesSelectButton implements ActionListener {
 	private int count = 0, total_count = 0;
 	private TotalInfo total;
 
-	public CheckSalesSelectButton(JFrame check_frame, JButton button, JComboBox<String> box, DefaultTableModel model,
-			DefaultTableModel total_model, JTable select_table, JTable total_table) {
+	public CheckSalesSelectButton(JFrame check_frame, JButton button, DefaultTableModel model,
+			DefaultTableModel total_model, JTable select_table, JTable total_table, 
+			JComboBox<String> ybox,JComboBox<String> mbox,JComboBox<String> dbox) {
 		this.check_frame = check_frame;
 		this.button = button;
-		this.box = box;
+		this.ybox = ybox;
+		this.mbox = mbox;
+		this.dbox = dbox;
 		this.model = model;
 		this.total_model = total_model;
 		this.select_table = select_table;
@@ -71,7 +74,9 @@ public class CheckSalesSelectButton implements ActionListener {
 				ResultSet rs4 = pstmt4.executeQuery();
 
 		) {
-			if (box.getSelectedItem().toString().equals("연 매출")) {
+			if (ybox.getSelectedItem().toString().equals("ALL") 
+					&& mbox.getSelectedItem().toString().equals("None")
+					&& dbox.getSelectedItem().toString().equals("None")) {
 				while (rs.next()) {
 					date = rs.getString(1);
 					count = rs.getInt(2);
@@ -85,7 +90,9 @@ public class CheckSalesSelectButton implements ActionListener {
 					Object[] row2 = { total_count, total_result };
 					total_model.addRow(row2);
 				}
-			} else if (box.getSelectedItem().toString().equals("월 매출")) {
+			} else if (ybox.getSelectedItem().toString().equals("ALL") 
+					&& mbox.getSelectedItem().toString().equals("ALL")
+					&& dbox.getSelectedItem().toString().equals("None")) {
 				while (rs2.next()) {
 					date = rs2.getString(1);
 					count = rs2.getInt(2);
@@ -99,7 +106,9 @@ public class CheckSalesSelectButton implements ActionListener {
 					Object[] row2 = { total_count, total_result };
 					total_model.addRow(row2);
 				}
-			} else if (box.getSelectedItem().toString().equals("일 매출")) {
+			} else if (ybox.getSelectedItem().toString().equals("ALL") 
+					&& mbox.getSelectedItem().toString().equals("ALL")
+					&& dbox.getSelectedItem().toString().equals("ALL")) {
 				while (rs3.next()) {
 					date = rs3.getString(1);
 					count = rs3.getInt(2);

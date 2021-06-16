@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import swing.frame.CheckSalesFrame;
 import swing.frame.ChoosePageFrame;
 import swing.frame.EmployeesManagementFrame;
 
@@ -29,6 +30,7 @@ public class ChangePageButton implements ActionListener {
 		case "<HTML>판매<br>등록</HTML>":
 			break;
 		case "<HTML>매출<br>조회</HTML>":
+			new CheckSalesFrame();
 			break;
 		case "<HTML>재고<br>관리</HTML>":
 			break;

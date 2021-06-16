@@ -35,14 +35,22 @@ public class CheckSalesFrame extends DefaultFrame {
       setTitle("매출 조회");
 
       center = new JPanel(new BorderLayout());
-      center_top = new JPanel(new BorderLayout());
+      center_top = new JPanel(new GridLayout());
 
       JLabel sortation_txt = new JLabel("구　　분");
       setJLabelStyle(sortation_txt);
 
-      String combo_arr[] = { "", "연 매출", "월 매출", "일 매출" };
-      JComboBox<String> select_combo = new JComboBox<String>(combo_arr);
-      setJComboBoxStyle(select_combo);
+      String year_arr[] = {"년도 선택","ALL"};
+      JComboBox<String> year_combo = new JComboBox<String>(year_arr);
+      setJComboBoxStyle(year_combo);
+      
+      String month_arr[] = {"월 선택", "ALL", "None"};
+      JComboBox<String> month_combo = new JComboBox<String>(month_arr);
+      setJComboBoxStyle(month_combo);
+      
+      String day_arr[] = {"일 선택", "ALL", "None"};
+      JComboBox<String> day_combo = new JComboBox<String>(day_arr);
+      setJComboBoxStyle(day_combo);
 
       // 일반 매출 조회
       DefaultTableModel model = new TotalInfo().getTotalInfo();
@@ -68,11 +76,13 @@ public class CheckSalesFrame extends DefaultFrame {
       JButton select_btn = new JButton("조　　회");
       setJButtonStyle(select_btn); // 기본 버튼 스타일 지정 메소드 호출
       select_btn.addActionListener(new CheckSalesSelectButton(
-    		  this, select_btn, select_combo, model, total_model, jt, jt2));
+    		  this, select_btn, model, total_model, jt, jt2, year_combo, month_combo, day_combo));
 
-      center_top.add(sortation_txt, BorderLayout.WEST);
-      center_top.add(select_combo, BorderLayout.CENTER);
-      center_top.add(select_btn, BorderLayout.EAST);
+      center_top.add(sortation_txt);
+      center_top.add(year_combo);
+      center_top.add(month_combo);
+      center_top.add(day_combo);
+      center_top.add(select_btn);
 
       center.add(center_top, BorderLayout.NORTH);
       center.add(jscroll);
