@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -13,13 +13,9 @@ import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import com.sun.tools.javac.Main;
-
 import action.LoginButtonListener;
-import action.LoginComboBoxListener;
 import action.PasswordTextFieldListener;
-
-import jdbc.method.Login_combox_data;
+import jdbc.method.LoginComboxData;
 
 public class LoginFrame extends DefaultFrame {
 
@@ -72,7 +68,7 @@ public class LoginFrame extends DefaultFrame {
 
 		// ============================================= ÄÞº¸ ¹Ú½º
 
-		combox = new Login_combox_data().getComboBox();
+		combox = new LoginComboxData().getComboBox();
 
 		combox.setBounds(80, 30, 250, 35);
 		combox.setFont(font1);
