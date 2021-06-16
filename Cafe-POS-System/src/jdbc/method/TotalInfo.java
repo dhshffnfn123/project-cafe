@@ -40,6 +40,7 @@ public class TotalInfo {
 		return total_model;
 	}
 	
+	
 	private void in_Order() {
 		model = new DefaultTableModel(data, header) {
 			@Override

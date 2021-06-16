@@ -51,7 +51,9 @@ public class CheckSalesFrame extends DefaultFrame {
       String day_arr[] = {"일 선택", "ALL", "None"};
       JComboBox<String> day_combo = new JComboBox<String>(day_arr);
       setJComboBoxStyle(day_combo);
-
+      
+      
+      
       // 일반 매출 조회
       DefaultTableModel model = new TotalInfo().getTotalInfo();
       JTable jt = new JTable(model);
