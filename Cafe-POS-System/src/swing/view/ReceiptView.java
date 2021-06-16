@@ -18,9 +18,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.sun.xml.internal.ws.api.pipe.NextAction;
-
-import javafx.scene.layout.Border;
 import jdbc.hikari.HikariCP;
 import jdbc.method.RoadEmployeeName;
 import jdbc.method.SelectDrinkInfo;
@@ -28,7 +25,6 @@ import jdbc.method.SelectOptionInfo;
 import jdbc.method.SelectProductInfo;
 import jdbc.method.SelectRtdInfo;
 import jdbc.model.Order;
-import sun.applet.Main;
 import swing.frame.DefaultFrame;
 
 public class ReceiptView{
