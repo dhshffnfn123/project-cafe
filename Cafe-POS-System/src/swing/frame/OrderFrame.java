@@ -23,8 +23,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import action.CurrentTimeClock;
+import action.MenuButtonAction;
 import action.MenuListNextButton;
 import action.MenuListPrevButton;
+import action.MenuPlusButton;
+import action.OrdertableDeleteAction;
 import jdbc.model.MenuButton;
 import swing.view.DrinkView;
 import swing.view.ProductView;
@@ -34,6 +37,8 @@ public class OrderFrame extends DefaultFrame {
 
    private JPanel center;
    private JPanel top;
+   private JPanel west;
+   private JPanel south;
    private JTable table;
    private JScrollPane scrollPane;
    private JTabbedPane menu;
@@ -47,7 +52,9 @@ public class OrderFrame extends DefaultFrame {
    private JPanel menuPanelBase_center;
    private JPanel menuPanelBase_south;
    private ArrayList<JPanel> menuPanels;
-   
+   private DefaultTableModel model;
+   static int tablemoney = 0;
+   static JLabel totalmoney = new JLabel("");
 
    public OrderFrame() {
       setLayout(new BorderLayout());
@@ -65,6 +72,19 @@ public class OrderFrame extends DefaultFrame {
       // [TOP]패널 생성
       top = new JPanel(new GridLayout());
       
+      // [west]패널 생성
+     
+      JButton 결제 = new JButton("결제");
+      결제.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+      결제.setBounds(600, 600, 50, 50);
+ 
+      JButton delete = new JButton("-");
+      delete.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+      JLabel 총합계 = new JLabel("총합계");
+      총합계.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+      totalmoney.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+      
+
       // info 
       ImageIcon infoImg = new ImageIcon("./image/icon.png");
       JLabel info = new JLabel(infoImg); 
@@ -103,9 +123,18 @@ public class OrderFrame extends DefaultFrame {
       choosepage.setBorderPainted(false);
       top.add(choosepage);
       
+      // table_plus 버튼 생성 
+      JButton tplus = new JButton("+");
+      
+      // [CENTER-LEFT] 패널 생성
+      JPanel center_left = new JPanel(new BorderLayout());
+      
+      // [CENTER-LEFT_SOUTH] 패널 생성
+      JPanel left_south = new JPanel(new GridLayout(3,2));
+      
       // [CENTER-LEFT]테이블 생성
       String[] header = { "번호", "상품명", "상품수량", "가격" };
-      DefaultTableModel model = new DefaultTableModel(header, 0);
+      model = new DefaultTableModel(header, 0);
       table = new JTable(model);
       // 테이블 셀의 높이 변경
       table.setRowHeight(50);
@@ -127,6 +156,7 @@ public class OrderFrame extends DefaultFrame {
       menu.setFont(new Font("맑은 고딕", Font.BOLD, 30));
       menu.setBackground(new Color(95, 148, 153));
       menu.setForeground(Color.WHITE);
+      
       // 음료 탭 생성
       drinks = new JTabbedPane();
       // 프로덕트 탭 생성
@@ -134,6 +164,7 @@ public class OrderFrame extends DefaultFrame {
       products.setFont(new Font("맑은 고딕", Font.BOLD, 30));
       products.setBackground(new Color(95, 148, 153));
       products.setForeground(Color.WHITE);
+      
       // RTD 탭 생성
       rtds = new JTabbedPane();
 
@@ -143,33 +174,52 @@ public class OrderFrame extends DefaultFrame {
       menu.addTab("RTD", rtds);
 
       // 음료 버튼들 추가(타입 10번 ~ 100번까지)
-      for (int i = 0; i <= 11; i++) {
+      for (int i = 0; i < 11; i++) {
          String[] typeName = {"<HTML>리저브<br>에스프레소</HTML>", "<HTML>리저브<br>드립</HTML>",
-               "콜드 브루", "블론드", "에스프레소", "디카페인", "프라푸치노", "블렌디드", "피지오", "티바나", "기타", "옵션"};
+               "콜드 브루", "블론드", "에스프레소", "디카페인", "프라푸치노", "블렌디드", "피지오", "티바나", "기타"};
          drinks.addTab(typeName[i], makeItemButtons("drink",10 * (i + 1)));
          drinks.setFont(new Font("맑은 고딕", Font.BOLD, 13));
       }
 
-      // 푸드 버튼들 추가 (타입 140번 ~ 200번까지)
+      // 푸드 버튼들 추가 (타입 140번 ~ 200번까지)s
       for (int i = 0; i <= 6; i++) {
          String[] typeName = { "브레드", "케이크/미니 디저트", "샌드위치/샐러드", "따뜻한 푸드", "과일/요거트", "스낵", "아이스크림" };
          products.addTab(typeName[i], makeItemButtons("product", 140 + (10 * i)));
          products.setFont(new Font("맑은 고딕", Font.BOLD, 13));
       }
-      products.addTab("옵션", makeItemButtons("product", 120)); // 푸드에 옵션항목은 따로 추가. 반복문 하기에는 번호가 따로 있어서
+     
 
       // RTD버튼 추가 (타입 210)
       rtds.addTab("RTD", makeItemButtons("RTD", 210));
-
+      
     
-
-      center.add(scrollPane);
+      // 테이블삭제 버튼 기능 구현
+      delete.addActionListener(new OrdertableDeleteAction(table,totalmoney,tablemoney));
+      
+      center_left.add(scrollPane,BorderLayout.CENTER);
+      center_left.add(left_south,BorderLayout.SOUTH);
+      
+      left_south.add(총합계);
+      left_south.add(totalmoney);
+      left_south.add(tplus);
+      left_south.add(delete);
+      left_south.add(결제);
+      
+      
+      tplus.addActionListener(new MenuPlusButton(table ,totalmoney, tablemoney));
+      
+      
+      center.add(center_left);
       center.add(menu);
-
+      
+      
       add(top, BorderLayout.NORTH);
       add(center, BorderLayout.CENTER);
+      
+      totalmoney.setText(String.format("%s",tablemoney));
 
       setVisible(true);
+      repaint();
    }
    
    private ArrayList<MenuButton> itemButtons(String itemType, int typeNum) {
@@ -194,6 +244,7 @@ public class OrderFrame extends DefaultFrame {
          btns.get(i).setFont(new Font("맑은 고딕", Font.BOLD, 15));
          btns.get(i).setForeground(Color.white);
          btns.get(i).setBackground(new Color(161, 161, 161));
+         btns.get(i).addActionListener(new MenuButtonAction(name.get(i) , price.get(i),table ,totalmoney));
       }
       
       btns.get(0).getName();
@@ -202,8 +253,7 @@ public class OrderFrame extends DefaultFrame {
    
    private JPanel makeItemButtons(String itemType, int typeNum) {
       // 메뉴 탭들 안에 들어갈 베이스 패널 만들기
-      menuPanelBase = new JPanel(new BorderLayout
-            ());
+      menuPanelBase = new JPanel(new BorderLayout());
       // 베이스의 센터에 들어갈 패널에 카드 레이아웃 적용하기
       menuPanelBase_center = new JPanel(new CardLayout());
       // 베이스의 밑에 버튼이 들어갈 패널 만들기
@@ -262,7 +312,6 @@ public class OrderFrame extends DefaultFrame {
       menuPanelBase_south.add(prev);
       menuPanelBase_south.add(pageNum);
       menuPanelBase_south.add(next);
-      
       
       menuPanelBase.add(menuPanelBase_center, BorderLayout.CENTER);
       menuPanelBase.add(menuPanelBase_south, BorderLayout.SOUTH);
