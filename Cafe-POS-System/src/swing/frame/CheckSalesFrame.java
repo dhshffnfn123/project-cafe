@@ -20,7 +20,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
 import action.ChangePageButton;
-import action.ChecksalesSelectButton;
+import action.CheckSalesSelectButton;
 import action.CurrentTimeClock;
 import jdbc.method.TotalInfo;
 
@@ -67,7 +67,7 @@ public class CheckSalesFrame extends DefaultFrame {
 
       JButton select_btn = new JButton("조　　회");
       setJButtonStyle(select_btn); // 기본 버튼 스타일 지정 메소드 호출
-      select_btn.addActionListener(new ChecksalesSelectButton(
+      select_btn.addActionListener(new CheckSalesSelectButton(
     		  this, select_btn, select_combo, model, total_model, jt, jt2));
 
       center_top.add(sortation_txt, BorderLayout.WEST);
