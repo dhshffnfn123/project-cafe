@@ -5,12 +5,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-public class AddCancelBtn implements ActionListener{
+public class StockCancelBtn implements ActionListener{
 
 	private JFrame frame;
 	
 	
-	public AddCancelBtn(JFrame frame) {
+	public StockCancelBtn(JFrame frame) {
 		this.frame = frame;
 	}
 	

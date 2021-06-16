@@ -49,7 +49,7 @@ public class StockUpdateBtnListener implements ActionListener {
 			count = (int) model.getValueAt(row, 2);
 			
 			
-			new StockUpdateFrame(name, id, count);
+			new StockUpdateFrame(name, id, count, table);
 		}
 
 	}
