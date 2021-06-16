@@ -14,7 +14,8 @@ public class ChoosePageFrame extends DefaultFrame {
 	
 	public ChoosePageFrame() {
 		setTitle("Choose Page");
-		setBackground(new Color(188, 218, 186));
+		// getContentPane() 후 배경색 지정해야 변경가능
+		getContentPane().setBackground(new Color(255, 255, 227));
 		
 		String[] btns_name = {"<HTML>직원<br>관리</HTML>", "<HTML>판매<br>등록</HTML>", "<HTML>매출<br>조회</HTML>", "<HTML>재고<br>관리</HTML>"};
 		ArrayList<JButton> btns = new ArrayList<>();
