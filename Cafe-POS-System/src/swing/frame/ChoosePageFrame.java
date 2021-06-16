@@ -22,7 +22,6 @@ public class ChoosePageFrame extends DefaultFrame {
 		for (int i = 0; i < btns_name.length; i++) {
 			btns.add(new JButton(btns_name[i]));
 		}
-		
 		// 다른 프레임으로 이동하는 액션 리스너
 		ChangePageButton channel = new ChangePageButton(this);
 		

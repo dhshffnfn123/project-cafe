@@ -58,8 +58,76 @@ public class EmployeesManagementFrame extends DefaultFrame {
 	private JButton btn;
 
 	public EmployeesManagementFrame() {
+<<<<<<< HEAD
 		setLayout(new BorderLayout());
 		setTitle("Employees Management");
+=======
+      setLayout(new BorderLayout());
+      setTitle("Employees Management");
+      
+      // -- CENTER
+      // 가운데 공간에 패널 생성(1행 2열)
+      JPanel center = new JPanel(new GridLayout());
+      
+      // -- CENTER-LEFT
+      // 스태프 정보테이블 왼쪽에 추가(1, 1)번째
+      JTable staff_info = new SelectEmployeeInfo().getEmployeeInfo();
+      // 테이블 글씨체 변경
+      staff_info.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
+      // 테이블 컬럼들 이동 불가
+      staff_info.getTableHeader().setReorderingAllowed(false);
+      // 테이블 셀의 높이 변경
+      staff_info.setRowHeight(50);
+      // 테이블 가운데로 정렬하기
+      DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+      dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+      TableColumnModel tcm = staff_info.getColumnModel();
+      for (int i = 0; i < tcm.getColumnCount(); i++) {
+         tcm.getColumn(i).setCellRenderer(dtcr);
+      }
+      // 테이블 헤더 높이, 글씨체, 배경색 변경
+      JTableHeader header = staff_info.getTableHeader();
+      header.setPreferredSize(new Dimension(100, 50));
+      header.setFont(new Font("맑은 고딕", Font.BOLD, 25));
+      header.setBackground(new Color(161, 192, 90));
+      // 테이블 갯수 넘어가면 스크롤바로 변경됨
+      JScrollPane scorll_add_staff_info = new JScrollPane(staff_info);
+      // 테이블에 값 선택하면 값 가져오기 이벤트 설정
+      staff_info.addMouseListener(new GetTableInfoForMouse(staff_info));
+      
+      // -- CENTER-RIGHT
+      // 센터 패널의 오른쪽 공간 생성(1, 2)번째
+      // JTabbedPane() 탭 만들기 -> 오른쪽 패널 탭으로 만들기
+      JTabbedPane right_panel_tab = new JTabbedPane();
+      right_panel_tab.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+      right_panel_tab.setBackground(new Color(161, 192, 90));
+      right_panel_tab.addTab("등록", createTab("등록"));
+      right_panel_tab.addTab("수정", createTab("수정"));
+      right_panel_tab.addTab("삭제", createTab("삭제"));
+      
+      // -- CENTER-TOP 뒤로 가기 버튼
+      JPanel top_panel_body = new JPanel(new GridLayout());
+      JButton back_btn = new JButton("<<");
+      back_btn.setPreferredSize(new Dimension(100, 80));
+      back_btn.setFont(new Font("궁서", Font.BOLD, 30));
+      back_btn.setBackground(new Color(0, 60, 0));
+      back_btn.setForeground(Color.WHITE);
+      top_panel_body.add(back_btn, BorderLayout.WEST);
+      // 가운데 시스템시계
+      JLabel clock = new CurrentTimeClock().setClock();
+      clock.setFont(new Font("맑은 고딕", Font.PLAIN, 30));
+      clock.setHorizontalAlignment(JLabel.CENTER);
+      clock.setOpaque(true);
+      clock.setBackground(Color.pink);
+      top_panel_body.add(clock, BorderLayout.CENTER);
+      // 오른쪽에 로그인한 사람 정보 뜨게할려고 일단 임시
+      JLabel login_name = new JLabel("예림");
+      login_name.setFont(new Font("맑은 고딕", Font.PLAIN, 30));
+      login_name.setHorizontalAlignment(JLabel.CENTER);
+      login_name.setOpaque(true);
+      login_name.setBackground(Color.cyan);
+      top_panel_body.add(login_name, BorderLayout.EAST);
+>>>>>>> refs/remotes/origin/kth
 
 		// -- [CENTER] -- 가운데 공간에 패널 생성
 		center = new JPanel(new GridLayout());
