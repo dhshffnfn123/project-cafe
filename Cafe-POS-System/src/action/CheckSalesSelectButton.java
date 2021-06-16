@@ -24,7 +24,8 @@ public class CheckSalesSelectButton implements ActionListener {
 	private JButton button;
 	private JComboBox<String> ybox, mbox, dbox;
 	private JScrollPane table_scroll;
-	private String sql = "SELECT TO_CHAR(order_time, 'YYYY'), COUNT(order_total), SUM(order_total)" + "FROM order_table "
+	private String sql = "SELECT TO_CHAR(order_time, 'YYYY'), COUNT(order_total), SUM(order_total)" + "FROM order_table"
+			+ "WHERE "
 			+ "GROUP BY TO_CHAR(order_time, 'YYYY')" + "ORDER BY TO_CHAR(order_time, 'YYYY')";
 
 	private String sql2 = "SELECT TO_CHAR(order_time, 'YYYY-MM'), COUNT(order_total), SUM(order_total)"
