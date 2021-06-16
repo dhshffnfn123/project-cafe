@@ -163,7 +163,7 @@ public class StockFrame extends DefaultFrame {
 
 		// ================================================ 검색 기능
 		//업데이트에 테이블에서 선택한 값 가져오기
-		update_btn.addActionListener(new StockUpdateBtnListener(table, id, name, count));
+		update_btn.addActionListener(new StockUpdateBtnListener(table));
 		
 		table.addMouseListener(new StockGetTableVal(table));
 		table_panel.add(scrollpane);
