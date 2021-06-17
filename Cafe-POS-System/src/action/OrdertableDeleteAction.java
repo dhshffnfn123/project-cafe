@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import swing.frame.OrderFrame;
+
 public class OrdertableDeleteAction implements ActionListener {
 
 	JTable table;
@@ -24,7 +26,7 @@ public class OrdertableDeleteAction implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		model = (DefaultTableModel) table.getModel();
 		int row = table.getSelectedRow();
 		
 		
@@ -34,6 +36,7 @@ public class OrdertableDeleteAction implements ActionListener {
 			
 			if (quantity == 1) {
 				// 선택된 행만 지운다. model.setRowCount(0);는 1개인 음료도 다 지워버림 
+				OrderFrame.GettableInfo().remove(row);
 				model.removeRow(row);
 			}else if(quantity != 1) {
 				

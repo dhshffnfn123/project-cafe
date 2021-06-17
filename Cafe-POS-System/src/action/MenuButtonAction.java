@@ -8,71 +8,62 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import jdbc.model.MenuButtonData;
+import swing.frame.OrderFrame;
+
 public class MenuButtonAction implements ActionListener {
-	String name;
-	int price;
-	DefaultTableModel model;
-	static int sum;
-	JTable table;
-	JLabel totalmoney;
-	int count = 0;
-	String testName;
-	String testPrice;
 
-	public MenuButtonAction(String name, int price, JTable table, JLabel totalmoney) {
-		this.name = name;
-		this.price = price;
-		this.table = table;
-		this.totalmoney = totalmoney;
-	}
+   private DefaultTableModel model;
+   private JTable table;
+   private String name;
+   private int price;
+   private int quantity;
+   private int originalPrice;
+   private boolean check = false;
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		//MenuButtonData a1 = new MenuButtonData();
-		model = (DefaultTableModel) table.getModel();
-		
-		ArrRow
-		
-		// 클래스로 구현해서 접근 MenuButtonData 클래스 만듬 // 인스턴스.get();
-		String[] row = new String[4]; 
-		row[0] = Integer.toString(model.getRowCount() + 1);
-		row[1] = name;
-		row[2] = "1";
-		row[3] = Integer.toString(price);
-		model.addRow(row);
+   public MenuButtonAction(JTable table,  String name, int price ) {
+      this.table = table;
+      this.name = name;
+      this.price = price;
+   }
 
-		String str = Integer.toString(price);
-		sum += (Integer.parseInt(str));
-		totalmoney.setText(String.format("%s", sum));
+   
+ 
+   @Override
+   public void actionPerformed(ActionEvent e) {
 
-		// ArrayList 로 구현하기!
-		int row_cnt = table.getRowCount();
-		for (int i = 0; i < row_cnt; i++) {
-			model.setValueAt(i, i, 0);
-			model.fireTableDataChanged();
-		}
+      model = (DefaultTableModel) table.getModel();
+      int row = table.getRowCount();
 
-		for (int j = 0; j < row_cnt; j++) {
-			if (name.equals(model.getValueAt(j, 1))) {
-				count++;
+      if (!check) {
+         OrderFrame.GettableInfo().add(new MenuButtonData(row, name, 1, price));
+         model.addRow(OrderFrame.GettableInfo().get(row).getTableRow());
+      } 
+      
+      int findIndex = 0;
+      if (OrderFrame.GettableInfo().size() != 0) {
+         for (int i = 0; i < OrderFrame.GettableInfo().size(); i++) {
+            if (OrderFrame.GettableInfo().get(i).getMenuName().equals(name)) {
+               findIndex = i;
+               
+               quantity = OrderFrame.GettableInfo().get(findIndex).getQty();
+               price = OrderFrame.GettableInfo().get(findIndex).getMenuPrice(); 
 
-			}
-			if (count >= 2) {
-				testName = String.valueOf(model.getValueAt(j, 1));
-				testPrice = String.valueOf(model.getValueAt(j, 3));
+               model.setValueAt(quantity, findIndex, 2);
+               model.setValueAt(price, findIndex, 3);
+               
+               originalPrice = price / quantity;
+               price += originalPrice;
+               quantity++;
+               
+               OrderFrame.GettableInfo().get(findIndex).setQty(quantity);
+               OrderFrame.GettableInfo().get(findIndex).setMenuPrice(price);
+               
+               check = true;
+               model.fireTableDataChanged();
+            } 
+         }
+      }
 
-				model.removeRow(j);
-
-				model.setValueAt(count, j, 2);
-				model.setValueAt((Integer.parseInt(testPrice) * count), j, 3);
-
-			}
-			if (count == 3) {
-				break;
-			}
-		}
-
-	}
+   }
 }
-
-

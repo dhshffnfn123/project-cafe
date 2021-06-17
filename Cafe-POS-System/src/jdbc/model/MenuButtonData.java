@@ -1,17 +1,18 @@
 package jdbc.model;
 
-class MenuButtonData {
-	int orderNum;
-	String menuName;
-	int qty;
-	int menuPrice;
+public class MenuButtonData {
+	 int orderNum;
+	 String menuName;
+	 int qty;
+	 int menuPrice;
 	
-	public MenuButtonData(int ordernum , String menuname , int qty , int menuPrice ) {
-		this.orderNum = ordernum;
-		this.menuName = menuname;
+	 public MenuButtonData( int num ,String name , int qty , int price) {
+		this.orderNum = num;
+		this.menuName = name;
 		this.qty = qty;
-		this.menuPrice = menuPrice;				
+		this.menuPrice = price;
 	}
+	 
 
 	public int getOrderNum() {
 		return orderNum;

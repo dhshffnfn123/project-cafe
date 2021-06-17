@@ -1,7 +1,6 @@
 package swing.frame;
 
 import java.awt.BorderLayout;
-
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -30,9 +29,11 @@ import action.MenuListPrevButton;
 import action.MenuPlusButton;
 import action.OrdertableDeleteAction;
 import jdbc.model.MenuButton;
+import jdbc.model.MenuButtonData;
 import swing.view.DrinkView;
 import swing.view.ProductView;
 import swing.view.RtdView;
+
 
 public class OrderFrame extends DefaultFrame {
 
@@ -55,9 +56,23 @@ public class OrderFrame extends DefaultFrame {
    private ArrayList<JPanel> menuPanels;
    private DefaultTableModel model;
    static int tablemoney = 0;
-   static JLabel totalmoney = new JLabel(String.valueOf(tablemoney));
-   static ArrayList<MenuButton> ArrRow = new ArrayList<MenuButton>();
+   static ArrayList<MenuButtonData> tableInfo;
+   static int totalPrice;
+   static JLabel totalmoney;
+   
+   static {
+	   tableInfo = new ArrayList<MenuButtonData>();
+	   totalmoney = new JLabel("");
 
+   }
+   
+   
+   
+   public static ArrayList<MenuButtonData> GettableInfo(){
+	   return tableInfo;
+   }
+
+   
    public OrderFrame() {
       setLayout(new BorderLayout());
       setTitle("Cafe-Project");
@@ -86,7 +101,7 @@ public class OrderFrame extends DefaultFrame {
       ÃÑÇÕ°è.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 30));
       totalmoney.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 30));
       
-
+      
       // info 
       ImageIcon infoImg = new ImageIcon("./image/icon.png");
       JLabel info = new JLabel(infoImg); 
@@ -212,9 +227,8 @@ public class OrderFrame extends DefaultFrame {
       
       add(top, BorderLayout.NORTH);
       add(center, BorderLayout.CENTER);
+     
       
-      totalmoney.setText(String.valueOf(tablemoney));
-
       setVisible(true);
       repaint();
    }
@@ -241,10 +255,9 @@ public class OrderFrame extends DefaultFrame {
          btns.get(i).setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
          btns.get(i).setForeground(Color.white);
          btns.get(i).setBackground(new Color(161, 161, 161));
-         btns.get(i).addActionListener(new MenuButtonAction(name.get(i) , price.get(i),table ,totalmoney));
+         btns.get(i).addActionListener(new MenuButtonAction(table, name.get(i) , price.get(i) ));
       }
       
-      btns.get(0).getName();
       return btns;
    }
    
