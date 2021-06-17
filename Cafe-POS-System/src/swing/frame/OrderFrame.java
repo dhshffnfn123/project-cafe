@@ -132,7 +132,7 @@ public class OrderFrame extends DefaultFrame {
       top.add(infouser);
       
       //뒤로가기 버튼 
-      ImageIcon backbtn = new ImageIcon("./image/backbtn.jpg");
+      ImageIcon backbtn = new ImageIcon("./image/backbtn.png");
       JButton choosepage = new JButton(backbtn);
       choosepage.setOpaque(true);
       choosepage.setBounds(1340, 10, 140, 80);
@@ -155,13 +155,17 @@ public class OrderFrame extends DefaultFrame {
       table = new JTable(model);
       // 테이블 셀의 높이 변경
       table.setRowHeight(50);
-
+      table.getTableHeader().setReorderingAllowed(false); // 컬럼들 이동 불가
+      table.getTableHeader().setResizingAllowed(false); // 컬럼 크기 조절 불가
+      
+      
       // 헤더 색상, 높이 너비 변경
       JTableHeader hd = table.getTableHeader();
       hd.setPreferredSize(new Dimension(100, 50));
       hd.setFont(new Font("맑은 고딕", Font.BOLD, 25));
       hd.setBackground(new Color(163, 148, 132));
       hd.setForeground(Color.WHITE);
+      
 
       scrollPane = new JScrollPane(table);
       scrollPane.setPreferredSize(new Dimension(750, 500));

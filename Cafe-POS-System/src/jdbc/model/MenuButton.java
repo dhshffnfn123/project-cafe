@@ -6,6 +6,7 @@ public class MenuButton extends JButton {
 
    private String button_name;
    private Integer button_price;
+ 
 
    public MenuButton(String button_name, Integer button_price) {
       super("<HTML><body style='text-align:center;'>" + button_name + "<br>" + button_price + "¿ø</body></HTML>");

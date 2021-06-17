@@ -36,10 +36,9 @@ public class OrdertableDeleteAction implements ActionListener {
 			
 			if (quantity == 1) {
 				// 선택된 행만 지운다. model.setRowCount(0);는 1개인 음료도 다 지워버림 
-				OrderFrame.GettableInfo().remove(row);
 				model.removeRow(row);
+				OrderFrame.GettableInfo().remove(row);
 			}else if(quantity != 1) {
-				
 				
 				price = Integer.parseInt(String.valueOf(model.getValueAt(row, 3)));
 				originalPrice = price / quantity;
@@ -49,7 +48,7 @@ public class OrdertableDeleteAction implements ActionListener {
 				
 				model.setValueAt(quantity, row, 2);
 				model.setValueAt(price, row, 3);
-				model.fireTableDataChanged();
+				//model.fireTableDataChanged();
 			}
 		}
 		
