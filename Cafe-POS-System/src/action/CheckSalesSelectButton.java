@@ -25,7 +25,7 @@ public class CheckSalesSelectButton implements ActionListener {
 	private JComboBox ybox;
 	private JComboBox<String> mbox, dbox;
 	private JScrollPane table_scroll;
-	private String year;
+	private String year, month, day;
 	
 	private String sql = "SELECT TO_CHAR(order_time, 'YYYY'), COUNT(order_total), SUM(order_total)"
 			+ "FROM order_table " + "GROUP BY TO_CHAR(order_time, 'YYYY')" + "ORDER BY TO_CHAR(order_time, 'YYYY')";
@@ -47,13 +47,13 @@ public class CheckSalesSelectButton implements ActionListener {
 	        "WHERE TO_CHAR(order_time, 'YYYY') LIKE ? " +
 	        "GROUP BY TO_CHAR(order_time, 'YYYY')ORDER BY TO_CHAR(order_time, 'YYYY')";
 	
-	private String sql_month = "SELECT TO_CHAR(order_time, 'YYYY'), COUNT(order_total), SUM(order_total) FROM order_table" +
-	        "WHERE order_time like ?" +
-	        "GROUP BY TO_CHAR(order_time, 'YYYY') ORDER BY TO_CHAR(order_time, 'YYYY')";
+	private String sql_month = "SELECT TO_CHAR(order_time, 'YYYY-MM'), COUNT(order_total), SUM(order_total) FROM order_table " +
+	        "WHERE TO_CHAR(order_time, 'YYYY-MM') LIKE ? " +
+	        "GROUP BY TO_CHAR(order_time, 'YYYY-MM') ORDER BY TO_CHAR(order_time, 'YYYY-MM')";
 	
-	private String sql_day = "SELECT TO_CHAR(order_time, 'YYYY'), COUNT(order_total), SUM(order_total) FROM order_table" +
-	        "WHERE order_time like ?" +
-	        "GROUP BY TO_CHAR(order_time, 'YYYY') ORDER BY TO_CHAR(order_time, 'YYYY')";
+	private String sql_day = "SELECT TO_CHAR(order_time, 'YYYY-MM-DD'), COUNT(order_total), SUM(order_total) FROM order_table " +
+	        "WHERE (TO_CHAR(order_time, 'YYYY-MM-DD') LIKE ? OR TO_CHAR(order_time, 'YYYY-MM-DD') LIKE ?)" +
+	        "GROUP BY TO_CHAR(order_time, 'YYYY-MM-DD') ORDER BY TO_CHAR(order_time, 'YYYY-MM-DD')";
 
 	private DefaultTableModel model, total_model;
 	private Object[][] data = new String[0][0];
@@ -87,8 +87,8 @@ public class CheckSalesSelectButton implements ActionListener {
 				PreparedStatement pstmt3 = conn.prepareStatement(sql3);	// 전체 일 매출
 				
 				PreparedStatement pstmt_y = conn.prepareStatement(sql_year);
-//				PreparedStatement pstmt_m = conn.prepareStatement(sql_month);
-//				PreparedStatement pstmt_d = conn.prepareStatement(sql_day);
+				PreparedStatement pstmt_m = conn.prepareStatement(sql_month);
+				PreparedStatement pstmt_d = conn.prepareStatement(sql_day);
 				
 				PreparedStatement pstmt_total = conn.prepareStatement(sql_total); // 총 매출 계산
 
@@ -96,18 +96,20 @@ public class CheckSalesSelectButton implements ActionListener {
 				ResultSet rs2 = pstmt2.executeQuery();
 				ResultSet rs3 = pstmt3.executeQuery();
 				
-//				ResultSet rs_m = pstmt_m.executeQuery();
 //				ResultSet rs_d = pstmt_d.executeQuery();
+//				ResultSet rs_m = pstmt_m.executeQuery();
 				
 				ResultSet rs_total = pstmt_total.executeQuery();
 
 		) {
 			
 			year = ybox.getSelectedItem().toString();
-			String month = mbox.getSelectedItem().toString();
-			String day = dbox.getSelectedItem().toString();
+			month = mbox.getSelectedItem().toString();
+			day = dbox.getSelectedItem().toString();
 			
 			System.out.println(year);
+			System.out.println(month);
+			System.out.println(day);
 			if(year.equals("년도 선택")) {
 			System.out.println("select");
 			}
@@ -130,7 +132,7 @@ public class CheckSalesSelectButton implements ActionListener {
 					total_model.addRow(row2);
 				}
 			} else if (year.equals("ALL") 
-					&& month.toString().equals("ALL")
+					&& month.equals("ALL")
 					&& day.equals("None")) {
 				while (rs2.next()) {
 					date = rs2.getString(1);
@@ -163,27 +165,72 @@ public class CheckSalesSelectButton implements ActionListener {
 				}
 			} else if (year.equals("년도 선택")){
 				
-				System.out.println("aaaa");
-			} else {
-				System.out.println("원하는 값");
+//				System.out.println("aaaa");
+//			} else if(!(year.equals("ALL") && year.equals("년도 선택"))){
+//				System.out.println("년도 조회됨");
+//				
+//				pstmt_y.setString(1, String.format("%%%s%%", year));
+//				
+//				pstmt_y.executeUpdate();
+//				ResultSet rs_y = pstmt_y.executeQuery();
+//				
+//				while (rs_y.next()) {
+//					date = rs_y.getString(1);
+//					count = rs_y.getInt(2);
+//					result = rs_y.getInt(3);
+//					
+//					Object[] row = { date, count, result };
+//					model.addRow(row);
+//					
+//				}
+//				rs_y.close();0
+//				pstmt_y.close();
+			} else if((!(year.equals("ALL") && year.equals("년도 선택"))) 
+							&& (!(month.equals("ALL") && month.equals("None") && month.equals("월 선택")))
+							&& day.equals("None")) {
+						System.out.println("월 조회됨");
+						
+						pstmt_m.setString(1, String.format("%%%s%%", month));
+						
+						pstmt_m.executeUpdate();
+						ResultSet rs_m = pstmt_m.executeQuery();
+						
+						while (rs_m.next()) {
+							date = rs_m.getString(1);
+							count = rs_m.getInt(2);
+							result = rs_m.getInt(3);
+							
+							Object[] row = { date, count, result };
+							model.addRow(row);
+							
+						}
+						rs_m.close();
+						pstmt_m.close();
+						
+						
+			} else if((!(year.equals("ALL") && year.equals("년도 선택"))) 
+					&& (!(month.equals("ALL") && month.equals("None") && month.equals("월 선택")))
+					&& (!(day.equals("ALL") && day.equals("None") && day.equals("일 선택") ))) {
+				System.out.println("일 조회됨");
 				
-				pstmt_y.setString(1, String.format("%%%s%%", year));
+				pstmt_d.setString(1, String.format("%%%s%%", day));
 				
-				pstmt_y.executeUpdate();
-				ResultSet rs_y = pstmt_y.executeQuery();
+				pstmt_d.executeUpdate();
+				ResultSet rs_d = pstmt_d.executeQuery();
 				
-				while (rs_y.next()) {
-					date = rs_y.getString(1);
-					count = rs_y.getInt(2);
-					result = rs_y.getInt(3);
+				while (rs_d.next()) {
+					date = rs_d.getString(1);
+					count = rs_d.getInt(2);
+					result = rs_d.getInt(3);
 					
 					Object[] row = { date, count, result };
 					model.addRow(row);
 					
 				}
-				rs_y.close();
-				pstmt_y.close();
+				rs_d.close();
+				pstmt_d.close();
 			}
+			
 			
 			
 			
