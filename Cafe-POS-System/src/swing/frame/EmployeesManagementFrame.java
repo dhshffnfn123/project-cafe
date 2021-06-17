@@ -8,6 +8,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.TextField;
@@ -16,6 +17,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -34,6 +36,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
 import action.ChangePageButton;
+import action.ChangePageButtonForBackBtn;
 import action.CurrentTimeClock;
 import action.EmployeeInfoAddButton;
 import action.EmployeeInfoDelButton;
@@ -107,7 +110,11 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		// -- [CENTER-TOP] --
 		top_panel_body = new JPanel(new GridLayout());
 		// 뒤로 가기 버튼
-		JButton back_btn = new JButton("<<");
+		ImageIcon btnImage = new ImageIcon("./image/BackButton.png");
+		Image img = btnImage.getImage();
+		Image changeImg = img.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+		ImageIcon changeIcon = new ImageIcon(changeImg);
+		JButton back_btn = new JButton(changeIcon);
 		back_btn.setPreferredSize(new Dimension(100, 80));
 		back_btn.setFont(new Font("궁서", Font.BOLD, 30));
 		// GridLayout에 맞춘 버튼 글씨 왼쪽 정렬
@@ -116,7 +123,8 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		back_btn.setForeground(Color.WHITE);
 		// 버튼 테두리 없애기
 		back_btn.setBorderPainted(false);
-		back_btn.addActionListener(new ChangePageButton(this));
+		// 이미지 넣어서 MouseListener로 변경.
+		back_btn.addMouseListener(new ChangePageButtonForBackBtn(this));
 		
 		top_panel_body.add(back_btn, BorderLayout.WEST);
 		// 가운데 시스템시계

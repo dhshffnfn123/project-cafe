@@ -13,7 +13,7 @@ import swing.frame.StockManagementFrame;
 
 public class ChangePageButton implements ActionListener {
 	
-	JFrame frame;
+	private JFrame frame;
 	
 	public ChangePageButton(JFrame frame) {
 		this.frame = frame;
