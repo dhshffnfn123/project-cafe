@@ -97,7 +97,7 @@ public class StockManagementFrame extends DefaultFrame {
 		table.getTableHeader().setBackground(new Color(163, 148, 132));// 컬럼의 색상을 설정
 		table.getTableHeader().setForeground(Color.WHITE);
 		table.setRowHeight(40);
-		
+
 		String[] header = new StockTableAddData().give_header();
 
 		table.getColumn(header[0]).setPreferredWidth(100); // 컬럼당 넓이 설정인데 모든 컬럼을 테이블의 넓이에 '얼추' 맞게 설정해야함

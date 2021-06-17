@@ -6,8 +6,11 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 
 import action.AddConfirmBtn;
 import action.StockCancelBtn;
@@ -19,56 +22,71 @@ public class StockUpdateFrame extends JFrame {
 	private JTextField count_tf, tf;
 	private JLabel idL, nameL, countL, updateL;
 	private JButton confirm_btn, cancel_btn;
+	private JPanel info_panel;
 	private String name;
 	private int id, count;
+	private Color y_color = new Color(163, 148, 132);
 
-	private Font font = new Font("¸¼Àº °íµñ", Font.BOLD, 15);
+	private Font font = new Font("¸¼Àº °íµñ", Font.BOLD, 20);
 	private Font nomal_font = new Font("¸¼Àº °íµñ", Font.BOLD, 20);
+	private Font small_font = new Font("¸¼Àº °íµñ", Font.BOLD, 15);
 	
 	public StockUpdateFrame(String name, int id, int count, JTable table) {
 		
+		setTitle("STOCK_UPDATE");
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocation(200, 200);
-		setSize(300, 400);
+		setSize(300, 300);
 		setResizable(false);
-		getContentPane().setBackground(Color.white);
+		getContentPane().setBackground(y_color);
 		setVisible(true);
-
+		
+		info_panel = new JPanel();
+		info_panel.setBounds(10, 10, 265, 150);
+		info_panel.setBackground(y_color);
+		info_panel.setBorder(new TitledBorder(new LineBorder(Color.white, 5), "INFO"));
+		info_panel.setLayout(null);
+		
+		add(info_panel);
+		
+		
 		// ¶óº§
 		idL = new JLabel();
 		idL.setText("ID     :  " + id);
 		idL.setBounds(30, 20, 300, 30);
 		idL.setFont(font);
-		add(idL);
+		info_panel.add(idL);
 
 		nameL = new JLabel("ÀÌ¸§  :  " + name);
 		nameL.setBounds(30, 60, 300, 30);
 		nameL.setFont(font);
-		add(nameL);
+		info_panel.add(nameL);
 
 		countL = new JLabel("¼ö·®  :  " + count);
 		countL.setFont(font);
 		countL.setBounds(30, 100, 300, 30);
-		add(countL);
+		info_panel.add(countL);
 
 		updateL = new JLabel("Àç°í ¼ö·®");
-		updateL.setFont(font);
-		updateL.setBounds(30, 200, 300, 30);
+		updateL.setFont(small_font);
+		updateL.setBounds(20, 160, 300, 30);
 		add(updateL);
 		// Ä«¿îÆ® ÅØ½ºÆ® ÇÊµå
 		count_tf = new JTextField(10);
-		count_tf.setBounds(30, 250, 200, 30);
+		count_tf.setBounds(20, 190, 250, 30);
 		add(count_tf);
 
 		confirm_btn = new JButton("¼öÁ¤");
-		confirm_btn.setFont(font);
-		confirm_btn.setBounds(30, 300, 65, 30);
+		confirm_btn.setFont(small_font);
+		confirm_btn.setBounds(120, 225, 70, 30);
+		confirm_btn.setBackground(new Color(125, 178, 183));
 		add(confirm_btn);
 
 		cancel_btn = new JButton("Ãë¼Ò");
-		cancel_btn.setFont(font);
-		cancel_btn.setBounds(120, 300, 65, 30);
+		cancel_btn.setFont(small_font);
+		cancel_btn.setBounds(200, 225, 70, 30);
+		cancel_btn.setBackground(new Color(125, 178, 183));
 		add(cancel_btn);
 		
 		cancel_btn.addActionListener(new StockCancelBtn(this));
