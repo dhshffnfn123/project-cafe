@@ -1,6 +1,7 @@
 package swing.frame;
 
 import java.awt.BorderLayout;
+
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -55,6 +56,7 @@ public class OrderFrame extends DefaultFrame {
    private DefaultTableModel model;
    static int tablemoney = 0;
    static JLabel totalmoney = new JLabel(String.valueOf(tablemoney));
+   static ArrayList<MenuButton> ArrRow = new ArrayList<MenuButton>();
 
    public OrderFrame() {
       setLayout(new BorderLayout());
@@ -94,7 +96,7 @@ public class OrderFrame extends DefaultFrame {
       info.setHorizontalAlignment(JLabel.LEFT);
       top.add(info);
       
-      // infoTime 
+      // infoTime    
       JLabel infoTime = new CurrentTimeClock().setClock();
       infoTime.setFont(new Font("맑은 고딕", Font.BOLD, 30));
       infoTime.setBounds(260, 10, 540, 80);
@@ -129,10 +131,10 @@ public class OrderFrame extends DefaultFrame {
       // [CENTER-LEFT] 패널 생성
       JPanel center_left = new JPanel(new BorderLayout());
       
-      // [CENTER-LEFT_SOUTH] 패널 생성
+      // [CENTER-LEFT_SOUTH] 패널 생성  //패널마다 클래스 나눠서 
       JPanel left_south = new JPanel(new GridLayout(3,2));
       
-      // [CENTER-LEFT]테이블 생성
+      // [CENTER-LEFT]테이블 생성  //테이블 메서드 구현 
       String[] header = { "번호", "상품명", "상품수량", "가격" };
       model = new DefaultTableModel(header, 0);
       table = new JTable(model);
@@ -188,11 +190,9 @@ public class OrderFrame extends DefaultFrame {
          products.setFont(new Font("맑은 고딕", Font.BOLD, 13));
       }
      
-
       // RTD버튼 추가 (타입 210)
       rtds.addTab("RTD", makeItemButtons("RTD", 210));
       
-    
       // 테이블삭제 버튼 기능 구현
       delete.addActionListener(new OrdertableDeleteAction(table,totalmoney,tablemoney));
       
@@ -204,7 +204,6 @@ public class OrderFrame extends DefaultFrame {
       left_south.add(tplus);
       left_south.add(delete);
       left_south.add(결제);
-      
       
       tplus.addActionListener(new MenuPlusButton(table));
       
