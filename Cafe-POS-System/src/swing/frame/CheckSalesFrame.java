@@ -47,8 +47,6 @@ public class CheckSalesFrame extends DefaultFrame {
       JComboBox month_combo = new TotalComboAddData().month_getComboBox();
       setJComboBoxStyle(month_combo);
       
-      JComboBox day_combo = new TotalComboAddData().day_getComboBox();
-      setJComboBoxStyle(day_combo);
       
       
       
@@ -76,12 +74,11 @@ public class CheckSalesFrame extends DefaultFrame {
       JButton select_btn = new JButton("조　　회");
       setJButtonStyle(select_btn); // 기본 버튼 스타일 지정 메소드 호출
       select_btn.addActionListener(new CheckSalesSelectButton(
-    		  this, select_btn, model, total_model, jt, jt2, year_combo, month_combo, day_combo));
+    		  this, select_btn, model, total_model, jt, jt2, year_combo, month_combo));
 
       center_top.add(sortation_txt);
       center_top.add(year_combo);
       center_top.add(month_combo);
-      center_top.add(day_combo);
       center_top.add(select_btn);
 
       center.add(center_top, BorderLayout.NORTH);

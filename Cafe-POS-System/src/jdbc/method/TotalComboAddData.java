@@ -12,10 +12,9 @@ import jdbc.hikari.HikariCP;
 
 public class TotalComboAddData {
 	
-	private JComboBox year_combo, month_combo, day_combo ;
+	private JComboBox year_combo, month_combo;
 	private String sql = "SELECT TO_CHAR(order_time, 'YYYY') FROM order_table GROUP BY TO_CHAR(order_time, 'YYYY')";
 	private String sql2 = "SELECT TO_CHAR(order_time, 'MM') FROM order_table GROUP BY TO_CHAR(order_time, 'MM')";
-	private String sql3 = "SELECT TO_CHAR(order_time, 'DD') FROM order_table GROUP BY TO_CHAR(order_time, 'DD')";
 
 
 	
@@ -27,10 +26,7 @@ public class TotalComboAddData {
 		comboBox_addData();
 		return month_combo;
 	}
-	public JComboBox day_getComboBox() {
-		comboBox_addData();
-		return day_combo;
-	}
+
 	
 	
 	private void comboBox_addData() {
@@ -43,20 +39,15 @@ public class TotalComboAddData {
 		month_combo.addItem("ALL");
 		month_combo.addItem("None");
 		
-		day_combo = new JComboBox();
-		day_combo.addItem("¿œ º±≈√");
-		day_combo.addItem("ALL");
-		day_combo.addItem("None");
 		
 		
 		try (
 				Connection conn = HikariCP.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				PreparedStatement pstmt2 = conn.prepareStatement(sql2);
-				PreparedStatement pstmt3 = conn.prepareStatement(sql3);
+
 				ResultSet rs = pstmt.executeQuery();
 				ResultSet rs2 = pstmt2.executeQuery();
-				ResultSet rs3 = pstmt3.executeQuery();
 		) {
 			while (rs.next()) {
 				year_combo.addItem(rs.getString(1));
@@ -64,9 +55,7 @@ public class TotalComboAddData {
 			while (rs2.next()) {
 				month_combo.addItem(rs2.getString(1));
 			}
-			while (rs3.next()) {
-				day_combo.addItem(rs3.getString(1));
-			}
+
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
