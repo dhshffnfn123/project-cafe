@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
-import action.ChangePageButton;
+import action.ChangePageActionForChooseFrame;
 import action.CurrentTimeClock;
 import action.StockAddBtnListener;
 import action.StockDeleteBtnListener;
@@ -51,19 +51,19 @@ public class StockManagementFrame extends DefaultFrame {
 		JButton back_btn = new JButton("<<");
 		back_btn.setPreferredSize(new Dimension(100, 80));
 		back_btn.setFont(new Font("궁서", Font.BOLD, 30));
-		back_btn.setBackground(new Color(110, 88, 68));
+		back_btn.setBackground(new Color(53, 84, 0));
 		back_btn.setForeground(Color.WHITE);
 		back_btn.setBorderPainted(false);
 		topPanel.add(back_btn, BorderLayout.WEST);
 		back_btn.setHorizontalAlignment(SwingConstants.LEFT);
-		back_btn.addActionListener(new ChangePageButton(this));
+		back_btn.addActionListener(new ChangePageActionForChooseFrame(this));
 
 		// 가운데 시스템시계
 		JLabel clock = new CurrentTimeClock().setClock();
 		clock.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		clock.setHorizontalAlignment(JLabel.CENTER);
 		clock.setOpaque(true);
-		clock.setBackground(new Color(110, 88, 68));
+		clock.setBackground(new Color(53, 84, 0));
 		clock.setForeground(Color.WHITE);
 		topPanel.add(clock, BorderLayout.CENTER);
 		// 오른쪽에 로그인한 사람 정보 뜨게할 예정
@@ -72,7 +72,7 @@ public class StockManagementFrame extends DefaultFrame {
 		login_name.setForeground(Color.WHITE);
 		login_name.setHorizontalAlignment(JLabel.CENTER);
 		login_name.setOpaque(true);
-		login_name.setBackground(new Color(110, 88, 68));
+		login_name.setBackground(new Color(53, 84, 0));
 		topPanel.add(login_name, BorderLayout.EAST);
 
 		// [CENTER]
@@ -140,7 +140,7 @@ public class StockManagementFrame extends DefaultFrame {
 		// ======================================================= all_btn
 		add_btn.setFont(new Font("맑은 고딕", Font.BOLD, 40));
 		add_btn.setPreferredSize(new Dimension(250, 100));
-		add_btn.setBackground(new Color(110, 88, 68));
+		add_btn.setBackground(new Color(53, 84, 0));
 		add_btn.setForeground(Color.WHITE);
 		add_btn.addActionListener(new StockAddBtnListener(table));
 		// ==================================== 갱신 (update) 버튼

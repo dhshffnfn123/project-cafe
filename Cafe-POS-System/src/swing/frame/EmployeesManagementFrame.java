@@ -2,22 +2,14 @@ package swing.frame;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Insets;
-import java.awt.Rectangle;
 import java.awt.TextField;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -27,21 +19,17 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
-import javax.swing.plaf.TabbedPaneUI;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
-import action.ChangePageButton;
-import action.ChangePageButtonForBackBtn;
+import action.ChangePageActionForChooseFrame;
 import action.CurrentTimeClock;
-import action.EmployeeInfoAddButton;
-import action.EmployeeInfoDelButton;
-import action.EmployeeInfoUpdateButton;
-import action.GetTableInfoForMouse;
+import action.EmployeeInfoAddButtonAction;
+import action.EmployeeInfoDelButtonAction;
+import action.EmployeeInfoUpdateButtonAction;
+import action.GetTableInfoForMouseAction;
 import jdbc.method.SelectEmployeeInfo;
 
 public class EmployeesManagementFrame extends DefaultFrame {
@@ -60,6 +48,10 @@ public class EmployeesManagementFrame extends DefaultFrame {
 	private ArrayList<TextField> fields;
 	private JButton btn;
 
+	private Color green = new Color(110, 88, 68);
+	private Color darkGray = new Color(161, 161, 161);
+	private Font bold30 = new Font("맑은 고딕", Font.BOLD, 30);
+	
 	public EmployeesManagementFrame() {
 		setLayout(new BorderLayout());
 		setTitle("Employees Management");
@@ -98,51 +90,46 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		
 		// 센터 패널의 오른쪽에 추가할 패널 생성 -> 오른쪽 패널 탭으로 만들기
 		right_panel_tab = new JTabbedPane();
-		right_panel_tab.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		right_panel_tab.setFont(bold30);
 		right_panel_tab.setBackground(new Color(95, 148, 153));
 		right_panel_tab.setForeground(Color.WHITE);
 		right_panel_tab.addTab("등　록", enrollTab());
 		right_panel_tab.addTab("수　정", updateTab());
 		right_panel_tab.addTab("삭　제", delTab());
-		// ?? 이거하니까 테두리 없어졌음
-		right_panel_tab.setUI(new BasicTabbedPaneUI());
+		right_panel_tab.setUI(new BasicTabbedPaneUI()); // tab 테두리 삭제
 
 		// -- [CENTER-TOP] --
 		top_panel_body = new JPanel(new GridLayout());
 		// 뒤로 가기 버튼
-		ImageIcon btnImage = new ImageIcon("./image/BackButton.png");
-		Image img = btnImage.getImage();
-		Image changeImg = img.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-		ImageIcon changeIcon = new ImageIcon(changeImg);
-		JButton back_btn = new JButton(changeIcon);
+		JButton back_btn = new JButton("<<");
+		back_btn.setFont(new Font("맑은 고딕", Font.BOLD, 40));
 		back_btn.setPreferredSize(new Dimension(100, 80));
-		back_btn.setFont(new Font("궁서", Font.BOLD, 30));
 		// GridLayout에 맞춘 버튼 글씨 왼쪽 정렬
 		back_btn.setHorizontalAlignment(SwingConstants.LEFT);
-		back_btn.setBackground(new Color(110, 88, 68));
+		back_btn.setBackground(green);
 		back_btn.setForeground(Color.WHITE);
 		// 버튼 테두리 없애기
 		back_btn.setBorderPainted(false);
 		// 이미지 넣어서 MouseListener로 변경.
-		back_btn.addMouseListener(new ChangePageButtonForBackBtn(this));
+		back_btn.addActionListener(new ChangePageActionForChooseFrame(this));
 		
 		top_panel_body.add(back_btn, BorderLayout.WEST);
 		// 가운데 시스템시계
 		JLabel clock = new CurrentTimeClock().setClock();
-		clock.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		clock.setFont(bold30);
 		clock.setHorizontalAlignment(JLabel.CENTER);
 		clock.setOpaque(true);
-		clock.setBackground(new Color(110, 88, 68));
+		clock.setBackground(green);
 		clock.setForeground(Color.WHITE);
 		top_panel_body.add(clock, BorderLayout.CENTER);
 		
 		// 오른쪽에 로그인한 사람 정보 뜨게할 예정
 		JLabel login_name = new JLabel("직원 정보");
-		login_name.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		login_name.setFont(bold30);
 		login_name.setForeground(Color.WHITE);
 		login_name.setHorizontalAlignment(JLabel.CENTER);
 		login_name.setOpaque(true);
-		login_name.setBackground(new Color(110, 88, 68));
+		login_name.setBackground(green);
 		top_panel_body.add(login_name, BorderLayout.EAST);
 
 		
@@ -162,7 +149,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 	public JButton makeButton(String btn_name) {
 		btn = new JButton(btn_name);
 		btn.setPreferredSize(new Dimension(200, 80));
-		btn.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		btn.setFont(bold30);
 		btn.setBackground(new Color(232, 114, 36));
 		btn.setForeground(Color.WHITE);
 		btn.setBorderPainted(false);
@@ -175,7 +162,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 			labels.add(new JLabel(labels_name[i]));
 			// 라벨 가운데 정렬
 			labels.get(i).setHorizontalAlignment(JLabel.CENTER);
-			labels.get(i).setFont(new Font("맑은 고딕", Font.BOLD, 30));
+			labels.get(i).setFont(bold30);
 			// setOpaque(true) 후 -> setBackground(Color)채워짐
 			labels.get(i).setOpaque(true);
 			labels.get(i).setBackground(new Color(95, 148, 153));
@@ -187,7 +174,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 
 			fields.add(new TextField(12));
 			fields.get(i).setFont(new Font("맑은 고딕", Font.PLAIN, 50));
-			fields.get(i).setBackground(new Color(161, 161, 161));
+			fields.get(i).setBackground(darkGray);
 			fields.get(i).setForeground(Color.WHITE);
 
 			right_panel.add(labels.get(i));
@@ -215,7 +202,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		// 직급 라벨은 콤보박스때문에 따로 추가
 		JLabel grade = new JLabel("직　　급");
 		grade.setHorizontalAlignment(JLabel.CENTER);
-		grade.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		grade.setFont(bold30);
 		grade.setPreferredSize(new Dimension(200, 80));
 		grade.setBorder(new BevelBorder(BevelBorder.RAISED));
 		grade.setOpaque(true);
@@ -227,12 +214,12 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		JComboBox<String> grade_box = new JComboBox<>(grade_list);
 		grade_box.setFont(new Font("맑은 고딕", Font.PLAIN, 50));
 		grade_box.setPreferredSize(new Dimension(360, 80));
-		grade_box.setBackground(new Color(161, 161, 161));
+		grade_box.setBackground(darkGray);
 		grade_box.setForeground(Color.WHITE);
 		right_panel.add(grade_box);
 
 		btn = makeButton("등　　록");
-		btn.addActionListener(new EmployeeInfoAddButton(fields, grade_box, staff_info));
+		btn.addActionListener(new EmployeeInfoAddButtonAction(fields, grade_box, staff_info));
 		
 		right_panel.add(btn, BorderLayout.SOUTH);
 
@@ -251,7 +238,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		// 직급 라벨은 콤보 박스때문에 따로 추가
 		JLabel grade = new JLabel("직　　급");
 		grade.setHorizontalAlignment(JLabel.CENTER);
-		grade.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		grade.setFont(bold30);
 		grade.setPreferredSize(new Dimension(200, 80));
 		grade.setBorder(new BevelBorder(BevelBorder.RAISED));
 		grade.setOpaque(true);
@@ -263,17 +250,17 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		JComboBox<String> grade_box = new JComboBox<>(grade_list);
 		grade_box.setFont(new Font("맑은 고딕", Font.PLAIN, 50));
 		grade_box.setPreferredSize(new Dimension(360, 80));
-		grade_box.setBackground(new Color(161, 161, 161));
+		grade_box.setBackground(darkGray);
 		grade_box.setForeground(Color.WHITE);
 		right_panel.add(grade_box);
 		
 		btn = makeButton("수　　정");
-		btn.addActionListener(new EmployeeInfoUpdateButton(fields, grade_box, staff_info));
+		btn.addActionListener(new EmployeeInfoUpdateButtonAction(fields, grade_box, staff_info));
 		
 		right_panel.add(btn, BorderLayout.SOUTH);
 		
 		// 테이블에 값 선택하면 값 가져오기 이벤트 설정
-		staff_info.addMouseListener(new GetTableInfoForMouse(staff_info, fields));
+		staff_info.addMouseListener(new GetTableInfoForMouseAction(staff_info, fields));
 		
 		// 정보 수정 시 직원 번호, 이름 수정 불가
 		fields.get(0).setEditable(false);
@@ -291,7 +278,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 
 		makeLabelAndField(labels_name);
 		
-		// 반복문으로 사용하지 못하게 하니까 탁해져서 따로 변경..
+		// 반복문으로 하니까 필드 색상이 탁해져서 따로 변경.
 		fields.get(0).setEditable(false);
 		fields.get(1).setEditable(false);
 		fields.get(2).setEditable(false);
@@ -299,11 +286,11 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		
 		btn = makeButton("삭　　제");
 		btn.setBackground(new Color(202, 64, 27));
-		btn.addActionListener(new EmployeeInfoDelButton(fields, staff_info));
+		btn.addActionListener(new EmployeeInfoDelButtonAction(fields, staff_info));
 		
 		right_panel.add(btn, BorderLayout.SOUTH);
 		
-		staff_info.addMouseListener(new GetTableInfoForMouse(staff_info, fields));
+		staff_info.addMouseListener(new GetTableInfoForMouseAction(staff_info, fields));
 
 		return right_panel;
 	}

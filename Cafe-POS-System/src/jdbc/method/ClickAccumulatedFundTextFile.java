@@ -11,16 +11,16 @@ import javax.swing.JOptionPane;
 
 import jdbc.hikari.HikariCP;
 import swing.frame.AccumulatedFundFrame;
-import swing.frame.RoundJTextField;
+import swing.method.RoundJTextField;
 
 //적립 클릭시 오는 클래스
-public class ClickAccumulatedFundTextFiel {
+public class ClickAccumulatedFundTextFile {
 	private AccumulatedFundFrame accumulatedFundFrame;
 	private RoundJTextField textField;
 	private String fieldTesxt;
 	private String sql = "SELECT guest_name FROM guest_table";
 
-	public ClickAccumulatedFundTextFiel(RoundJTextField textField, AccumulatedFundFrame accumulatedFundFrame) {
+	public ClickAccumulatedFundTextFile(RoundJTextField textField, AccumulatedFundFrame accumulatedFundFrame) {
 		this.accumulatedFundFrame = accumulatedFundFrame;
 		this.textField = textField;
 		fieldTesxt = textField.getText();

@@ -20,10 +20,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import jdbc.hikari.HikariCP;
-import jdbc.method.RenewalToTable;
 import jdbc.method.SelectEmployeeInfo;
+import swing.method.RenewalToTable;
 
-public class EmployeeInfoUpdateButton implements ActionListener {
+public class EmployeeInfoUpdateButtonAction implements ActionListener {
 
 	private String sql = "UPDATE employees_table SET employee_pw = ?, employee_grade = ? WHERE employee_id = ? AND employee_name = ?";
 	private String employee_id;
@@ -34,7 +34,7 @@ public class EmployeeInfoUpdateButton implements ActionListener {
 	private JComboBox<String> grade_box;
 	private JTable table;
 	
-	public EmployeeInfoUpdateButton(ArrayList<TextField> fields, JComboBox<String> grade_box, JTable table) {
+	public EmployeeInfoUpdateButtonAction(ArrayList<TextField> fields, JComboBox<String> grade_box, JTable table) {
 		this.fields = fields;
 		this.grade_box = grade_box;
 		this.table = table;

@@ -11,11 +11,11 @@ import swing.frame.ChoosePageFrame;
 import swing.frame.EmployeesManagementFrame;
 import swing.frame.StockManagementFrame;
 
-public class ChangePageButton implements ActionListener {
+public class ChangePageActionForChooseFrame implements ActionListener {
 	
 	private JFrame frame;
 	
-	public ChangePageButton(JFrame frame) {
+	public ChangePageActionForChooseFrame(JFrame frame) {
 		this.frame = frame;
 	}
 

@@ -19,10 +19,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import jdbc.hikari.HikariCP;
-import jdbc.method.RenewalToTable;
 import jdbc.method.SelectEmployeeInfo;
+import swing.method.RenewalToTable;
 
-public class EmployeeInfoDelButton implements ActionListener {
+public class EmployeeInfoDelButtonAction implements ActionListener {
 
 	private String sql = "DELETE FROM employees_table WHERE employee_id = ? AND employee_name = ? AND employee_pw = ? AND employee_grade = ?";
 	private String employee_id;
@@ -32,7 +32,7 @@ public class EmployeeInfoDelButton implements ActionListener {
 	private ArrayList<TextField> fields = new ArrayList<>();
 	private JTable table;
 	
-	public EmployeeInfoDelButton(ArrayList<TextField> fields, JTable table) {
+	public EmployeeInfoDelButtonAction(ArrayList<TextField> fields, JTable table) {
 		this.fields = fields;
 		this.table = table;
 	}
@@ -50,7 +50,7 @@ public class EmployeeInfoDelButton implements ActionListener {
 				try (
 						Connection conn = HikariCP.getConnection();
 						PreparedStatement pstmt = conn.prepareStatement(sql);
-						) {
+					) {
 					this.employee_id = fields.get(0).getText();
 					this.employee_name = fields.get(1).getText();
 					this.employee_pw = fields.get(2).getText();

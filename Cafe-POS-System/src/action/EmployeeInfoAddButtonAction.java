@@ -1,6 +1,5 @@
 package action;
 
-import java.awt.Font;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,16 +11,11 @@ import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 
 import jdbc.hikari.HikariCP;
-import jdbc.method.RenewalToTable;
-import jdbc.method.SelectEmployeeInfo;
+import swing.method.RenewalToTable;
 
-public class EmployeeInfoAddButton implements ActionListener {
+public class EmployeeInfoAddButtonAction implements ActionListener {
 	
 	private String sql = "INSERT INTO employees_table VALUES(employee_id_seq.nextval, ?, ?, ?)";
 	private String employee_name;
@@ -31,7 +25,7 @@ public class EmployeeInfoAddButton implements ActionListener {
 	private JComboBox<String> grade_box;
 	private JTable table;
 	
-	public EmployeeInfoAddButton(ArrayList<TextField> fields, JComboBox<String> grade_box, JTable table) {
+	public EmployeeInfoAddButtonAction(ArrayList<TextField> fields, JComboBox<String> grade_box, JTable table) {
 		this.fields = fields;
 		this.grade_box = grade_box;
 		this.table = table;
@@ -46,13 +40,13 @@ public class EmployeeInfoAddButton implements ActionListener {
 		} else {
 			String check = String.format("이 름: %s\n패스워드: %s\n직 급: %s\n등록하시겠습니까?", fields.get(0).getText(), fields.get(1).getText(),
 					(String)grade_box.getSelectedItem());
-			int result = JOptionPane.showConfirmDialog(null, "등록 하시겠습니까?", "Confirm Message", JOptionPane.YES_NO_OPTION);
+			int result = JOptionPane.showConfirmDialog(null, check, "Confirm Message", JOptionPane.YES_NO_OPTION);
 			
 			if (result == JOptionPane.YES_OPTION) {
 				try (
 						Connection conn = HikariCP.getConnection();
 						PreparedStatement pstmt = conn.prepareStatement(sql);
-						) {
+					) {
 					
 					this.employee_name = fields.get(0).getText();
 					this.employee_pw = fields.get(1).getText();

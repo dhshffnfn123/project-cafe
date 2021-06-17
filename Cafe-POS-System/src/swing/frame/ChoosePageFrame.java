@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
-import action.ChangePageButton;
+import action.ChangePageActionForChooseFrame;
 
 public class ChoosePageFrame extends DefaultFrame {
 	
@@ -25,13 +25,12 @@ public class ChoosePageFrame extends DefaultFrame {
 		}
 		
 		// 다른 프레임으로 이동하는 액션 리스너
-		ChangePageButton channel = new ChangePageButton(this);
+		ChangePageActionForChooseFrame channel = new ChangePageActionForChooseFrame(this);
 		
 		for (int i = 0; i < btns_name.length; i++) {
 			btns.get(i).setBounds(250 * (i + 1), 300, 230, 300);
 			btns.get(i).setFont(new Font("맑은 고딕", Font.BOLD|Font.ITALIC, 50));
 			btns.get(i).setForeground(Color.WHITE);
-			btns.get(i).setBackground(new Color(53, 84, 0));
 			btns.get(i).setBackground(new Color(53, 84, 0));
 			// 버튼 선택 시 실행되는 액션 추가
 			btns.get(i).addActionListener(channel);

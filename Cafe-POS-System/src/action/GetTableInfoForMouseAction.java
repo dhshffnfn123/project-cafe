@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.JTable;
 
-public class GetTableInfoForMouse implements MouseListener {
+public class GetTableInfoForMouseAction implements MouseListener {
 
 	private JTable table;
 	private ArrayList<TextField> fields;
@@ -16,7 +16,7 @@ public class GetTableInfoForMouse implements MouseListener {
 	private String employee_password;
 	private String employee_grade;
 	
-	public GetTableInfoForMouse(JTable table, ArrayList<TextField> fields) {
+	public GetTableInfoForMouseAction(JTable table, ArrayList<TextField> fields) {
 		this.table = table;
 		this.fields = fields;
 	}
