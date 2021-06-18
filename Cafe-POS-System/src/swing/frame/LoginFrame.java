@@ -33,24 +33,13 @@ public class LoginFrame extends DefaultFrame {
 	JButton login_btn;
 	String cbname, password;
 	
-	 Color y_color = new Color(255, 255, 227);
+	 Color y_color = new Color(255, 255, 255);
 	 LineBorder line = new LineBorder(new Color(213, 198, 182), 5 ,true);
 	static int count = 0;
 
 	public LoginFrame() {
 		
-		
-//		icon = new ImageIcon("./image/커피사진.jpg");
-//
-//		// ============================================= 배경화면 이미지 삽입
-//		JPanel panel = new JPanel() {
-//			public void paintComponent(Graphics g) {
-//
-//				g.drawImage(icon.getImage(), 0, 0, null);
-//				setOpaque(false);
-//				super.paintComponent(g);
-//			}
-//		};
+	
 		JPanel panel = new JPanel();
 		panel.setBackground(y_color);
 		
@@ -66,7 +55,7 @@ public class LoginFrame extends DefaultFrame {
 		login_panel = new RoundedPanel();
 		login_panel.setBounds(600, 250, 300, 400);
 		//login_panel.setBackground(new Color(223, 208, 192, 230));
-		login_panel.setBackground(new Color(173, 204, 120, 230));
+		login_panel.setBackground(new Color(3, 102, 53));
 
 		login_panel.setLayout(null);
 

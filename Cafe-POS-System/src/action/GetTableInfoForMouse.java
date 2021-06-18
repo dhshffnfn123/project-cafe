@@ -1,5 +1,6 @@
 package action;
 
+import java.awt.Color;
 import java.awt.TextField;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -47,11 +48,13 @@ public class GetTableInfoForMouse implements MouseListener {
 	public void mousePressed(MouseEvent e) {}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {}
+	public void mouseReleased(MouseEvent e) {
+	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {}
-
+	public void mouseEntered(MouseEvent e) {
+	}
+	
 	@Override
 	public void mouseExited(MouseEvent e) {}
 	

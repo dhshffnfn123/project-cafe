@@ -300,7 +300,4 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		return right_panel;
 	}
 
-	public static void main(String[] args) {
-		new EmployeesManagementFrame();
-	}
 }

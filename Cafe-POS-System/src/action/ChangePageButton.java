@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import swing.frame.CheckSalesFrame;
 import swing.frame.ChoosePageFrame;
 import swing.frame.EmployeesManagementFrame;
+import swing.frame.RoundedButton;
 import swing.frame.StockManagementFrame;
 
 public class ChangePageButton implements ActionListener {
@@ -25,15 +26,15 @@ public class ChangePageButton implements ActionListener {
 		frame.dispose();
 		
 		switch (btnName) {
-		case "<HTML>직원<br>관리</HTML>":
+		case "직원 관리":
 			new EmployeesManagementFrame();
 			break;
-		case "<HTML>판매<br>등록</HTML>":
+		case "판매 등록":
 			break;
-		case "<HTML>매출<br>조회</HTML>":
+		case "매출 조회":
 			new CheckSalesFrame();
 			break;
-		case "<HTML>재고<br>관리</HTML>":
+		case "재고 관리":
 			new StockManagementFrame();
 			break;
 		case "<<":
