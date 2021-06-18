@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
-import action.ChangePageButton;
+import action.ChangePageActionForChooseFrame;
 import action.CheckSalesSelectButton;
 import action.CurrentTimeClock;
 import jdbc.method.TotalComboAddData;
@@ -99,7 +99,7 @@ public class CheckSalesFrame extends DefaultFrame {
       
       // 버튼 테두리 없애기
       back_btn.setBorderPainted(false);
-      back_btn.addActionListener(new ChangePageButton(this));
+      back_btn.addActionListener(new ChangePageActionForChooseFrame(this));
       top_panel_body.add(back_btn, BorderLayout.WEST);
       
       // 가운데 시스템시계
