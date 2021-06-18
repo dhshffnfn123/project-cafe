@@ -2,6 +2,7 @@ package action;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -49,7 +50,9 @@ public class MenuPlusButton implements ActionListener {
 					model.setValueAt(i, i, 0);
 					test += Integer.parseInt((String.valueOf(model.getValueAt(i, 3))));
 				}
-				OrderFrame.getTotalmoney().setText(String.valueOf(test));
+				DecimalFormat formatter = new DecimalFormat("###,###");
+
+				OrderFrame.getTotalmoney().setText(String.valueOf(formatter.format(test)));
 				test = 0;
 			}
 		}

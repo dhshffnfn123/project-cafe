@@ -2,6 +2,7 @@ package action;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -58,15 +59,16 @@ public class OrdertableDeleteAction implements ActionListener {
 				model.setValueAt(quantity, row, 2);
 				model.setValueAt(price, row, 3);
 
-
 			}
 
 			if (model.getRowCount() >= 1) {
 				for (int i = 0; i < model.getRowCount(); ++i) {
-					model.setValueAt(i, i,0);
+					model.setValueAt(i, i, 0);
 					test += Integer.parseInt((String.valueOf(model.getValueAt(i, 3))));
 				}
-				OrderFrame.getTotalmoney().setText(String.valueOf(test));
+				DecimalFormat formatter = new DecimalFormat("###,###");
+
+				OrderFrame.getTotalmoney().setText(String.valueOf(formatter.format(test)));
 				test = 0;
 			}
 		}
