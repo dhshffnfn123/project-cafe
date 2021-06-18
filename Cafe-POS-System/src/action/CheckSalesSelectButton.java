@@ -22,7 +22,7 @@ public class CheckSalesSelectButton implements ActionListener {
 	private JFrame check_frame;
 	private JTable select_table, total_table;
 	private JButton button;
-	private JComboBox ybox;
+	private JComboBox<String> ybox;
 	private JComboBox<String> mbox, dbox;
 	private JScrollPane table_scroll;
 	private String year, month, day;
@@ -61,7 +61,7 @@ public class CheckSalesSelectButton implements ActionListener {
 	private TotalInfo total;
 
 	public CheckSalesSelectButton(JFrame check_frame, JButton button, DefaultTableModel model,
-			DefaultTableModel total_model, JTable select_table, JTable total_table, JComboBox ybox,
+			DefaultTableModel total_model, JTable select_table, JTable total_table, JComboBox<String> ybox,
 			JComboBox<String> mbox) {
 		this.check_frame = check_frame;
 		this.button = button;
