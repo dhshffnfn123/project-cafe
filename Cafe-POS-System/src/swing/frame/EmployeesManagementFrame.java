@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -48,7 +49,6 @@ public class EmployeesManagementFrame extends DefaultFrame {
 	private ArrayList<TextField> fields;
 	private JButton btn;
 
-	private Color green = new Color(110, 88, 68);
 	private Color darkGray = new Color(161, 161, 161);
 	private Font bold30 = new Font("맑은 고딕", Font.BOLD, 30);
 	
@@ -58,15 +58,16 @@ public class EmployeesManagementFrame extends DefaultFrame {
 
 		// -- [CENTER] -- 가운데 공간에 패널 생성
 		center = new JPanel(new GridLayout());
+		center.setBackground(Color.WHITE);
 
 		// 직원 정보 테이블 생성(DB에서 정보 불러오기)
 		staff_info = new SelectEmployeeInfo().getEmployeeInfo();
 		// 테이블 글씨체 변경
-		staff_info.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
+		staff_info.setFont(new Font("맑은 고딕", Font.PLAIN, 23));
 		// 테이블 컬럼들 이동 불가
 		staff_info.getTableHeader().setReorderingAllowed(false);
 		// 테이블 셀의 높이 변경
-		staff_info.setRowHeight(50);
+		staff_info.setRowHeight(45);
 		// 테이블 가운데로 정렬하기
 		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
 		dtcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -90,9 +91,8 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		
 		// 센터 패널의 오른쪽에 추가할 패널 생성 -> 오른쪽 패널 탭으로 만들기
 		right_panel_tab = new JTabbedPane();
-		right_panel_tab.setFont(new Font("맑은 고딕", Font.BOLD, 23));
-		right_panel_tab.setBackground(new Color(95, 148, 153));
-		right_panel_tab.setForeground(Color.WHITE);
+		right_panel_tab.setFont(new Font("맑은 고딕", Font.BOLD, 25));
+		right_panel_tab.setBackground(Color.WHITE);
 		right_panel_tab.addTab("등　록", enrollTab());
 		right_panel_tab.addTab("수　정", updateTab());
 		right_panel_tab.addTab("삭　제", delTab());
@@ -103,10 +103,10 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		// 뒤로 가기 버튼
 		JButton back_btn = new JButton("<<");
 		back_btn.setFont(new Font("맑은 고딕", Font.BOLD, 23));
-		back_btn.setPreferredSize(new Dimension(100, 80));
+		back_btn.setPreferredSize(new Dimension(100, 70));
 		// GridLayout에 맞춘 버튼 글씨 왼쪽 정렬
 		back_btn.setHorizontalAlignment(SwingConstants.LEFT);
-		back_btn.setBackground(green);
+		back_btn.setBackground(new Color(3, 102, 53));
 		back_btn.setForeground(Color.WHITE);
 		// 버튼 테두리 없애기
 		back_btn.setBorderPainted(false);
@@ -119,7 +119,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		clock.setFont(new Font("맑은 고딕", Font.BOLD, 23));
 		clock.setHorizontalAlignment(JLabel.CENTER);
 		clock.setOpaque(true);
-		clock.setBackground(green);
+		clock.setBackground(new Color(3, 102, 53));
 		clock.setForeground(Color.WHITE);
 		top_panel_body.add(clock, BorderLayout.CENTER);
 		
@@ -129,7 +129,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		login_name.setForeground(Color.WHITE);
 		login_name.setHorizontalAlignment(JLabel.CENTER);
 		login_name.setOpaque(true);
-		login_name.setBackground(green);
+		login_name.setBackground(new Color(3, 102, 53));
 		top_panel_body.add(login_name, BorderLayout.EAST);
 
 		
@@ -172,10 +172,10 @@ public class EmployeesManagementFrame extends DefaultFrame {
 			// 라벨 튀어나오게 설정
 			labels.get(i).setBorder(new BevelBorder(BevelBorder.RAISED));
 
-			fields.add(new TextField(12));
-			fields.get(i).setFont(new Font("맑은 고딕", Font.PLAIN, 50));
+			fields.add(new TextField(10));
 			fields.get(i).setBackground(darkGray);
 			fields.get(i).setForeground(Color.WHITE);
+			fields.get(i).setFont(new Font("맑은 고딕", Font.PLAIN, 60));
 
 			right_panel.add(labels.get(i));
 			right_panel.add(fields.get(i));
@@ -184,7 +184,8 @@ public class EmployeesManagementFrame extends DefaultFrame {
 
 	// [직원 정보 등록 탭]
 	public JPanel enrollTab() {
-		right_panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 50));
+		right_panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 70));
+		right_panel.setBackground(Color.WHITE);
 		labels = new ArrayList<>();
 		fields = new ArrayList<>();
 		String[] labels_name = {"이　　름", "패스워드"};
@@ -213,12 +214,13 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		String[] grade_list = { "BARISTA", "MANAGER" };
 		JComboBox<String> grade_box = new JComboBox<>(grade_list);
 		grade_box.setFont(new Font("맑은 고딕", Font.PLAIN, 50));
-		grade_box.setPreferredSize(new Dimension(360, 80));
+		grade_box.setPreferredSize(new Dimension(355, 80));
 		grade_box.setBackground(darkGray);
 		grade_box.setForeground(Color.WHITE);
 		right_panel.add(grade_box);
 
 		btn = makeButton("등　　록");
+		btn.setBackground(new Color(32, 136, 181));
 		btn.addActionListener(new EmployeeInfoAddButtonAction(fields, grade_box, staff_info));
 		
 		right_panel.add(btn, BorderLayout.SOUTH);
@@ -228,7 +230,8 @@ public class EmployeesManagementFrame extends DefaultFrame {
 	
 	// [직원 정보 수정 탭]
 	public JPanel updateTab() {
-		right_panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 50));
+		right_panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 70));
+		right_panel.setBackground(Color.WHITE);
 		labels = new ArrayList<>();
 		fields = new ArrayList<>();
 		String[] labels_name = {"직원 아이디", "이　　름", "패스워드"};
@@ -249,12 +252,13 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		String[] grade_list = { "BARISTA", "MANAGER" };
 		JComboBox<String> grade_box = new JComboBox<>(grade_list);
 		grade_box.setFont(new Font("맑은 고딕", Font.PLAIN, 50));
-		grade_box.setPreferredSize(new Dimension(360, 80));
-		grade_box.setBackground(darkGray);
+		grade_box.setPreferredSize(new Dimension(355, 80));
+		grade_box.setBackground(new Color(200, 200, 200));
 		grade_box.setForeground(Color.WHITE);
 		right_panel.add(grade_box);
 		
 		btn = makeButton("수　　정");
+		btn.setBackground(new Color(153, 174, 30));
 		btn.addActionListener(new EmployeeInfoUpdateButtonAction(fields, grade_box, staff_info));
 		
 		right_panel.add(btn, BorderLayout.SOUTH);
@@ -271,7 +275,8 @@ public class EmployeesManagementFrame extends DefaultFrame {
 
 	// [직원 정보 삭제 탭]
 	public JPanel delTab() {
-		right_panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 50));
+		right_panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 70));
+		right_panel.setBackground(Color.WHITE);
 		labels = new ArrayList<>();
 		fields = new ArrayList<>();
 		String[] labels_name = {"직원 아이디", "이　　름", "패스워드", "직　　급"};
