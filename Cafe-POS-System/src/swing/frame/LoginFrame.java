@@ -21,7 +21,6 @@ import jdbc.method.LoginComboxData;
 
 public class LoginFrame extends DefaultFrame {
 
-	
 	JPanel panel, login_panel, test_panel;
 	JLabel image_label;
 	JScrollPane scrollPane;
@@ -32,20 +31,19 @@ public class LoginFrame extends DefaultFrame {
 	Font font2 = new Font("맑은 고딕", Font.BOLD, 30);
 	JButton login_btn;
 	String cbname, password;
-	
-	 Color y_color = new Color(255, 255, 255);
-	 LineBorder line = new LineBorder(new Color(213, 198, 182), 5 ,true);
+
+	Color y_color = new Color(255, 255, 255);
+	LineBorder line = new LineBorder(new Color(3, 102, 53), 5, true);
 	static int count = 0;
 
 	public LoginFrame() {
-		
-	
+
+		setTitle("Login Page");
+
 		JPanel panel = new JPanel();
 		panel.setBackground(y_color);
-		
+
 		panel.setBorder(line);
-		
-		
 
 		scrollPane = new JScrollPane(panel);
 		setContentPane(scrollPane);
@@ -54,24 +52,24 @@ public class LoginFrame extends DefaultFrame {
 		// ============================================= 로그인 패널
 		login_panel = new RoundedPanel();
 		login_panel.setBounds(600, 250, 300, 400);
-		//login_panel.setBackground(new Color(223, 208, 192, 230));
+		// login_panel.setBackground(new Color(223, 208, 192, 230));
 		login_panel.setBackground(new Color(3, 102, 53));
 
 		login_panel.setLayout(null);
 
 		panel.add(login_panel);
-		
+
 		// ============================================= 이미지 라벨
 		icon = new ImageIcon("./image/profile.png");
-		
+
 		Image img = icon.getImage();
 		Image changeImg = img.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
 		ImageIcon changeIcon = new ImageIcon(changeImg);
-		
+
 		image_label = new JLabel(changeIcon);
 		image_label.setBackground(Color.black);
 		image_label.setBounds(0, -30, 300, 300);
-		
+
 		login_panel.add(image_label);
 		// ============================================= 로그인 버튼
 		login_btn = new JButton("LOGIN");
