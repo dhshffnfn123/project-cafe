@@ -36,9 +36,9 @@ public class StockManagementFrame extends DefaultFrame {
 	private JButton add_btn, update_btn, delete_btn, null_btn;
 	private DefaultTableCellRenderer dtcr_center, dtcr_right;
 
-	Font bigger_font = new Font("맑은 고딕", Font.BOLD, 50);
+	Font bigger_font = new Font("맑은 고딕", Font.BOLD, 40);
 	Font big_font = new Font("맑은 고딕", Font.BOLD, 30);
-	Font nomal_font = new Font("맑은 고딕", Font.PLAIN, 20);
+	Font nomal_font = new Font("맑은 고딕", Font.PLAIN, 15);
 	Font small_font = new Font("맑은 고딕", Font.BOLD, 15);
 
 	public StockManagementFrame() {
@@ -49,9 +49,9 @@ public class StockManagementFrame extends DefaultFrame {
 		topPanel = new JPanel(new GridLayout(1, 3));
 		// 뒤로 가기 버튼
 		JButton back_btn = new JButton("<<");
-		back_btn.setPreferredSize(new Dimension(100, 80));
+		back_btn.setPreferredSize(new Dimension(100, 70));
 		back_btn.setFont(new Font("궁서", Font.BOLD, 30));
-		back_btn.setBackground(new Color(53, 84, 0));
+		back_btn.setBackground(new Color(3, 102, 53));
 		back_btn.setForeground(Color.WHITE);
 		back_btn.setBorderPainted(false);
 		topPanel.add(back_btn, BorderLayout.WEST);
@@ -60,10 +60,10 @@ public class StockManagementFrame extends DefaultFrame {
 
 		// 가운데 시스템시계
 		JLabel clock = new CurrentTimeClock().setClock();
-		clock.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		clock.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 		clock.setHorizontalAlignment(JLabel.CENTER);
 		clock.setOpaque(true);
-		clock.setBackground(new Color(53, 84, 0));
+		clock.setBackground(new Color(3, 102, 53));
 		clock.setForeground(Color.WHITE);
 		topPanel.add(clock, BorderLayout.CENTER);
 		// 오른쪽에 로그인한 사람 정보 뜨게할 예정
@@ -72,11 +72,12 @@ public class StockManagementFrame extends DefaultFrame {
 		login_name.setForeground(Color.WHITE);
 		login_name.setHorizontalAlignment(JLabel.CENTER);
 		login_name.setOpaque(true);
-		login_name.setBackground(new Color(53, 84, 0));
+		login_name.setBackground(new Color(3, 102, 53));
 		topPanel.add(login_name, BorderLayout.EAST);
 
 		// [CENTER]
 		center = new JPanel(new BorderLayout());
+		center.setBackground(Color.WHITE);
 		// 테이블 생성
 		table = new StockTableAddData().getStockTable();
 		// ============================================== 테이블
@@ -92,7 +93,7 @@ public class StockManagementFrame extends DefaultFrame {
 		scrollPane.setBorder(BorderFactory.createEmptyBorder()); // 테이블 테두리 삭제
 
 		table.getTableHeader().setPreferredSize(new Dimension(100, 50));
-		table.getTableHeader().setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		table.getTableHeader().setFont(new Font("맑은 고딕", Font.BOLD, 25));
 		table.getTableHeader().setReorderingAllowed(false); // 테이블 헤더 이동 안되게 하기
 		table.getTableHeader().setBackground(new Color(163, 148, 132));// 컬럼의 색상을 설정
 		table.getTableHeader().setForeground(Color.WHITE);
@@ -100,7 +101,7 @@ public class StockManagementFrame extends DefaultFrame {
 
 		String[] header = new StockTableAddData().give_header();
 
-		table.getColumn(header[0]).setPreferredWidth(100); // 컬럼당 넓이 설정인데 모든 컬럼을 테이블의 넓이에 '얼추' 맞게 설정해야함
+		table.getColumn(header[0]).setPreferredWidth(160); // 컬럼당 넓이 설정인데 모든 컬럼을 테이블의 넓이에 '얼추' 맞게 설정해야함
 		table.getColumn(header[1]).setPreferredWidth(900);
 		table.getColumn(header[2]).setPreferredWidth(160);
 		table.setFont(nomal_font);
@@ -120,9 +121,9 @@ public class StockManagementFrame extends DefaultFrame {
 
 		// [CENTER-TOP]
 		// ======================================================= title label
-		title_label = new JLabel("  재고 현황");
-		title_label.setBackground(Color.BLACK);
-		title_label.setFont(bigger_font);
+//		title_label = new JLabel("  재고 현황");
+//		title_label.setBackground(Color.BLACK);
+//		title_label.setFont(bigger_font);
 
 		// [CENTER-RIGHT]
 		// ======================================================= 버튼 분류
@@ -137,6 +138,7 @@ public class StockManagementFrame extends DefaultFrame {
 		null_btn.setPreferredSize(new Dimension(250, 100));
 		null_btn.setEnabled(false);
 		null_btn.setBorderPainted(false);
+		null_btn.setBackground(Color.WHITE);
 		// ======================================================= all_btn
 		add_btn.setFont(new Font("맑은 고딕", Font.BOLD, 40));
 		add_btn.setPreferredSize(new Dimension(250, 100));
@@ -156,12 +158,12 @@ public class StockManagementFrame extends DefaultFrame {
 		delete_btn.setBackground(new Color(232, 114, 36));
 		delete_btn.setForeground(Color.WHITE);
 
+		right_panel.add(null_btn);
 		right_panel.add(add_btn);
 		right_panel.add(update_btn);
-		right_panel.add(null_btn);
 		right_panel.add(delete_btn);
 
-		center.add(title_label, BorderLayout.NORTH);
+//		center.add(title_label, BorderLayout.NORTH);
 		center.add(scrollPane, BorderLayout.CENTER);
 		center.add(right_panel, BorderLayout.EAST);
 

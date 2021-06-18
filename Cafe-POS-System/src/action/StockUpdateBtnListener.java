@@ -39,8 +39,8 @@ public class StockUpdateBtnListener implements ActionListener {
 		TableModel model = table.getModel();
 	
 		if (row == -1) {
-			UIManager.put("OptionPane.messageFont", nomal_font);
-			JOptionPane.showMessageDialog(null, "정보 없음", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
+//			UIManager.put("OptionPane.messageFont", nomal_font);
+			JOptionPane.showMessageDialog(null, "정보가 없습니다.", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			id = String.valueOf(model.getValueAt(row, 0));
 			name = (String)model.getValueAt(row, 1);

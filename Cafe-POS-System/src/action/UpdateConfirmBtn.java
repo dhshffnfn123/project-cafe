@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLDataException;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
@@ -34,7 +35,7 @@ public class UpdateConfirmBtn implements ActionListener {
    private Font system_font = new Font("맑은 고딕", Font.BOLD, 20);
    Font bigger_font = new Font("맑은 고딕", Font.BOLD, 50);
    Font big_font = new Font("맑은 고딕", Font.BOLD, 30);
-   Font nomal_font = new Font("맑은 고딕", Font.PLAIN, 20);
+   Font nomal_font = new Font("맑은 고딕", Font.PLAIN, 15);
    Font small_font = new Font("맑은 고딕", Font.BOLD, 15);
    private String sql = "UPDATE stock_table SET stock_count = ? WHERE stock_name = ?";
 
@@ -51,8 +52,6 @@ public class UpdateConfirmBtn implements ActionListener {
          countVal = count.getText();
 
          countint = Integer.parseInt(countVal);
-         System.out.println(countint);
-         System.out.println(name);
 
          pstmt.setInt(1, countint);
          pstmt.setString(2, name);
@@ -68,12 +67,12 @@ public class UpdateConfirmBtn implements ActionListener {
          
          table.getTableHeader().setReorderingAllowed(false); // 테이블 헤더 이동 안되게 하기
          table.getTableHeader().setBackground(new Color(163, 148, 132));// 컬럼의 색상을 설정
-         table.getTableHeader().setFont(new Font("맑은 고딕", Font.BOLD, 30));
+         table.getTableHeader().setFont(new Font("맑은 고딕", Font.BOLD, 25));
          table.getTableHeader().setForeground(Color.white);
          
          String[] header = new StockTableAddData().give_header();
          
-         table.getColumn(header[0]).setPreferredWidth(100); // 컬럼당 넓이 설정인데 모든 컬럼을 테이블의 넓이에 '얼추' 맞게 설정해야함
+         table.getColumn(header[0]).setPreferredWidth(160); // 컬럼당 넓이 설정인데 모든 컬럼을 테이블의 넓이에 '얼추' 맞게 설정해야함
          table.getColumn(header[1]).setPreferredWidth(900);
          table.getColumn(header[2]).setPreferredWidth(160);
          table.setFont(nomal_font);
@@ -92,6 +91,9 @@ public class UpdateConfirmBtn implements ActionListener {
 //         UIManager.put("OptionPane.messageFont", system_font);
          JOptionPane.showMessageDialog(null, "재고수량이 수정되었습니다", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
          frame.dispose();
+      } catch (SQLDataException e3) {
+//        UIManager.put("OptionPane.messageFont", system_font);
+        JOptionPane.showMessageDialog(null, "입력 가능한 숫자를 벗어났습니다.", "SYSTEM", JOptionPane.ERROR_MESSAGE);
       } catch (SQLException e1) {
          e1.printStackTrace();
       } catch (NumberFormatException e2) {

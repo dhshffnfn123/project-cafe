@@ -36,7 +36,7 @@ public class StockAddBtnListener implements ActionListener {
 		addFrame.setResizable(false);
 		addFrame.getContentPane().setBackground(Color.white);
 		addFrame.setVisible(true);
-		addFrame.getContentPane().setBackground(y_color);
+//		addFrame.getContentPane().setBackground(y_color);
 
 		// 라벨
 		nameL = new JLabel("이름");
@@ -59,20 +59,18 @@ public class StockAddBtnListener implements ActionListener {
 		count.setBounds(60, 60, 300, 30);
 		addFrame.add(count);
 		
-		if (count.getText() instanceof String) {
-			
-		}
-
 		confirm_btn = new JButton("추가");
 		confirm_btn.setFont(font);
 		confirm_btn.setBounds(215, 110, 65, 30);
-		confirm_btn.setBackground(new Color(125, 178, 183));
+		confirm_btn.setBackground(new Color(3, 102, 53));
+		confirm_btn.setForeground(Color.WHITE);
 		addFrame.add(confirm_btn);
 
 		cancel_btn = new JButton("취소");
 		cancel_btn.setFont(font);
 		cancel_btn.setBounds(295, 110, 65, 30);
-		cancel_btn.setBackground(new Color(125, 178, 183));
+		cancel_btn.setBackground(new Color(3, 102, 53));
+		cancel_btn.setForeground(Color.WHITE);
 		addFrame.add(cancel_btn);
 
 		confirm_btn.addActionListener(new AddConfirmBtn(name, count, table, addFrame));

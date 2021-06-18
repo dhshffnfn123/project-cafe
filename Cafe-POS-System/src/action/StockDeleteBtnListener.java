@@ -29,7 +29,7 @@ public class StockDeleteBtnListener implements ActionListener {
 	private int count;
 
 	private DefaultTableCellRenderer dtcr_center;
-	private Font nomal_font = new Font("맑은 고딕", Font.PLAIN, 20);
+	private Font nomal_font = new Font("맑은 고딕", Font.PLAIN, 15);
 	private Font system_font = new Font("맑은 고딕", Font.BOLD, 20);
 	private Font small_font = new Font("맑은 고딕", Font.BOLD, 15);
 	private String sql = "DELETE FROM stock_table WHERE stock_id = ?";
@@ -45,8 +45,8 @@ public class StockDeleteBtnListener implements ActionListener {
 		TableModel model = table.getModel();
 
 		if (row == -1) {
-			UIManager.put("OptionPane.messageFont", nomal_font);
-			JOptionPane.showMessageDialog(null, "정보 없음", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
+//			UIManager.put("OptionPane.messageFont", nomal_font);
+			JOptionPane.showMessageDialog(null, "정보가 없습니다.", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			id = String.valueOf(model.getValueAt(row, 0));
 
@@ -69,12 +69,12 @@ public class StockDeleteBtnListener implements ActionListener {
 
 			table.getTableHeader().setReorderingAllowed(false); // 테이블 헤더 이동 안되게 하기
 			table.getTableHeader().setBackground(new Color(163, 148, 132));// 컬럼의 색상을 설정
-			table.getTableHeader().setFont(new Font("맑은 고딕", Font.BOLD, 30));
+			table.getTableHeader().setFont(new Font("맑은 고딕", Font.BOLD, 25));
 			table.getTableHeader().setForeground(Color.white);
 
 			String[] header = new StockTableAddData().give_header();
 
-			table.getColumn(header[0]).setPreferredWidth(100); // 컬럼당 넓이 설정인데 모든 컬럼을 테이블의 넓이에 '얼추' 맞게 설정해야함
+			table.getColumn(header[0]).setPreferredWidth(160); // 컬럼당 넓이 설정인데 모든 컬럼을 테이블의 넓이에 '얼추' 맞게 설정해야함
 			table.getColumn(header[1]).setPreferredWidth(900);
 			table.getColumn(header[2]).setPreferredWidth(160);
 			table.setFont(nomal_font);
