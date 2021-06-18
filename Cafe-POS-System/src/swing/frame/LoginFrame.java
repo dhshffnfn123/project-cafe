@@ -2,22 +2,21 @@ package swing.frame;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
 
 import action.LoginButtonListener;
 import action.PasswordTextFieldListener;
 import jdbc.method.LoginComboxData;
+import swing.method.RoundedPanel;
 
 public class LoginFrame extends DefaultFrame {
 
