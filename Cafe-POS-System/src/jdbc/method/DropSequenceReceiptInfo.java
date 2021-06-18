@@ -2,6 +2,7 @@ package jdbc.method;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import jdbc.hikari.HikariCP;
@@ -14,8 +15,8 @@ public class DropSequenceReceiptInfo {
 		try (
 				Connection conn = HikariCP.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery();
 				) {
-			pstmt.executeUpdate();
 			new CreateSequenceReceiptInfo();
 		} catch (SQLException e) {
 			e.printStackTrace();
