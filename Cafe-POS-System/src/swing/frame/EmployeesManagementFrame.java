@@ -90,7 +90,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		
 		// 센터 패널의 오른쪽에 추가할 패널 생성 -> 오른쪽 패널 탭으로 만들기
 		right_panel_tab = new JTabbedPane();
-		right_panel_tab.setFont(bold30);
+		right_panel_tab.setFont(new Font("맑은 고딕", Font.BOLD, 23));
 		right_panel_tab.setBackground(new Color(95, 148, 153));
 		right_panel_tab.setForeground(Color.WHITE);
 		right_panel_tab.addTab("등　록", enrollTab());
@@ -102,7 +102,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		top_panel_body = new JPanel(new GridLayout());
 		// 뒤로 가기 버튼
 		JButton back_btn = new JButton("<<");
-		back_btn.setFont(new Font("맑은 고딕", Font.BOLD, 40));
+		back_btn.setFont(new Font("맑은 고딕", Font.BOLD, 23));
 		back_btn.setPreferredSize(new Dimension(100, 80));
 		// GridLayout에 맞춘 버튼 글씨 왼쪽 정렬
 		back_btn.setHorizontalAlignment(SwingConstants.LEFT);
@@ -116,7 +116,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		top_panel_body.add(back_btn, BorderLayout.WEST);
 		// 가운데 시스템시계
 		JLabel clock = new CurrentTimeClock().setClock();
-		clock.setFont(bold30);
+		clock.setFont(new Font("맑은 고딕", Font.BOLD, 23));
 		clock.setHorizontalAlignment(JLabel.CENTER);
 		clock.setOpaque(true);
 		clock.setBackground(green);
@@ -125,7 +125,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		
 		// 오른쪽에 로그인한 사람 정보 뜨게할 예정
 		JLabel login_name = new JLabel("직원 정보");
-		login_name.setFont(bold30);
+		login_name.setFont(new Font("맑은 고딕", Font.BOLD, 23));
 		login_name.setForeground(Color.WHITE);
 		login_name.setHorizontalAlignment(JLabel.CENTER);
 		login_name.setOpaque(true);
