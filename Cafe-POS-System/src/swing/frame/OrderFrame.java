@@ -9,6 +9,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -59,6 +61,7 @@ public class OrderFrame extends DefaultFrame {
    static ArrayList<MenuButtonData> tableInfo;
    static int totalPrice;
    static JLabel totalmoney;
+   static Map<String, Integer> MenuHash = new HashMap<>();
    
    static {
 	   tableInfo = new ArrayList<MenuButtonData>();
@@ -66,6 +69,10 @@ public class OrderFrame extends DefaultFrame {
 
    }
    
+   public static Map<String, Integer> GetMenuHash(){
+	   return MenuHash;
+   }
+
    
    
    public static ArrayList<MenuButtonData> GettableInfo(){

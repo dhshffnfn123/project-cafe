@@ -21,8 +21,7 @@ public class MenuButtonAction implements ActionListener {
 	private int quantity;
 	private int index;
 	private int originalPrice;
-	private boolean check;
-	
+
 	public MenuButtonAction(JTable table, String name, int price) {
 		this.table = table;
 		this.name = name;
@@ -35,37 +34,36 @@ public class MenuButtonAction implements ActionListener {
 	      model = (DefaultTableModel) table.getModel();
 	      int row = table.getRowCount(); 
 	      
-	      if (!check) {
+	      
+	      if (!OrderFrame.GetMenuHash().containsKey(name)) {
 	         OrderFrame.GettableInfo().add(new MenuButtonData(row, name, 1, price));
 	         model.addRow(OrderFrame.GettableInfo().get(row).getTableRow());
-	      } 
-	     
-	      check = false;
-	      price = originalPrice;
-	      	      
-	      int findIndex = 0;
-	      if (OrderFrame.GettableInfo().size() != 0) {
-	         for (int i = 0; i < OrderFrame.GettableInfo().size(); i++) {
-	            if (OrderFrame.GettableInfo().get(i).getMenuName().equals(name)) {
-	               findIndex = i;
-	               
-	               quantity = OrderFrame.GettableInfo().get(findIndex).getQty();
-	               price = OrderFrame.GettableInfo().get(findIndex).getMenuPrice(); 
+	         OrderFrame.GetMenuHash().put(name, price);
+	      }else {
+	    	  price = originalPrice;
+	    	  for (int i = 0; i < OrderFrame.GettableInfo().size(); i++) {
+		            if (OrderFrame.GettableInfo().get(i).getMenuName().equals(name)) {
+		               
+		               
+		               quantity = OrderFrame.GettableInfo().get(i).getQty();
+		               price = OrderFrame.GettableInfo().get(i).getMenuPrice(); 
 
-	               model.setValueAt(quantity, findIndex, 2);
-	               model.setValueAt(price, findIndex, 3);
-	               
-	               originalPrice = price / quantity;
-	               price += originalPrice;
-	               quantity++;
-	               
-	               OrderFrame.GettableInfo().get(findIndex).setQty(quantity);
-	               OrderFrame.GettableInfo().get(findIndex).setMenuPrice(price);
-	               
-	               check = true;
-	               model.fireTableDataChanged();
-	            } 
-	         }
+		               model.setValueAt(quantity, i, 2);
+		               model.setValueAt(price, i, 3);
+		               
+		               originalPrice = price / quantity;
+		               price += originalPrice;
+		               quantity++;
+		               
+		               OrderFrame.GettableInfo().get(i).setQty(quantity);
+		               OrderFrame.GettableInfo().get(i).setMenuPrice(price);
+		               
+		               model.fireTableDataChanged();
+		            } 
+		         }
+	    	  
 	      }
+	    
 	}
+
 }
