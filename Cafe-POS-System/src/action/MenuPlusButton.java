@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import swing.frame.OrderFrame;
+
 public class MenuPlusButton implements ActionListener {
 
 	JTable table;
@@ -15,8 +17,9 @@ public class MenuPlusButton implements ActionListener {
 	int originalPrice;
 	int tablemoney;
 	JLabel totalmoney;
+	int test;
 
-	public MenuPlusButton(JTable table ) {
+	public MenuPlusButton(JTable table) {
 		this.table = table;
 	}
 
@@ -26,17 +29,29 @@ public class MenuPlusButton implements ActionListener {
 		int row = table.getSelectedRow();
 
 		if (row != -1) {
+
 			quantity = Integer.parseInt(String.valueOf(model.getValueAt(row, 2)));
+
 			price = Integer.parseInt(String.valueOf(model.getValueAt(row, 3)));
 			originalPrice = price / quantity;
 
 			quantity++;
 			price += originalPrice;
-			
+
+			OrderFrame.GettableInfo().get(row).setQty(quantity);
+			OrderFrame.GettableInfo().get(row).setMenuPrice(price);
+
 			model.setValueAt(quantity, row, 2);
 			model.setValueAt(price, row, 3);
-			model.fireTableDataChanged();
-		}
 
+			if (model.getRowCount() >= 1) {
+				for (int i = 0; i < model.getRowCount(); ++i) {
+					model.setValueAt(i, i, 0);
+					test += Integer.parseInt((String.valueOf(model.getValueAt(i, 3))));
+				}
+				OrderFrame.getTotalmoney().setText(String.valueOf(test));
+				test = 0;
+			}
+		}
 	}
 }
