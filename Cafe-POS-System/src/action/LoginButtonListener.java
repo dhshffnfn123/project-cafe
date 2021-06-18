@@ -24,7 +24,7 @@ public class LoginButtonListener implements ActionListener {
 	private JFrame frame;
 	private String cbname, getname, getpassword, pass;
 	char[] password;
-	private String sql = "SELECT * FROM employees_table WHERE employee_name = ?";
+	private String sql = "SELECT employee_name ,employee_id || '_' || employee_name, employee_pw FROM employees_table WHERE employee_name = ?";
 	private JComboBox combox;
 	private JPasswordField pwf;
 	private Font font1 = new Font("맑은 고딕", Font.BOLD, 18);
@@ -41,18 +41,18 @@ public class LoginButtonListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		cbname = combox.getSelectedItem().toString();
+		String result = cbname.substring(cbname.length() - 3, cbname.length());
 
 		password = pwf.getPassword();
 		pass = new String(password); // 입력한 값
 
-		try (Connection conn = HikariCP.getConnection(); 
-				PreparedStatement pstmt = conn.prepareStatement(sql);) {
+		try (Connection conn = HikariCP.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
 
-			pstmt.setString(1, cbname);
+			pstmt.setString(1, result);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 
-				getname = rs.getString(2);
+				getname = rs.getString(1);
 				getpassword = rs.getString(3);
 				System.out.println(getpassword);
 				System.out.println(getname);
@@ -67,7 +67,7 @@ public class LoginButtonListener implements ActionListener {
 			e1.printStackTrace();
 
 		}
-		if (pass.equals(getpassword) && cbname.equals(getname)) {
+		if (pass.equals(getpassword) && result.equals(getname)) {
 
 			System.out.println("로그인 성공");
 			System.out.println("얻어온 비밀번호 = " + pass);
