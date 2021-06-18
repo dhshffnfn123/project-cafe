@@ -25,7 +25,8 @@ public class StockDeleteBtnListener implements ActionListener {
 
 	private JTable table;
 	private String name;
-	private int id, count;
+	private String id;
+	private int count;
 
 	private DefaultTableCellRenderer dtcr_center;
 	private Font nomal_font = new Font("맑은 고딕", Font.PLAIN, 20);
@@ -47,11 +48,11 @@ public class StockDeleteBtnListener implements ActionListener {
 			UIManager.put("OptionPane.messageFont", nomal_font);
 			JOptionPane.showMessageDialog(null, "정보 없음", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
 		} else {
-			id = (int) model.getValueAt(row, 0);
+			id = String.valueOf(model.getValueAt(row, 0));
 
 			try (Connection conn = HikariCP.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
 
-				pstmt.setInt(1, id);
+				pstmt.setString(1, id);
 				ResultSet rs = pstmt.executeQuery();
 				rs.close();
 			} catch (SQLException e1) {
@@ -89,7 +90,7 @@ public class StockDeleteBtnListener implements ActionListener {
 
 			updatemodel.fireTableDataChanged();
 
-			UIManager.put("OptionPane.messageFont", system_font);
+//			UIManager.put("OptionPane.messageFont", system_font);
 			JOptionPane.showMessageDialog(null, "재고품목이 삭제되었습니다", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
