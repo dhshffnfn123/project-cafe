@@ -33,7 +33,7 @@ public class LoginFrame extends DefaultFrame {
 	JButton login_btn;
 	String cbname, password;
 	
-	 Color y_color = new Color(163, 148, 132);
+	 Color y_color = new Color(255, 255, 227);
 	 LineBorder line = new LineBorder(new Color(213, 198, 182), 5 ,true);
 	static int count = 0;
 
@@ -65,8 +65,8 @@ public class LoginFrame extends DefaultFrame {
 		// ============================================= 로그인 패널
 		login_panel = new RoundedPanel();
 		login_panel.setBounds(600, 250, 300, 400);
-		login_panel.setBackground(new Color(223, 208, 192, 230));
-		//login_panel.setBorder(new TitledBorder(new LineBorder(Color.white, 300, true), "Log_in")); // 패널의 테두리
+		//login_panel.setBackground(new Color(223, 208, 192, 230));
+		login_panel.setBackground(new Color(173, 204, 120, 230));
 
 		login_panel.setLayout(null);
 

@@ -11,7 +11,7 @@ import javax.swing.JComboBox;
 import jdbc.hikari.HikariCP;
 
 public class LoginComboxData {
-	private String sql = "SELECT * FROM employees_table";
+	private String sql = "select employee_id || employee_name from employees_table";
 	private JComboBox combox;
 	
 	public JComboBox getComboBox() {
@@ -29,7 +29,7 @@ public class LoginComboxData {
 				ResultSet rs = pstmt.executeQuery();
 		) {
 			while (rs.next()) {
-				combox.addItem(rs.getString(2));
+				combox.addItem(rs.getString(1));
 			}
 			
 		} catch (SQLException e) {
