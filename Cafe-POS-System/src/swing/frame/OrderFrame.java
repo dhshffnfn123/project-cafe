@@ -34,7 +34,7 @@ import action.MenuListNextButton;
 import action.MenuListPrevButton;
 import action.MenuPlusButton;
 import action.MenuOptionButtonAction;
-import action.OrdertableDeleteAction;
+import action.MenuMinusButton;
 import action.TableAllDelete;
 import jdbc.model.MenuButton;
 import jdbc.model.MenuButtonData;
@@ -285,7 +285,7 @@ public class OrderFrame extends DefaultFrame {
 		option.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 
 		// 테이블삭제 버튼 기능 구현
-		MinusBtn.addActionListener(new OrdertableDeleteAction(table, totalmoney, tablemoney));
+		MinusBtn.addActionListener(new MenuMinusButton(table, totalmoney, tablemoney));
 		allDelBtn.addActionListener(new TableAllDelete(table, tableInfo));
 		plusBtn.addActionListener(new MenuPlusButton(table));
 		
