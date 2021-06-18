@@ -40,13 +40,13 @@ public class StockAddBtnListener implements ActionListener {
 		
 		//라벨
 		nameL = new JLabel("이름");
-		nameL.setBounds(20, 10, 100, 130);
+		nameL.setBounds(20, -30, 100, 130);
 		nameL.setFont(font);
 		addFrame.add(nameL);
 		
 		countL = new JLabel("수량");
 		countL.setFont(font);
-		countL.setBounds(20, 20, 100, 30);
+		countL.setBounds(20, 60, 100, 30);
 		addFrame.add(countL);
 		
 		// 이름 텍스트 필드

@@ -23,19 +23,18 @@ public class StockUpdateFrame extends JFrame {
 	private JLabel idL, nameL, countL, updateL;
 	private JButton confirm_btn, cancel_btn;
 	private JPanel info_panel;
-	private String name;
-	private int id, count;
+	private String name,id;
+	private int  count;
 	private Color y_color = new Color(163, 148, 132);
 
 	private Font font = new Font("¸¼Àº °íµñ", Font.BOLD, 20);
 	private Font nomal_font = new Font("¸¼Àº °íµñ", Font.BOLD, 20);
 	private Font small_font = new Font("¸¼Àº °íµñ", Font.BOLD, 15);
 	
-	public StockUpdateFrame(String name, int id, int count, JTable table) {
+	public StockUpdateFrame(String name, String id, int count, JTable table) {
 		
 		setTitle("STOCK_UPDATE");
 		setLayout(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocation(200, 200);
 		setSize(300, 300);
 		setResizable(false);

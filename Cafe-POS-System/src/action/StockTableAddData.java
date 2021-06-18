@@ -54,7 +54,7 @@ public class StockTableAddData implements MouseListener {
 				ResultSet rs = pstmt.executeQuery();) {
 			while (rs.next()) {
 				model.addRow(
-						new Object[] { rs.getInt("STOCK_ID"), rs.getString("STOCK_NAME"), rs.getInt("STOCK_COUNT") });
+						new Object[] { rs.getString("STOCK_ID"), rs.getString("STOCK_NAME"), rs.getInt("STOCK_COUNT") });
 
 			} // while
 

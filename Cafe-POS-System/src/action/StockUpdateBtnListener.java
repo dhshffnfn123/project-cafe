@@ -24,7 +24,8 @@ public class StockUpdateBtnListener implements ActionListener {
 
 	private JTable table;
 	private String name;
-	private int id, count;
+	String id;
+	private int count;
 	
 	private Font nomal_font = new Font("¸¼Àº °íµñ", Font.BOLD, 20);
 
@@ -41,7 +42,7 @@ public class StockUpdateBtnListener implements ActionListener {
 			UIManager.put("OptionPane.messageFont", nomal_font);
 			JOptionPane.showMessageDialog(null, "Á¤º¸ ¾øÀ½", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
 		} else {
-			id = (int) model.getValueAt(row, 0);
+			id = (String) model.getValueAt(row, 0);
 			name = (String) model.getValueAt(row, 1);
 			count = (int) model.getValueAt(row, 2);
 			

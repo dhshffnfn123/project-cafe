@@ -25,7 +25,8 @@ public class StockDeleteBtnListener implements ActionListener {
 
 	private JTable table;
 	private String name;
-	private int id, count;
+	String id;
+	private int count;
 
 	private DefaultTableCellRenderer dtcr_center;
 	private Font nomal_font = new Font("¸¼Àº °íµñ", Font.PLAIN, 20);
@@ -47,11 +48,11 @@ public class StockDeleteBtnListener implements ActionListener {
 			UIManager.put("OptionPane.messageFont", nomal_font);
 			JOptionPane.showMessageDialog(null, "Á¤º¸ ¾øÀ½", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
 		} else {
-			id = (int) model.getValueAt(row, 0);
+			id = (String) model.getValueAt(row, 0);
 
 			try (Connection conn = HikariCP.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
 
-				pstmt.setInt(1, id);
+				pstmt.setString(1, id);
 				ResultSet rs = pstmt.executeQuery();
 				rs.close();
 			} catch (SQLException e1) {
