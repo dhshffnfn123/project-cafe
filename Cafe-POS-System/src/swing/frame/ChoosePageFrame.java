@@ -29,7 +29,7 @@ public class ChoosePageFrame extends DefaultFrame {
 
 		JLabel logo = new JLabel();
 
-		ImageIcon infoImg = new ImageIcon("./image/star.png");
+		ImageIcon infoImg = new ImageIcon("./image/logo.png");
 		JLabel info = new JLabel(infoImg);
 		info.setOpaque(true);
 		info.setBounds(475, 150, 500, 300);
@@ -40,18 +40,19 @@ public class ChoosePageFrame extends DefaultFrame {
 		// ´Ù¸¥ ÇÁ·¹ÀÓÀ¸·Î ÀÌµ¿ÇÏ´Â ¾×¼Ç ¸®½º³Ê
 		ChangePageActionForChooseFrame channel = new ChangePageActionForChooseFrame(this);
 
-		// <<<<<<< HEAD
 		// ==================================================== Á÷¿ø °ü¸® º¡Æ°
-		btns.get(0).setBounds(160, 520, 250, 250);
-		btns.get(0).setFont(new Font("¸¼Àº °íµñ", Font.BOLD | Font.ITALIC, 45));
+		btns.get(0).setBounds(760, 720, 550, 150);
+		btns.get(0).setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 45));
 		btns.get(0).setForeground(Color.white);
 		// btns.get(i).setBackground(new Color(53, 84, 0));
 		btns.get(0).setBackground(new Color(3, 102, 53));
-		// =======
+		btns.get(0).addActionListener(channel);
+		
+		add(btns.get(0));
 
 		// ==================================================== ÆÇ¸Å µî·Ï º¡Æ°
-		btns.get(1).setBounds(760, 520, 250, 250);
-		btns.get(1).setFont(new Font("¸¼Àº °íµñ", Font.BOLD | Font.ITALIC, 45));
+		btns.get(1).setBounds(160, 720, 550, 150);
+		btns.get(1).setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 45));
 		btns.get(1).setForeground(Color.white);
 		// btns.get(i).setBackground(new Color(53, 84, 0));
 		btns.get(1).setBackground(new Color(3, 102, 53));
@@ -61,8 +62,8 @@ public class ChoosePageFrame extends DefaultFrame {
 		add(btns.get(1));
 
 		// ==================================================== ¸ÅÃâ Á¶È¸ º¡Æ°
-		btns.get(2).setBounds(460, 520, 250, 250);
-		btns.get(2).setFont(new Font("¸¼Àº °íµñ", Font.BOLD | Font.ITALIC, 45));
+		btns.get(2).setBounds(760, 520, 550, 150);
+		btns.get(2).setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 45));
 		btns.get(2).setForeground(Color.white);
 		// btns.get(i).setBackground(new Color(53, 84, 0));
 		btns.get(2).setBackground(new Color(3, 102, 53));
@@ -72,8 +73,8 @@ public class ChoosePageFrame extends DefaultFrame {
 		add(btns.get(2));
 
 		// ==================================================== Á÷¿ø °ü¸® º¡Æ°
-		btns.get(3).setBounds(1060, 520, 250, 250);
-		btns.get(3).setFont(new Font("¸¼Àº °íµñ", Font.BOLD | Font.ITALIC, 45));
+		btns.get(3).setBounds(160, 520, 550, 150);
+		btns.get(3).setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 45));
 		btns.get(3).setForeground(Color.white);
 		// btns.get(i).setBackground(new Color(53, 84, 0));
 		btns.get(3).setBackground(new Color(3, 102, 53));
