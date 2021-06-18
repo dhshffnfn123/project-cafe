@@ -3,16 +3,24 @@ package action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import jdbc.method.DeletereceiptInfo;
-import jdbc.method.DropSequenceReceiptInfo;
-import swing.view.ReceiptView;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import jdbc.method.ReceiptLabel;
 
 // 결제완료시 영수증출력 후 테이블 정보 삭제, 시퀀스 삭제, 시퀀스 생성
 public class PaymentFinishButton implements ActionListener{
-	
+	DefaultTableModel model;
+	JTable table;
+
+	public PaymentFinishButton(JTable table) {
+		this.table = table;
+		this.model = (DefaultTableModel)table.getModel();
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		new ReceiptView();		
-		new DeletereceiptInfo();
+		new ReceiptLabel(table);
+		model.setNumRows(0);
+		
 	}
 }
