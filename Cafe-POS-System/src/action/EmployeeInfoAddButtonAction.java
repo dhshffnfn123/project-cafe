@@ -6,7 +6,10 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Random;
 
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -17,7 +20,7 @@ import swing.method.RenewalToTable;
 
 public class EmployeeInfoAddButtonAction implements ActionListener {
 	
-	private String sql = "INSERT INTO employees_table VALUES(employee_id_seq.nextval, ?, ?, ?)";
+	private String sql = "INSERT INTO employees_table VALUES(?, ?, ?, ?)";
 	private String employee_name;
 	private String employee_pw;
 	private String employee_grade;
@@ -48,13 +51,16 @@ public class EmployeeInfoAddButtonAction implements ActionListener {
 						PreparedStatement pstmt = conn.prepareStatement(sql);
 					) {
 					
-					this.employee_name = fields.get(0).getText();
-					this.employee_pw = fields.get(1).getText();
+					SimpleDateFormat f1 = new SimpleDateFormat("yyMM");
+					String employee_id = f1.format(Calendar.getInstance().getTime()) + String.valueOf(new Random().nextInt(8999) + 1000);
+					this.employee_name = fields.get(0).getText().trim();
+					this.employee_pw = fields.get(1).getText().trim();
 					this.employee_grade = (String)grade_box.getSelectedItem();
 					
-					pstmt.setString(1, employee_name);
-					pstmt.setString(2, employee_pw);
-					pstmt.setString(3, employee_grade);
+					pstmt.setString(1, employee_id);
+					pstmt.setString(2, employee_name);
+					pstmt.setString(3, employee_pw);
+					pstmt.setString(4, employee_grade);
 					
 					pstmt.executeQuery();
 				} catch (SQLException e2) {
