@@ -74,7 +74,7 @@ public class CheckSalesFrame extends DefaultFrame {
 		setJButtonStyle(select_btn); // 기본 버튼 스타일 지정 메소드 호출
 		select_btn.addActionListener(
 				new CheckSalesSelectButton(this, select_btn, model, total_model, jt, jt2, year_combo, month_combo));
-		select_btn.setBackground(new Color(223, 134, 62));
+		select_btn.setBackground(new Color(200, 50, 0));
 
 		center_top.add(sortation_txt);
 		center_top.add(year_combo);
@@ -131,7 +131,7 @@ public class CheckSalesFrame extends DefaultFrame {
 	public static void setJLabelStyle(JLabel txt) {
 		txt.setPreferredSize(new Dimension(200, 50));
 		txt.setOpaque(true); // setBackground 적용하기 위한 선행 설정
-		txt.setBackground(new Color(105, 180, 101)); // 백그라운드 색상 정의
+		txt.setBackground(new Color(175, 162, 38)); // 백그라운드 색상 정의
 		txt.setForeground(Color.WHITE); // 텍스트 색상 정의
 		txt.setFont(new Font("맑은 고딕", Font.BOLD, 30)); // 폰트 정의
 		txt.setHorizontalAlignment(JLabel.CENTER); // 텍스트 센터 표시 설정
@@ -147,7 +147,7 @@ public class CheckSalesFrame extends DefaultFrame {
 	// JButton 기본 스타일 지정 메서드
 	public static void setJButtonStyle(JButton btn) {
 		btn.setPreferredSize(new Dimension(200, 50));
-		btn.setBackground(new Color(232, 114, 36)); // 백그라운드 색상 정의
+		btn.setBackground(new Color(255, 224, 140)); // 백그라운드 색상 정의
 		btn.setForeground(Color.WHITE); // 텍스트 색상 정의
 		btn.setFont(new Font("맑은 고딕", Font.BOLD, 30)); // 폰트 정의
 		btn.setHorizontalAlignment(JLabel.CENTER); // 텍스트 센터 표시 설정
@@ -159,14 +159,14 @@ public class CheckSalesFrame extends DefaultFrame {
 		JTableHeader header = table.getTableHeader();
 		header.setPreferredSize(new Dimension(100, 40));
 		header.setFont(new Font("맑은 고딕", Font.BOLD, 25));
-		header.setBackground(new Color(163, 148, 132));
+		header.setBackground(new Color(0, 66, 56));
 		header.setForeground(Color.WHITE);
 
 		// 컬럼 이동 불가
 		table.getTableHeader().setReorderingAllowed(false);
 
 		// 셀 글씨 키우기
-		table.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+		table.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 
 		// 셀 높이 설정
 		table.setRowHeight(25);

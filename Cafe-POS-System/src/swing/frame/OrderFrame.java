@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
+import action.ChangePageActionForChooseFrame;
 import action.CurrentTimeClock;
 import action.MenuButtonAction;
 import action.MenuListNextButton;
@@ -137,6 +138,7 @@ public class OrderFrame extends DefaultFrame {
 		choosepage.setHorizontalAlignment(JButton.LEFT);
 		choosepage.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 23));
 		choosepage.setForeground(Color.WHITE);
+		choosepage.addActionListener(new ChangePageActionForChooseFrame(this));
 		top.add(choosepage);
 
 		// infoTime
@@ -215,7 +217,7 @@ public class OrderFrame extends DefaultFrame {
 		JTableHeader hd = table.getTableHeader();
 		hd.setPreferredSize(new Dimension(100, 45));
 		hd.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 25));
-		hd.setBackground(new Color(163, 148, 132));
+		hd.setBackground(new Color(0, 66, 56));
 		hd.setForeground(Color.WHITE);
 		// «Ï¥ı ±Ê¿Ã ∫Ø∞Ê
 		table.getColumn(header[0]).setPreferredWidth(50);

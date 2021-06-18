@@ -79,7 +79,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		JTableHeader header = staff_info.getTableHeader();
 		header.setPreferredSize(new Dimension(100, 50));
 		header.setFont(new Font("맑은 고딕", Font.BOLD, 25));
-		header.setBackground(new Color(163, 148, 132));
+		header.setBackground(new Color(0, 66, 56));
 		header.setForeground(Color.WHITE);
 		// 테이블 갯수 넘어가면 스크롤바로 변경됨
 		scroll_add_staff_info = new JScrollPane(staff_info);
