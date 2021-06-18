@@ -100,14 +100,8 @@ public class CheckSalesSelectButton implements ActionListener {
 			year = ybox.getSelectedItem().toString();
 			month = mbox.getSelectedItem().toString();
 
-			System.out.println(year);
-			System.out.println(month);
-			if (year.equals("년도 선택")) {
-				System.out.println("select");
-			}
-
 			// 모든년도 검색
-			if (year.equals("ALL") && month.equals("None")) {
+			if (year.equals("전체 년도") && month.equals("월 선택")) {
 				while (rs.next()) {
 					date = rs.getString(1);
 					count = rs.getInt(2);
@@ -115,6 +109,7 @@ public class CheckSalesSelectButton implements ActionListener {
 					Object[] row = { date, count, result };
 					model.addRow(row);
 				}
+				// 총매출 건수와 총매출
 				while (rs_total.next()) {
 					total_count = rs_total.getInt(1);
 					total_result = rs_total.getString(2);
@@ -122,8 +117,8 @@ public class CheckSalesSelectButton implements ActionListener {
 					total_model.addRow(row2);
 				}
 
-				// 모든 년도, 월, 일 검색
-			} else if (year.equals("ALL") && month.equals("ALL")) {
+			// 모든 년도, 월, 일 검색
+			} else if (year.equals("전체 년도") && month.equals("전체 월")) {
 				while (rs2.next()) {
 					date = rs2.getString(1);
 					count = rs2.getInt(2);
@@ -131,6 +126,7 @@ public class CheckSalesSelectButton implements ActionListener {
 					Object[] row = { date, count, result };
 					model.addRow(row);
 				}
+				// 총매출 건수와 총매출
 				while (rs_total.next()) {
 					total_count = rs_total.getInt(1);
 					total_result = rs_total.getString(2);
@@ -138,9 +134,8 @@ public class CheckSalesSelectButton implements ActionListener {
 					total_model.addRow(row2);
 				}
 
-				// 특정 년도 모든 월 조회
-			} else if ((!(year.equals("ALL") && year.equals("년도 선택"))) && (month.equals("ALL"))) {
-				System.out.println("ALL조회됨");
+			// 특정 년도 모든 월 조회
+			} else if ((!(year.equals("전체 년도") && year.equals("년도 선택"))) && (month.equals("전체 월"))) {
 
 				pstmt_ma.setString(1, String.format("%%%s%%", year));
 				pstmt_ma.executeUpdate();
@@ -150,33 +145,32 @@ public class CheckSalesSelectButton implements ActionListener {
 				pstmt_year_total.executeUpdate();
 				ResultSet rs_year_total = pstmt_year_total.executeQuery();
 
+				while (rs_ma.next()) {
+					date = rs_ma.getString(1);
+					count = rs_ma.getInt(2);
+					result = rs_ma.getInt(3);
+					Object[] row = { date, count, result };
+					model.addRow(row);
+				}
+				// 특정 년도 모든 매출
 				while (rs_year_total.next()) {
 					total_count = rs_year_total.getInt(1);
 					total_result = rs_year_total.getString(2);
 					Object[] row2 = { total_count, total_result };
 					total_model.addRow(row2);
 				}
-				while (rs_ma.next()) {
-					date = rs_ma.getString(1);
-					count = rs_ma.getInt(2);
-					result = rs_ma.getInt(3);
-
-					Object[] row = { date, count, result };
-					model.addRow(row);
-
-				}
 				rs_ma.close();
 				pstmt_m.close();
 				rs_year_total.close();
 				pstmt_year_total.close();
 
-				// 특정년도 특정월 모든 일 조회
-			} else if ((!(year.equals("ALL") && year.equals("년도 선택")))
-					&& (!(month.equals("ALL") && month.equals("None") && month.equals("월 선택")))) {
+			// 특정년도 특정월 모든 일 조회
+			} else if ((!(year.equals("전체 년도") && year.equals("년도 선택")))
+					&& (!(month.equals("전체 월") && month.equals("월 선택")))) {
 				System.out.println("월 조회됨");
 
-				pstmt_m.setString(1, String.format("%%%s%%", year));
-				pstmt_m.setString(2, String.format("%%%s%%", month));
+				pstmt_m.setString(1, String.format("%%%s%%", year)); //where문에 콤보박스 year값 삽입
+				pstmt_m.setString(2, String.format("%%%s%%", month)); //where문에 콤보박스 year값 삽입
 
 				pstmt_m.executeUpdate();
 				ResultSet rs_m = pstmt_m.executeQuery();
@@ -185,21 +179,20 @@ public class CheckSalesSelectButton implements ActionListener {
 				pstmt_month_total.setString(2, String.format("%%%s%%", month));
 				pstmt_month_total.executeUpdate();
 				ResultSet rs_month_total = pstmt_month_total.executeQuery();
-
+				
+				while (rs_m.next()) { 
+					date = rs_m.getString(1);
+					count = rs_m.getInt(2);
+					result = rs_m.getInt(3);
+					Object[] row = { date, count, result };
+					model.addRow(row);
+				}
+				// 특정년도 특정 월의 모든 매출
 				while (rs_month_total.next()) {
 					total_count = rs_month_total.getInt(1);
 					total_result = rs_month_total.getString(2);
 					Object[] row2 = { total_count, total_result };
 					total_model.addRow(row2);
-				}
-				while (rs_m.next()) { 
-					date = rs_m.getString(1);
-					count = rs_m.getInt(2);
-					result = rs_m.getInt(3);
-
-					Object[] row = { date, count, result };
-					model.addRow(row);
-
 				}
 				rs_m.close();
 				pstmt_m.close();

@@ -32,12 +32,11 @@ public class TotalComboAddData {
 	private void comboBox_addData() {
 		year_combo = new JComboBox();
 		year_combo.addItem("년도 선택");
-		year_combo.addItem("ALL");
+		year_combo.addItem("전체 년도");
 		
 		month_combo = new JComboBox();
 		month_combo.addItem("월 선택");
-		month_combo.addItem("ALL");
-		month_combo.addItem("None");
+		month_combo.addItem("전체 월");
 		
 		
 		
