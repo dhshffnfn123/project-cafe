@@ -53,8 +53,8 @@ public class StockTableAddData implements MouseListener {
 				PreparedStatement pstmt = conn.prepareStatement(select_sql);
 				ResultSet rs = pstmt.executeQuery();) {
 			while (rs.next()) {
-				model.addRow(
-						new Object[] { rs.getInt("STOCK_ID"), rs.getString("STOCK_NAME"), rs.getInt("STOCK_COUNT") });
+				model.addRow(new Object[] { rs.getString("STOCK_ID"), rs.getString("STOCK_NAME"),
+						rs.getInt("STOCK_COUNT") });
 
 			} // while
 
@@ -76,19 +76,15 @@ public class StockTableAddData implements MouseListener {
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-	}
+	public void mousePressed(MouseEvent e) {}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
-	}
+	public void mouseReleased(MouseEvent e) {}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-	}
+	public void mouseEntered(MouseEvent e) {}
 
 	@Override
-	public void mouseExited(MouseEvent e) {
-	}
+	public void mouseExited(MouseEvent e) {}
 
 }
