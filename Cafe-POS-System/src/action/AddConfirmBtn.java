@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
+import com.sun.jdi.event.EventQueue;
 import com.zaxxer.hikari.HikariConfig;
 
 import jdbc.hikari.HikariCP;
@@ -47,10 +48,12 @@ public class AddConfirmBtn implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
 		try (Connection conn = HikariCP.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
 			nameVal = name.getText();
 			countVal = count.getText();
 			countint = Integer.parseInt(countVal);
+
 			System.out.println(countint);
 			System.out.println(nameVal);
 
@@ -58,44 +61,48 @@ public class AddConfirmBtn implements ActionListener {
 			pstmt.setString(2, countVal);
 			ResultSet rs = pstmt.executeQuery();
 			rs.close();
+			DefaultTableModel originmodel = (DefaultTableModel) table.getModel();
+
+			DefaultTableModel updatemodel = (DefaultTableModel) (new StockTableAddData().getStockTable().getModel());
+
+			originmodel.setRowCount(0);
+
+			table.setModel(updatemodel);
+
+			table.getTableHeader().setReorderingAllowed(false); // 테이블 헤더 이동 안되게 하기
+			table.getTableHeader().setBackground(y_color);// 컬럼의 색상을 설정
+			table.getTableHeader().setFont(big_font);
+			table.getTableHeader().setForeground(Color.white);
+
+			String[] header = new StockTableAddData().give_header();
+
+			table.getColumn(header[0]).setPreferredWidth(100); // 컬럼당 넓이 설정인데 모든 컬럼을 테이블의 넓이에 '얼추' 맞게 설정해야함
+			table.getColumn(header[1]).setPreferredWidth(900);
+			table.getColumn(header[2]).setPreferredWidth(160);
+			table.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+
+			dtcr_center = new DefaultTableCellRenderer();
+
+			dtcr_center.setHorizontalAlignment(SwingConstants.CENTER); // dtcr_center의 위치를 center로 지정
+
+			TableColumnModel ts = table.getColumnModel(); // 정렬할 테이블의 columnModel을 가져옴
+			ts.getColumn(0).setCellRenderer(dtcr_center);// product_id 컬럼을 센터 정렬
+			ts.getColumn(1).setCellRenderer(dtcr_center);
+			ts.getColumn(2).setCellRenderer(dtcr_center);
+
+			updatemodel.fireTableDataChanged();
+
+//			UIManager.put("OptionPane.messageFont", nomal_font);
+			JOptionPane.showMessageDialog(null, "데이터가 추가되었습니다.", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
+			frame.dispose();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
+		} catch (NumberFormatException e2) {
+//			UIManager.put("OptionPane.messageFont", nomal_font);
+			JOptionPane.showMessageDialog(null, "수량을 잘못 입력하셨습니다.", "SYSTEM", JOptionPane.ERROR_MESSAGE);
+			System.out.println(e2);
 		}
 
-		DefaultTableModel originmodel = (DefaultTableModel) table.getModel();
-
-		DefaultTableModel updatemodel = (DefaultTableModel) (new StockTableAddData().getStockTable().getModel());
-
-		originmodel.setRowCount(0);
-
-		table.setModel(updatemodel);
-
-		table.getTableHeader().setReorderingAllowed(false); // 테이블 헤더 이동 안되게 하기
-		table.getTableHeader().setBackground(y_color);// 컬럼의 색상을 설정
-		table.getTableHeader().setFont(big_font);
-		table.getTableHeader().setForeground(Color.white);
-
-		String[] header = new StockTableAddData().give_header();
-
-		table.getColumn(header[0]).setPreferredWidth(100); // 컬럼당 넓이 설정인데 모든 컬럼을 테이블의 넓이에 '얼추' 맞게 설정해야함
-		table.getColumn(header[1]).setPreferredWidth(900);
-		table.getColumn(header[2]).setPreferredWidth(160);
-		table.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-
-		dtcr_center = new DefaultTableCellRenderer();
-
-		dtcr_center.setHorizontalAlignment(SwingConstants.CENTER); // dtcr_center의 위치를 center로 지정
-
-		TableColumnModel ts = table.getColumnModel(); // 정렬할 테이블의 columnModel을 가져옴
-		ts.getColumn(0).setCellRenderer(dtcr_center);// product_id 컬럼을 센터 정렬
-		ts.getColumn(1).setCellRenderer(dtcr_center);
-		ts.getColumn(2).setCellRenderer(dtcr_center);
-
-		updatemodel.fireTableDataChanged();
-
-		UIManager.put("OptionPane.messageFont", nomal_font);
-		JOptionPane.showMessageDialog(null, "데이터가 추가되었습니다", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
-		frame.dispose();
 	}
 
 }
