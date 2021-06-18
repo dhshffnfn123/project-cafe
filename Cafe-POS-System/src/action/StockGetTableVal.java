@@ -7,9 +7,10 @@ import javax.swing.*;
 import javax.swing.table.TableModel;
 
 public class StockGetTableVal implements MouseListener {
-	
+
 	private JTable table;
-	private int id, count;
+	private String id;
+	private int count;
 	private String name;
 
 	public StockGetTableVal(JTable table) {
@@ -18,17 +19,17 @@ public class StockGetTableVal implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
-			int row = table.getSelectedRow(); // 선택한 셀의 행 번호 계산
-			TableModel model = table.getModel();
 
-			id = (int) model.getValueAt(row, 0);
-			name = (String) model.getValueAt(row, 1);
-			count = (int) model.getValueAt(row, 2);
+		int row = table.getSelectedRow(); // 선택한 셀의 행 번호 계산
+		TableModel model = table.getModel();
 
-			System.out.println("ID : " + id);
-			System.out.println("NAME : " + name);
-			System.out.println("COUNT : " + count);
+		id = (String)model.getValueAt(row, 0);
+		name = (String) model.getValueAt(row, 1);
+		count = (int) model.getValueAt(row, 2);
+
+		System.out.println("ID : " + id);
+		System.out.println("NAME : " + name);
+		System.out.println("COUNT : " + count);
 	}
 
 	@Override
