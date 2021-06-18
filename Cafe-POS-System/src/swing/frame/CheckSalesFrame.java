@@ -19,9 +19,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
-import action.ChangePageActionForChooseFrame;
+import action.ChangePageButton;
 import action.CheckSalesSelectButton;
 import action.CurrentTimeClock;
+import jdbc.method.TotalComboAddData;
 import jdbc.method.TotalInfo;
 
 public class CheckSalesFrame extends DefaultFrame {
@@ -35,15 +36,20 @@ public class CheckSalesFrame extends DefaultFrame {
       setTitle("매출 조회");
 
       center = new JPanel(new BorderLayout());
-      center_top = new JPanel(new BorderLayout());
+      center_top = new JPanel(new GridLayout());
 
       JLabel sortation_txt = new JLabel("구　　분");
       setJLabelStyle(sortation_txt);
 
-      String combo_arr[] = { "", "연 매출", "월 매출", "일 매출" };
-      JComboBox<String> select_combo = new JComboBox<String>(combo_arr);
-      setJComboBoxStyle(select_combo);
-
+      JComboBox year_combo = new TotalComboAddData().year_getComboBox();
+      setJComboBoxStyle(year_combo);
+      
+      JComboBox month_combo = new TotalComboAddData().month_getComboBox();
+      setJComboBoxStyle(month_combo);
+      
+      
+      
+      
       // 일반 매출 조회
       DefaultTableModel model = new TotalInfo().getTotalInfo();
       JTable jt = new JTable(model);
@@ -68,11 +74,12 @@ public class CheckSalesFrame extends DefaultFrame {
       JButton select_btn = new JButton("조　　회");
       setJButtonStyle(select_btn); // 기본 버튼 스타일 지정 메소드 호출
       select_btn.addActionListener(new CheckSalesSelectButton(
-    		  this, select_btn, select_combo, model, total_model, jt, jt2));
+    		  this, select_btn, model, total_model, jt, jt2, year_combo, month_combo));
 
-      center_top.add(sortation_txt, BorderLayout.WEST);
-      center_top.add(select_combo, BorderLayout.CENTER);
-      center_top.add(select_btn, BorderLayout.EAST);
+      center_top.add(sortation_txt);
+      center_top.add(year_combo);
+      center_top.add(month_combo);
+      center_top.add(select_btn);
 
       center.add(center_top, BorderLayout.NORTH);
       center.add(jscroll);
@@ -92,7 +99,7 @@ public class CheckSalesFrame extends DefaultFrame {
       
       // 버튼 테두리 없애기
       back_btn.setBorderPainted(false);
-      back_btn.addActionListener(new ChangePageActionForChooseFrame(this));
+      back_btn.addActionListener(new ChangePageButton(this));
       top_panel_body.add(back_btn, BorderLayout.WEST);
       
       // 가운데 시스템시계
@@ -179,4 +186,3 @@ public class CheckSalesFrame extends DefaultFrame {
    }
 
 }
-
