@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import swing.frame.RoundJTextField;
+import swing.method.RoundJTextField;
 
 //입력 번호가 틀릴시 뜨는 경고 팝업창
 public class AccumulatedFundJOptionPane extends JOptionPane{

@@ -24,6 +24,7 @@ import javax.swing.border.TitledBorder;
 
 import action.AccumulatedFundButton;
 import action.AccumulatedFundTextFiel;
+import swing.method.RoundJTextField;
 
 
 public class AccumulatedFundFrame extends DefaultFrame{
