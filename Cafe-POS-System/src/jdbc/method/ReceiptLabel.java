@@ -43,7 +43,7 @@ public class ReceiptLabel extends ReceiptDefaultFrame {
 				+ "[주   소]　서울특별시 강남구 역삼동 826-27 11, 12층\n"
 				+ "[대표자]　서예림\t\t\t\t\t[T  E  L] 031-123-4678	\n"
 				+ "[매출일]　" + f1.format(Calendar.getInstance().getTime()) + "\t\t\t[결제자] " + order_name + "\n"
-				+ "[영수증]　" + f2.format(Calendar.getInstance().getTime()) + "-A-" + receiptNumber + "\n"
+				+ "[영수증]　" + f2.format(Calendar.getInstance().getTime()) + "A-" + receiptNumber + "\n"
 				+ "=====================================================================\n"
 				+ "\t\t상  품  명\t\t단  가\t\t수  량\t\t      금  액\n"
 				+ "---------------------------------------------------------------------\n"
