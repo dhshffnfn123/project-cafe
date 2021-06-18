@@ -29,6 +29,7 @@ public class ChangePageActionForChooseFrame implements ActionListener {
 			new EmployeesManagementFrame();
 			break;
 		case "<HTML>판매<br>등록</HTML>":
+			new OrderFrame;
 			break;
 		case "<HTML>매출<br>조회</HTML>":
 			new CheckSalesFrame();
