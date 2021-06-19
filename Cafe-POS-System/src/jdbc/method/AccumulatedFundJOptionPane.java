@@ -15,12 +15,12 @@ public class AccumulatedFundJOptionPane extends JOptionPane{
 	public AccumulatedFundJOptionPane(RoundJTextField textField) {
 		
 		// 팝업창 더 깔끔하게 만들기
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-				| UnsupportedLookAndFeelException e) {
-			e.printStackTrace();
-		}
+//		try {
+////			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+//				| UnsupportedLookAndFeelException e) {
+//			e.printStackTrace();
+//		}
 		
 		// 번호 입력이 없을 때와 있을 때를 구분지어 놓음
 		if(textField.getText().equals("전화번호를 입력하세요")) {

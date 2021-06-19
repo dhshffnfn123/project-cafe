@@ -10,12 +10,12 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class AccrualCompletionJOP extends JOptionPane{
 	
 	public AccrualCompletionJOP() {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-				| UnsupportedLookAndFeelException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+//				| UnsupportedLookAndFeelException e) {
+//			e.printStackTrace();
+//		}
 		UIManager.put("OptionPane.messageFont",new Font("¸¼Àº °íµñ",Font.PLAIN,12));
 		
 	}
