@@ -100,6 +100,8 @@ public class LoginFrame extends DefaultFrame {
 		// 로그인 버튼 누르기
 		login_btn.addActionListener(new LoginButtonListener(combox, pwf, cbname, this));
 
+		this.repaint();
+		
 		setVisible(true);
 
 	} // login _Frame
