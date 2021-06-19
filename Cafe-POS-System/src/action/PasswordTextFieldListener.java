@@ -19,6 +19,7 @@ import javax.swing.UIManager;
 import javax.swing.table.JTableHeader;
 
 import jdbc.hikari.HikariCP;
+import jdbc.method.getEmployeeGrade;
 import swing.frame.ChoosePageFrame;
 import swing.frame.DefaultFrame;
 import swing.method.LoginEmployeeInfoLabel;
@@ -33,9 +34,9 @@ public class PasswordTextFieldListener implements ActionListener {
 	private JFrame frame;
 	private JPasswordField pwf;
 	private JComboBox<String> combox;
-	private String getpassword, getname;
+	private String getpassword, getname, grade;
 	private String sql = "SELECT employee_name ,employee_id || '_' || employee_name, employee_pw FROM employees_table WHERE employee_name = ?";
-
+	private String name;
 	public PasswordTextFieldListener(JComboBox<String> combox, String cbname, JPasswordField pwf, JFrame frame) {
 		this.cbname = cbname;
 		this.pwf = pwf;
@@ -51,7 +52,7 @@ public class PasswordTextFieldListener implements ActionListener {
 
 		password = pwf.getPassword();
 		pass = new String(password); // 입력한 값
-
+		grade = new getEmployeeGrade(result).getGrade();
 		try (Connection conn = HikariCP.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
 			pstmt.setString(1, result);
 			ResultSet rs = pstmt.executeQuery();
@@ -77,7 +78,7 @@ public class PasswordTextFieldListener implements ActionListener {
 //			System.out.println("얻어온 비밀번호 = " + pass);
 			LoginEmployeeInfoLabel.getLabel().setText(cbname);
 			frame.dispose();
-			new ChoosePageFrame();
+			new ChoosePageFrame(grade);
 		} else {
 			UIManager.put("OptionPane.messageFont", font1);
 			JOptionPane.showMessageDialog(null, "비밀번호가 맞지 않습니다", "SYSTEM", JOptionPane.CANCEL_OPTION);

@@ -46,7 +46,7 @@ import swing.view.ProductView;
 import swing.view.RtdView;
 
 public class OrderFrame extends DefaultFrame {
-
+	private String grade;
 	private JPanel center;
 	private JPanel top;
 	private JTable table;
@@ -106,7 +106,8 @@ public class OrderFrame extends DefaultFrame {
 		return tableInfo;
 	}
 
-	public OrderFrame() {
+	public OrderFrame(String grade) {
+		this.grade = grade;
 		setLayout(new BorderLayout());
 		setTitle("Point Of Sale");
 
@@ -302,7 +303,7 @@ public class OrderFrame extends DefaultFrame {
 		MinusBtn.addActionListener(new MenuMinusButton(table, totalmoney, tablemoney));
 		allDelBtn.addActionListener(new TableAllDelete(table, tableInfo));
 		plusBtn.addActionListener(new MenuPlusButton(table));
-		choosepage.addMouseListener(new BackButtonMouseActionForOrderFrame(this, table));
+		choosepage.addMouseListener(new BackButtonMouseActionForOrderFrame(this, table, grade));
 		payment.addActionListener(new PaymentFinishButton(table));
 		
 

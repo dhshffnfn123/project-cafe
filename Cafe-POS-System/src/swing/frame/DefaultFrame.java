@@ -20,7 +20,7 @@ public class DefaultFrame extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 17));
 		setSize(1500, 1000);
-		setLocation(450, 200);
+		setLocation(0, 0);
 		setResizable(false);
 		setVisible(true);
 	}

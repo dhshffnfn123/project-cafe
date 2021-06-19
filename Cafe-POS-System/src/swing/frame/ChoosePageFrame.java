@@ -16,8 +16,9 @@ import action.LogoutButtonAction;
 import swing.method.LogoutButtonImgScale;
 
 public class ChoosePageFrame extends DefaultFrame {
-
-	public ChoosePageFrame() {
+	private String grade;
+	public ChoosePageFrame(String grade) {
+		this.grade = grade;
 		setTitle("Choose Page");
 		// getContentPane() 후 배경색 지정해야 변경가능
 		getContentPane().setBackground(Color.white);
@@ -47,7 +48,7 @@ public class ChoosePageFrame extends DefaultFrame {
 		add(info);
 
 		// 다른 프레임으로 이동하는 액션 리스너
-		ChangePageActionForChooseFrame channel = new ChangePageActionForChooseFrame(this);
+		ChangePageActionForChooseFrame channel = new ChangePageActionForChooseFrame(this, grade);
 
 		// ==================================================== 직원 관리 벙튼
 		btns.get(0).setBounds(760, 720, 550, 150);
@@ -56,7 +57,7 @@ public class ChoosePageFrame extends DefaultFrame {
 		// btns.get(i).setBackground(new Color(53, 84, 0));
 		btns.get(0).setBackground(new Color(3, 102, 53));
 		btns.get(0).addActionListener(channel);
-
+		
 		add(btns.get(0));
 
 		// ==================================================== 판매 등록 벙튼

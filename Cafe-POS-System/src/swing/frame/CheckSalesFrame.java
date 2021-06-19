@@ -33,8 +33,9 @@ public class CheckSalesFrame extends DefaultFrame {
 	private JPanel center;
 	private JPanel center_top;
 	private JPanel top_panel_body;
-
-	public CheckSalesFrame() {
+	private String name, grade;
+	public CheckSalesFrame(String grade) {
+		this.grade = grade;
 		setLayout(new BorderLayout());
 		setTitle("매출 조회");
 
@@ -95,7 +96,7 @@ public class CheckSalesFrame extends DefaultFrame {
 		JButton back_btn = new BackButtonImgScale().getBackBtn();
 		back_btn.setPreferredSize(new Dimension(100, 70));
 		back_btn.setFont(new Font("궁서", Font.BOLD, 23));
-		back_btn.addMouseListener(new BackButtonMouseAction(this));
+		back_btn.addMouseListener(new BackButtonMouseAction(this, grade));
 
 		// GridLayout에 맞춘 버튼 글씨 왼쪽 정렬
 		back_btn.setHorizontalAlignment(SwingConstants.LEFT);
@@ -104,7 +105,7 @@ public class CheckSalesFrame extends DefaultFrame {
 
 		// 버튼 테두리 없애기
 		back_btn.setBorderPainted(false);
-		back_btn.addActionListener(new ChangePageActionForChooseFrame(this));
+		back_btn.addActionListener(new ChangePageActionForChooseFrame(this, grade));
 		top_panel_body.add(back_btn, BorderLayout.WEST);
 
 		// 가운데 시스템시계
