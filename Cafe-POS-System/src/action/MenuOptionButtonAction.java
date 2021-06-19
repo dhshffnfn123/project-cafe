@@ -32,7 +32,7 @@ public class MenuOptionButtonAction implements ActionListener {
 		int row = table.getRowCount();
 
 		if (row != -1) {
-			OrderFrame.GettableInfo().add(new MenuButtonData(row, name, 1, price));
+			OrderFrame.GettableInfo().add(new MenuButtonData(row + 1, name, 1, price));
 			model.addRow(OrderFrame.GettableInfo().get(row).getOptionRow());
 
 			OrderFrame.GetMenuHash().put(name, price);
@@ -44,7 +44,7 @@ public class MenuOptionButtonAction implements ActionListener {
 		if (model.getRowCount() >= 1) {
 			
 			for (int i = 0; i < model.getRowCount(); ++i) {
-				model.setValueAt(i, i, 0);
+				model.setValueAt(i + 1, i, 0);
 				
 				model.setValueAt("¤¤" + name, row, 1);
 				model.setValueAt(quantity, row, 2);

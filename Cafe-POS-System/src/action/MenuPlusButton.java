@@ -47,7 +47,7 @@ public class MenuPlusButton implements ActionListener {
 
 			if (model.getRowCount() >= 1) {
 				for (int i = 0; i < model.getRowCount(); ++i) {
-					model.setValueAt(i, i, 0);
+					model.setValueAt(i + 1, i, 0);
 					test += Integer.parseInt((String.valueOf(model.getValueAt(i, 3))));
 				}
 				DecimalFormat formatter = new DecimalFormat("###,###");

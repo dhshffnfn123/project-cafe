@@ -36,7 +36,7 @@ public class MenuButtonAction implements ActionListener {
 		int row = table.getRowCount();
 
 		if (!OrderFrame.GetMenuHash().containsKey(name)) {
-			OrderFrame.GettableInfo().add(new MenuButtonData(row, name, 1, price));
+			OrderFrame.GettableInfo().add(new MenuButtonData(row + 1, name, 1, price));
 			model.addRow(OrderFrame.GettableInfo().get(row).getTableRow());
 
 			OrderFrame.GetMenuHash().put(name, price);
@@ -62,7 +62,7 @@ public class MenuButtonAction implements ActionListener {
 
 		if (model.getRowCount() >= 1) {
 			for (int i = 0; i < model.getRowCount(); ++i) {
-				model.setValueAt(i, i, 0);
+				model.setValueAt(i + 1, i, 0);
 				test += Integer.parseInt((String.valueOf(model.getValueAt(i, 3))));
 			}
 			DecimalFormat formatter = new DecimalFormat("###,###");

@@ -23,7 +23,6 @@ public class PaymentFinishButton implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		new ReceiptLabel(table);
-		model = (DefaultTableModel) table.getModel();
 		model.setRowCount(0);
 		
 		OrderFrame.GettableInfo().removeAll(OrderFrame.GettableInfo());
