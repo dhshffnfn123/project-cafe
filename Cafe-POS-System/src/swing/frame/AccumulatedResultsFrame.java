@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import action.ExitAccumulatedResults;
 import swing.method.AccrualCompletionJOP;
 
 public class AccumulatedResultsFrame{

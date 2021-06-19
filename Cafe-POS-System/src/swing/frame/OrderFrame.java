@@ -32,6 +32,7 @@ import action.MenuListPrevButton;
 import action.MenuMinusButton;
 import action.MenuOptionButtonAction;
 import action.MenuPlusButton;
+import action.PaymentButtonAction;
 import action.PaymentFinishButton;
 import action.TableAllDelete;
 import jdbc.model.MenuButton;
@@ -49,7 +50,7 @@ public class OrderFrame extends DefaultFrame {
 
 	private JPanel center;
 	private JPanel top;
-	private JTable table;
+	private static JTable table;
 	private JScrollPane scrollPane;
 	private JTabbedPane menu;
 	private JTabbedPane drinks;
@@ -104,6 +105,10 @@ public class OrderFrame extends DefaultFrame {
 
 	public static ArrayList<MenuButtonData> GettableInfo() {
 		return tableInfo;
+	}
+	
+	public static JTable getTable() {
+		return table;
 	}
 
 	public OrderFrame() {
@@ -303,7 +308,8 @@ public class OrderFrame extends DefaultFrame {
 		allDelBtn.addActionListener(new TableAllDelete(table, tableInfo));
 		plusBtn.addActionListener(new MenuPlusButton(table));
 		choosepage.addMouseListener(new BackButtonMouseActionForOrderFrame(this, table));
-		payment.addActionListener(new PaymentFinishButton(table));
+//		payment.addActionListener(new PaymentFinishButton(table));
+		payment.addActionListener(new PaymentButtonAction());
 		
 
 		plusMinus.add(plusBtn);

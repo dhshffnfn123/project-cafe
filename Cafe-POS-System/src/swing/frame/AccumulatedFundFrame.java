@@ -26,13 +26,13 @@ import javax.swing.event.AncestorListener;
 
 import action.AccumulatedFundButton;
 import action.AccumulatedFundTextFiel;
-import action.ExitAccumulatedResults;
+import action.PaymentFinishButton;
 import action.SignUp;
 import swing.method.AccumulatedRoundedButton;
 import swing.method.RoundJTextField;
 
 
-public class AccumulatedFundFrame extends DefaultFrame{
+public class AccumulatedFundFrame extends JFrame {
 	
 	/*
 	 * setSize(), setPreferredSize() 둘다 크기를 지정해주는 메서드.
@@ -44,6 +44,7 @@ public class AccumulatedFundFrame extends DefaultFrame{
 		//(프레임)====================================================================
 		//기본 프레임 설정
 		setTitle("적립 화면");
+		setLayout(null);
 		setSize(680,520);
 		setLocation(500,100);
 		setResizable(false);
@@ -89,7 +90,7 @@ public class AccumulatedFundFrame extends DefaultFrame{
 		coupon_panelL.add(coupon_label);
 		
 		//오른쪽에 회원정보 띄우는 패널 추가
-		ArrayList<JPanel> panelR = new ArrayList();
+		ArrayList<JPanel> panelR = new ArrayList<>();
 		
 		for (int i = 0; i < 3; i++) {
 			panelR.add(new JPanel());
@@ -116,7 +117,7 @@ public class AccumulatedFundFrame extends DefaultFrame{
 
 		//(액션)======================================================================
 		//나가기 버튼 액션
-		exit.addActionListener(new ExitAccumulatedResults());
+		exit.addActionListener(new PaymentFinishButton(this, OrderFrame.getTable()));
 		//텍스트필드액션 불러오기
 		textField.addMouseListener(new AccumulatedFundTextFiel(textField));
 		//텍스트필드 비활성화 시켜서 키보드로 입력 못하게 막음.
@@ -200,7 +201,9 @@ public class AccumulatedFundFrame extends DefaultFrame{
 	public JFrame getAccumulatedFundFrame() {
 		return this;
 	}
+	
 	public static void main(String[] args) {
-		new AccumulatedFundFrame();	
+		
 	}
+	
 }

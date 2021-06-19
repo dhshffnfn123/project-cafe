@@ -3,13 +3,13 @@ package action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ExitAccumulatedResults implements ActionListener{
+import swing.frame.AccumulatedFundFrame;
 
-	//확인 종료 액션
+public class PaymentButtonAction implements ActionListener {
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.exit(0);
-		
+		new AccumulatedFundFrame();
 	}
 
 }
