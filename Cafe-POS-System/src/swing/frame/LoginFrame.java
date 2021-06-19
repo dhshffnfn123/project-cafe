@@ -109,7 +109,7 @@ public class LoginFrame extends DefaultFrame {
 		// 로그인 버튼 누르기
 		login_btn.addActionListener(new LoginButtonListener(combox, pwf, cbname, this));
 		// power Off 버튼 누르기
-		powerOffBtn.addActionListener(new PowerOffButtonAction(this));
+		powerOffBtn.addActionListener(new PowerOffButtonAction());
 		
 		setVisible(true);
 		this.repaint();

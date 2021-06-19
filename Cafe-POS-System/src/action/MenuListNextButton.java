@@ -40,7 +40,6 @@ public class MenuListNextButton implements ActionListener {
     	  i = 1;
       }
       
-      
    }
    
 }

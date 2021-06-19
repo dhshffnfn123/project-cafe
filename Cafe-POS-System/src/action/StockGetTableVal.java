@@ -26,30 +26,18 @@ public class StockGetTableVal implements MouseListener {
 		id = (String)model.getValueAt(row, 0);
 		name = (String) model.getValueAt(row, 1);
 		count = (int) model.getValueAt(row, 2);
-
-		System.out.println("ID : " + id);
-		System.out.println("NAME : " + name);
-		System.out.println("COUNT : " + count);
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
+	public void mousePressed(MouseEvent e) {}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
+	public void mouseReleased(MouseEvent e) {}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
+	public void mouseEntered(MouseEvent e) {}
 
 	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
+	public void mouseExited(MouseEvent e) {}
 
 }
