@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
 
 import jdbc.hikari.HikariCP;
 import swing.frame.AccumulatedFundFrame;
@@ -19,11 +22,19 @@ public class UpdatePointCoupon {
 	int point, coupon;
 	String name;
 	AccumulatedFundFrame accumulatedFundFrame;
+	private ArrayList<JPanel> panelR;
 	
-	public UpdatePointCoupon(String fieldTesxt, AccumulatedFundFrame accumulatedFundFrame) {
-		this.accumulatedFundFrame = accumulatedFundFrame;
+	public UpdatePointCoupon(String fieldTesxt, ArrayList<JPanel> panelR) {
+		this.panelR = panelR;
 		phoneNum = fieldTesxt;
 		
+		getPointCoupon();
+		//쿠폰이랑 포인트 DB에 업데이트시키기(try 바깥쪽에서 불러야지 다른 sql문을 실행할 수 있음)
+		DBUpdate();
+		new AccumulatedResultsFrame(phoneNum, point, coupon, panelR);
+	}
+	
+	private void getPointCoupon() {
 		try (
 				Connection conn = HikariCP.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -49,9 +60,7 @@ public class UpdatePointCoupon {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		//쿠폰이랑 포인트 DB에 업데이트시키기(try 바깥쪽에서 불러야지 다른 sql문을 실행할 수 있음)
-		DBUpdate();
-		new AccumulatedResultsFrame(accumulatedFundFrame, phoneNum, point, coupon);
+		
 	}
 	
 	private void DBUpdate() {
