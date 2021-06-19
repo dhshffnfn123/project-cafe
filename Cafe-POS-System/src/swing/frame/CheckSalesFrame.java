@@ -22,10 +22,10 @@ import javax.swing.table.TableColumnModel;
 import action.BackButtonMouseAction;
 import action.ChangePageActionForChooseFrame;
 import action.CheckSalesSelectButton;
-import action.CurrentTimeClock;
 import jdbc.method.TotalComboAddData;
 import jdbc.method.TotalInfo;
 import swing.method.BackButtonImgScale;
+import swing.method.CurrentTimeClock;
 
 public class CheckSalesFrame extends DefaultFrame {
 

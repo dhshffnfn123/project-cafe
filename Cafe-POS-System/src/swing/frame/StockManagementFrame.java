@@ -19,13 +19,13 @@ import javax.swing.table.TableColumnModel;
 
 import action.BackButtonMouseAction;
 import action.ChangePageActionForChooseFrame;
-import action.CurrentTimeClock;
 import action.StockAddBtnListener;
 import action.StockDeleteBtnListener;
 import action.StockGetTableVal;
 import action.StockTableAddData;
 import action.StockUpdateBtnListener;
 import swing.method.BackButtonImgScale;
+import swing.method.CurrentTimeClock;
 
 public class StockManagementFrame extends DefaultFrame {
 

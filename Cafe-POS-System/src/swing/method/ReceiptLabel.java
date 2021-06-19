@@ -1,17 +1,15 @@
-package jdbc.method;
+package swing.method;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.TextArea;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
-import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
 
+import jdbc.method.DeletereceiptInfo;
+import jdbc.method.ReceiptUpNumber;
+import jdbc.method.selectReceiptNumber;
 import swing.frame.ReceiptDefaultFrame;
 
 public class ReceiptLabel extends ReceiptDefaultFrame {

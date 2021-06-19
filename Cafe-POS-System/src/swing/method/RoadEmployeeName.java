@@ -1,4 +1,4 @@
-package jdbc.method;
+package swing.method;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

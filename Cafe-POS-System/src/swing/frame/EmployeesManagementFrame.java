@@ -27,13 +27,13 @@ import javax.swing.table.TableColumnModel;
 
 import action.BackButtonMouseAction;
 import action.ChangePageActionForChooseFrame;
-import action.CurrentTimeClock;
 import action.EmployeeInfoAddButtonAction;
 import action.EmployeeInfoDelButtonAction;
 import action.EmployeeInfoUpdateButtonAction;
 import action.GetTableInfoForMouseAction;
 import jdbc.method.SelectEmployeeInfo;
 import swing.method.BackButtonImgScale;
+import swing.method.CurrentTimeClock;
 
 public class EmployeesManagementFrame extends DefaultFrame {
 	/**

@@ -3,8 +3,8 @@ package swing.frame;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import jdbc.method.ReceiptJScrollPane;
-import jdbc.method.ReceiptLabel;
+import swing.method.ReceiptJScrollPane;
+import swing.method.ReceiptLabel;
 
 public class ReceiptDefaultFrame extends JFrame {
 	public ReceiptDefaultFrame() {

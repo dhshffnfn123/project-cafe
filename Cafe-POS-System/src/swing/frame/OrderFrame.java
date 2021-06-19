@@ -26,18 +26,19 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
 import action.BackButtonMouseActionForOrderFrame;
-import action.CurrentTimeClock;
 import action.MenuButtonAction;
 import action.MenuListNextButton;
 import action.MenuListPrevButton;
 import action.MenuMinusButton;
 import action.MenuOptionButtonAction;
 import action.MenuPlusButton;
+import action.PaymentFinishButton;
 import action.TableAllDelete;
 import jdbc.model.MenuButton;
 import jdbc.model.MenuButtonData;
 import jdbc.model.OptionButton;
 import swing.method.BackButtonImgScale;
+import swing.method.CurrentTimeClock;
 import swing.view.DrinkView;
 import swing.view.OptionView;
 import swing.view.ProductView;
@@ -287,6 +288,7 @@ public class OrderFrame extends DefaultFrame {
 		allDelBtn.addActionListener(new TableAllDelete(table, tableInfo));
 		plusBtn.addActionListener(new MenuPlusButton(table));
 		choosepage.addMouseListener(new BackButtonMouseActionForOrderFrame(this, table));
+		payment.addActionListener(new PaymentFinishButton(table));
 		
 
 		plusMinus.add(plusBtn);

@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import jdbc.method.ReceiptLabel;
 import swing.frame.OrderFrame;
+import swing.method.ReceiptLabel;
 
 // 결제완료시 영수증출력 후 테이블 정보 삭제
 public class PaymentFinishButton implements ActionListener {

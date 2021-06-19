@@ -1,4 +1,4 @@
-package action;
+package swing.method;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
