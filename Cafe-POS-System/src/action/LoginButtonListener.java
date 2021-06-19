@@ -68,14 +68,14 @@ public class LoginButtonListener implements ActionListener {
 
 		}
 		if (pass.equals(getpassword) && result.equals(getname)) {
-
-			System.out.println("로그인 성공");
-			System.out.println("얻어온 비밀번호 = " + pass);
+//
+//			System.out.println("로그인 성공");
+//			System.out.println("얻어온 비밀번호 = " + pass);
 			frame.dispose();
 			new ChoosePageFrame();
 		} else {
-			UIManager.put("OptionPane.messageFont", font1);
-			JOptionPane.showMessageDialog(null, "비밀번호가 맞지 않습니다", "SYSTEM", JOptionPane.CANCEL_OPTION);
+//			UIManager.put("OptionPane.messageFont", font1);
+			JOptionPane.showMessageDialog(null, "비밀번호가 맞지 않습니다.", "SYSTEM", JOptionPane.CANCEL_OPTION);
 		}
 
 	}
