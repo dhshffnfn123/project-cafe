@@ -1,18 +1,21 @@
-package jdbc.method;
+package swing.method;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import swing.method.RoundJTextField;
-
 //입력 번호가 틀릴시 뜨는 경고 팝업창
-public class AccumulatedFundJOptionPane extends JOptionPane{
+public class AccumulatedFundJOP extends JOptionPane{
+	ArrayList<JPanel> panelR;
 
-	public AccumulatedFundJOptionPane(RoundJTextField textField) {
+	public AccumulatedFundJOP(RoundJTextField textField, ArrayList<JPanel> panelR) {
+		this.panelR = panelR;
+		initializePanel();
 		
 		// 팝업창 더 깔끔하게 만들기
 		try {
@@ -27,16 +30,26 @@ public class AccumulatedFundJOptionPane extends JOptionPane{
 			jOptionPaneUI();
 			showMessageDialog(null, "번호를 입력해주세요", 
 					"오류", JOptionPane.OK_CANCEL_OPTION);
+
 		}else {
 			jOptionPaneUI();    
-			showMessageDialog(null, "일치하는 정보가 없습니다.\n회원이 아니실 경우, 회원가입을 진행해주세요.\n", 
+			showMessageDialog(null, "일치하는 정보가 없습니다.\n회원이 아닌 경우,\n회원등록을 진행해주세요.", 
 					"오류", JOptionPane.OK_CANCEL_OPTION);
+			
 		}
 	}
 	
 	// 팝업창 글꼴 설정
 	private void jOptionPaneUI() {
 		UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
+	}
+	//경고창 뜰때 나와있던 회원 정보 초기화
+	private void initializePanel() {
+		for (JPanel panel : panelR) {
+			panel.removeAll();
+			
+			panel.repaint();
+		}
 	}
 
 }
