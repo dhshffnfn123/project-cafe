@@ -9,8 +9,10 @@ import jdbc.hikari.HikariCP;
 import swing.frame.OrderFrame;
 
 public class RoadStockCount {
+	
 	private String sql = "SELECT stock_count FROM stock_table WHERE stock_name = ?";
 	private int updateCount;
+	
 	public RoadStockCount(String menu_name, int total_count) {
 		try (
 				Connection conn = HikariCP.getConnection();
@@ -27,4 +29,5 @@ public class RoadStockCount {
 			e.printStackTrace();
 		}
 	}
+	
 }

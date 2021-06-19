@@ -15,8 +15,6 @@ public class TotalComboAddData {
 	private JComboBox<String> year_combo, month_combo;
 	private String sql = "SELECT TO_CHAR(order_time, 'YYYY') FROM order_table GROUP BY TO_CHAR(order_time, 'YYYY')";
 	private String sql2 = "SELECT TO_CHAR(order_time, 'MM') FROM order_table GROUP BY TO_CHAR(order_time, 'MM')";
-
-
 	
 	public JComboBox<String> year_getComboBox() {
 		comboBox_addData();
@@ -27,8 +25,6 @@ public class TotalComboAddData {
 		return month_combo;
 	}
 
-	
-	
 	private void comboBox_addData() {
 		year_combo = new JComboBox<String>();
 		year_combo.addItem("년도 선택");
@@ -37,8 +33,6 @@ public class TotalComboAddData {
 		month_combo = new JComboBox<String>();
 		month_combo.addItem("월 선택");
 		month_combo.addItem("전체 월");
-		
-		
 		
 		try (
 				Connection conn = HikariCP.getConnection();
@@ -54,7 +48,6 @@ public class TotalComboAddData {
 			while (rs2.next()) {
 				month_combo.addItem(rs2.getString(1));
 			}
-
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

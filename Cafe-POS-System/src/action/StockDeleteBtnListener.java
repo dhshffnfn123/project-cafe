@@ -96,7 +96,7 @@ public class StockDeleteBtnListener implements ActionListener {
 
 				updatemodel.fireTableDataChanged();
 
-				UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
+				UIManager.put("OptionPane.messageFont", new Font("맑은 고딕", Font.PLAIN, 12));
 				JOptionPane.showMessageDialog(null, "재고품목이 삭제되었습니다", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}

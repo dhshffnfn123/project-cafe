@@ -27,9 +27,9 @@ import swing.method.ReceiptLabel;
 
 public class PasswordTextFieldListener implements ActionListener {
 
-	String cbname;
+	private String cbname;
 	private String pass;
-	char[] password;
+	private char[] password;
 	private String sql2 = "SELECT * FROM employees_table";
 	private Font font1 = new Font("맑은 고딕", Font.BOLD, 18);
 	private JFrame frame;
@@ -38,6 +38,7 @@ public class PasswordTextFieldListener implements ActionListener {
 	private String getpassword, getname, grade;
 	private String sql = "SELECT employee_name ,employee_id || '_' || employee_name, employee_pw FROM employees_table WHERE employee_name = ?";
 	private String name;
+	
 	public PasswordTextFieldListener(JComboBox<String> combox, String cbname, JPasswordField pwf, JFrame frame) {
 		this.cbname = cbname;
 		this.pwf = pwf;
@@ -81,8 +82,8 @@ public class PasswordTextFieldListener implements ActionListener {
 			frame.dispose();
 			new ChoosePageFrame(grade, result);
 		} else {
-			UIManager.put("OptionPane.messageFont", font1);
-			JOptionPane.showMessageDialog(null, "비밀번호가 맞지 않습니다", "SYSTEM", JOptionPane.CANCEL_OPTION);
+			UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
+			JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다", "SYSTEM", JOptionPane.CANCEL_OPTION);
 		}
 
 	}

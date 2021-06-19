@@ -15,14 +15,14 @@ import swing.frame.OrderFrame;
 
 public class MenuMinusButton implements ActionListener {
 
-	JTable table;
-	DefaultTableModel model;
-	JLabel totalmoney;
-	int price;
-	int quantity;
-	int originalPrice;
-	int tablemoney;
-	int test;
+	private JTable table;
+	private DefaultTableModel model;
+	private JLabel totalmoney;
+	private int price;
+	private int quantity;
+	private int originalPrice;
+	private int tablemoney;
+	private int test;
 
 	public MenuMinusButton(JTable table, JLabel totalmoney, int tablemoney) {
 		this.table = table;

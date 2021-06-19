@@ -12,6 +12,7 @@ import swing.frame.AccumulatedFundFrame;
 import swing.method.RoundJTextField;
 
 public class AccumulatedFundButton extends MouseAdapter {
+	
 	private AccumulatedFundFrame accumulatedFundFrame;
 	private RoundJTextField textField;
 	private ArrayList<JButton> numBtns;
@@ -19,6 +20,7 @@ public class AccumulatedFundButton extends MouseAdapter {
 	private StringBuilder phoneNum;
 	private ArrayList<JPanel> panelR;
 	private String grade, order_name;
+	
 	// 적립금텍스트필드리스너 생성자에서 텍스트필드 매개변수로 받기
 	public AccumulatedFundButton(AccumulatedFundFrame accumulatedFundFrame, RoundJTextField textField,
 			ArrayList<JButton> numBtns, StringBuilder phoneNum, ArrayList<JPanel> panelR2, String grade, String order_name) {

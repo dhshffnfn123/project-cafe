@@ -12,13 +12,13 @@ import swing.frame.OrderFrame;
 
 public class MenuPlusButton implements ActionListener {
 
-	JTable table;
-	int price;
-	int quantity;
-	int originalPrice;
-	int tablemoney;
-	JLabel totalmoney;
-	int test;
+	private JTable table;
+	private int price;
+	private int quantity;
+	private int originalPrice;
+	private int tablemoney;
+	private JLabel totalmoney;
+	private int test;
 
 	public MenuPlusButton(JTable table) {
 		this.table = table;

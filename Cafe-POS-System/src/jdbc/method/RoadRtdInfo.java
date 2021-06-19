@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import jdbc.hikari.HikariCP;
 
 public class RoadRtdInfo {
+	
 	private String sql = "SELECT rtd_name FROM rtd_table";
 
 	public RoadRtdInfo(String menu_name,int total_count) {
@@ -26,6 +27,6 @@ public class RoadRtdInfo {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
-	
 	}
+	
 }

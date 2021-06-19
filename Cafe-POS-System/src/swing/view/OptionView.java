@@ -42,9 +42,4 @@ public class OptionView {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void main(String[] args) {
-		ArrayList<String> name = new OptionView(120).getName();
-		System.out.println(name.toString());
-	}
 }

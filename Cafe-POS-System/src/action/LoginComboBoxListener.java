@@ -6,10 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 
 public class LoginComboBoxListener implements ActionListener {
-	private JComboBox combox;
+	
+	private JComboBox<String> combox;
 	String cbname;
 	
-	public LoginComboBoxListener(JComboBox combox) {
+	public LoginComboBoxListener(JComboBox<String> combox) {
 		this.combox = combox;
 	}
 

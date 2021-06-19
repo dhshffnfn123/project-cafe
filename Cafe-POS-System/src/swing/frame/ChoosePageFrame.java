@@ -16,15 +16,18 @@ import action.LogoutButtonAction;
 import swing.method.LogoutButtonImgScale;
 
 public class ChoosePageFrame extends DefaultFrame {
+
 	private String order_name, grade;
+
 	public ChoosePageFrame(String grade, String order_name) {
 		this.grade = grade;
 		this.order_name = order_name;
+
 		setTitle("Choose Page");
 		// getContentPane() 후 배경색 지정해야 변경가능
 		getContentPane().setBackground(Color.white);
 		// new Color(255, 255, 227)
-		
+
 		JButton logout = new LogoutButtonImgScale().getLogoutBtn();
 		logout.setBounds(5, 5, 60, 60);
 		logout.setBackground(Color.WHITE);
@@ -92,7 +95,6 @@ public class ChoosePageFrame extends DefaultFrame {
 		btns.get(3).addActionListener(channel);
 
 		add(btns.get(3));
-
 
 		this.repaint();
 //		setVisible(true);

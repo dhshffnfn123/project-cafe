@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import jdbc.hikari.HikariCP;
 
 public class StockTableAddData implements MouseListener {
+	
 	private String header[] = { "아이디", "품목명", "재고 수량" };
 	private DefaultTableModel model;
 	private String[][] data = new String[0][0];
@@ -37,13 +38,11 @@ public class StockTableAddData implements MouseListener {
 			public boolean isCellEditable(int row, int column) {
 				return false; // 불가능
 			}
-
 		};
 
 		table = new JTable(model);
 		model.fireTableDataChanged();
 		table.updateUI();
-
 	}
 
 	void Select_addData() {

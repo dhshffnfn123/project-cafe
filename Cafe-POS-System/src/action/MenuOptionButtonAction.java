@@ -18,7 +18,7 @@ public class MenuOptionButtonAction implements ActionListener {
 	private int price;
 	private int quantity = 1;
 	private int totalPrice;
-	int test = 0;
+	private int test = 0;
 
 	public MenuOptionButtonAction(JTable table, String name, int price) {
 		this.table = table;

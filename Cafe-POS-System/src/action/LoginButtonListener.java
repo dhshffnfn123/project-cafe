@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.UIManager;
 
 import jdbc.hikari.HikariCP;
 import jdbc.method.getEmployeeGrade;
@@ -78,8 +79,8 @@ public class LoginButtonListener implements ActionListener {
 			frame.dispose();
 			new ChoosePageFrame(grade, result);
 		} else {
-//			UIManager.put("OptionPane.messageFont", font1);
-			JOptionPane.showMessageDialog(null, "비밀번호가 맞지 않습니다.", "SYSTEM", JOptionPane.CANCEL_OPTION);
+			UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
+			JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.", "SYSTEM", JOptionPane.CANCEL_OPTION);
 		}
 
 	}

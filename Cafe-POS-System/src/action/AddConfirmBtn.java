@@ -30,11 +30,14 @@ public class AddConfirmBtn implements ActionListener {
 	private int countint;
 	private JTable table;
 	private DefaultTableCellRenderer dtcr_center;
-	Font bigger_font = new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 50);
-	Font big_font = new Font("∏º¿∫ ∞ÌµÒ", Font.PLAIN, 30);
-	Font nomal_font = new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 15);
-	Font small_font = new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 15);
+	
+	private Font bigger_font = new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 50);
+	private Font big_font = new Font("∏º¿∫ ∞ÌµÒ", Font.PLAIN, 30);
+	private Font nomal_font = new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 15);
+	private Font small_font = new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 15);
+	
 	private Color y_color = new Color(163, 148, 132);
+	
 	private String sql = "INSERT INTO stock_table VALUES ('A0000000' || TO_CHAR(stock_id_seq.nextval), ?, ?)";
 
 	public AddConfirmBtn(JTextField name, JTextField count, JTable table, JFrame frame) {
@@ -46,11 +49,16 @@ public class AddConfirmBtn implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
 		
-		try (Connection conn = HikariCP.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
+		try (
+				Connection conn = HikariCP.getConnection(); 
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+			) {
+			
 			nameVal = name.getText();
+			
 			if (nameVal.isEmpty()) {
+				UIManager.put("OptionPane.messageFont", new Font("∏º¿∫ ∞ÌµÒ", Font.PLAIN, 12));
 				JOptionPane.showMessageDialog(null, "¿Ã∏ß¿ª ¿‘∑¬«ÿ¡÷ººø‰.", "SYSTEM", JOptionPane.WARNING_MESSAGE);
 			} else {
 				countVal = count.getText();

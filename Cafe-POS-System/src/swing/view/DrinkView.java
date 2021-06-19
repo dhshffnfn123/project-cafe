@@ -44,15 +44,4 @@ public class DrinkView extends Drink {
 		}
 	}
 	
-	public static void main(String[] args) {
-		// ArrayList·Î »ç¿ë
-		ArrayList<String> name = new DrinkView(10).getName();
-		System.out.println(name.toString());
-		System.out.println(name.size());
-		
-		ArrayList<Integer> price = new DrinkView(10).getPrice();
-		System.out.println(price.toString());
-		System.out.println(price.size());
-	}
-	
 }

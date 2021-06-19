@@ -8,7 +8,9 @@ import java.sql.SQLException;
 import jdbc.hikari.HikariCP;
 
 public class UpdateStockCount {
+	
 	private String sql = "UPDATE stock_table SET stock_count = ? WHERE stock_name = ?";
+	
 	public UpdateStockCount(String menu_name, int total_count) {
 		try (
 				Connection conn = HikariCP.getConnection();
@@ -22,4 +24,5 @@ public class UpdateStockCount {
 			e.printStackTrace();
 		}
 	}
+	
 }

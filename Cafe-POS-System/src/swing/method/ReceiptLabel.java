@@ -14,6 +14,7 @@ import jdbc.method.selectReceiptNumber;
 import swing.frame.ReceiptDefaultFrame;
 
 public class ReceiptLabel extends ReceiptDefaultFrame {
+	
 	Random ran;
 	TextArea area;
 	String order_name, grade;
@@ -21,9 +22,11 @@ public class ReceiptLabel extends ReceiptDefaultFrame {
 	JTable table;
 	StringBuilder str_menu;
 	int sum;
+	
 	private SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private SimpleDateFormat f2 = new SimpleDateFormat("yyyyMMdd");
 	private String html, totalVat, vat, totalPrice;
+	
 	public ReceiptLabel(JTable table,String grade, String order_name) {
 		GetMenuInfo getmenu = new GetMenuInfo(table, grade, order_name);
 		this.grade = grade;
@@ -61,6 +64,7 @@ public class ReceiptLabel extends ReceiptDefaultFrame {
 		
 		add(new ReceiptTextArea(html));
 		new InsertOrderTable(sum);
+		
 		if (receiptNumber == 99) {
 			new DeletereceiptInfo();
 		}

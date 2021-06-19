@@ -23,11 +23,14 @@ public class ClickAccumulatedFundTextFile {
 	private String sql = "SELECT guest_name FROM guest_table";
 	private ArrayList<JPanel> panelR;
 	private String grade, order_name;
-	public ClickAccumulatedFundTextFile(RoundJTextField textField, ArrayList<JPanel> panelR, String grade, String order_name) {
+	
+	public ClickAccumulatedFundTextFile(RoundJTextField textField, ArrayList<JPanel> panelR,
+			String grade, String order_name) {
 		this.textField = textField;
 		this.panelR = panelR;
 		this.grade = grade;
 		this.order_name = order_name;
+		
 		fieldTesxt = textField.getText();
 		selectDB();
 	}

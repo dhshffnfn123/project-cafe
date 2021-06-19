@@ -8,13 +8,15 @@ import java.sql.SQLException;
 import jdbc.hikari.HikariCP;
 
 public class selectReceiptNumber {
+	
 	private String sql = "SELECT receipt_id FROM receipt_table ORDER BY receipt_id";
 	private int receiptNumber;
+	
 	public selectReceiptNumber() {
 		try (
 				Connection conn = HikariCP.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, 
-			             ResultSet.CONCUR_UPDATABLE);
+				PreparedStatement pstmt = conn.prepareStatement(sql, 
+						ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 				ResultSet rs = pstmt.executeQuery();
 
 		){
@@ -24,7 +26,9 @@ public class selectReceiptNumber {
 			e.printStackTrace();
 		}
 	}
+	
 	public int getReceiptNumber() {
 		return receiptNumber;
 	}
+	
 }

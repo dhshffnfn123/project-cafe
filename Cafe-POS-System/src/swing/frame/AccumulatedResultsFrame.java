@@ -18,9 +18,13 @@ import swing.method.AccrualCompletionJOP;
 
 public class AccumulatedResultsFrame{
 	private String order_name, grade;
-	public AccumulatedResultsFrame(String phoneNum, int point, int coupon,  ArrayList<JPanel> panelR, String grade, String order_name) {
+	
+	public AccumulatedResultsFrame(String phoneNum, int point, int coupon, 
+			ArrayList<JPanel> panelR, String grade, String order_name) {
+		
 		this.order_name = order_name;
 		this.grade = grade;
+		
 		//기존 정보 지우기
 		for (JPanel panel : panelR) {			
 			panel.removeAll();
@@ -47,7 +51,6 @@ public class AccumulatedResultsFrame{
 		
 		new AccrualCompletionJOP().showMessageDialog(null, "적립이 완료되었습니다.", 
 				"완료", JOptionPane.INFORMATION_MESSAGE);
-		
 	}
 	
 	private void label_style(JLabel label) {
@@ -57,15 +60,3 @@ public class AccumulatedResultsFrame{
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-

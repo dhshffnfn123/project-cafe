@@ -43,15 +43,5 @@ public class ProductView extends Product {
 			e.printStackTrace();
 		} 
 	}
-	
-	public static void main(String[] args) {
-		ArrayList<String> name = new ProductView(140).getName();
-		System.out.println(name.toString());
-		System.out.println(name.size());
-		
-		ArrayList<Integer> price = new ProductView(140).getPrice();
-		System.out.println(price.toString());
-		System.out.println(price.size());
-	}
 
 }

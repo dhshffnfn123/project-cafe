@@ -50,6 +50,7 @@ public class Order {
 	public void setEmployee_id(int employee_id) {
 		this.employee_id = employee_id;
 	}
+	
 	public int getOrder_total() {
 		return order_total;
 	}

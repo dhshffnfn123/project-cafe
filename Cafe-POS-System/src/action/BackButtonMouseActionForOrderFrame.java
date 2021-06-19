@@ -16,6 +16,7 @@ public class BackButtonMouseActionForOrderFrame implements MouseListener {
 	private JTable table;
 	private DefaultTableModel model;
 	private String grade, order_name;
+	
 	public BackButtonMouseActionForOrderFrame(JFrame frame, JTable table, String grade, String order_name) {
 		this.order_name = order_name;
 		this.grade = grade;

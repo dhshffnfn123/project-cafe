@@ -20,23 +20,23 @@ import swing.method.RoundedPanel;
 
 public class LoginFrame extends DefaultFrame {
 
-	JPanel panel, login_panel, test_panel;
-	JLabel image_label;
-	JScrollPane scrollPane;
-	ImageIcon icon;
-	JComboBox combox;
-	JPasswordField pwf;
-	Font font1 = new Font("¸¼Àº °íµñ", Font.BOLD, 18);
-	Font font2 = new Font("¸¼Àº °íµñ", Font.BOLD, 30);
-	JButton login_btn;
-	String cbname, password;
+	private JPanel panel, login_panel, test_panel;
+	private JLabel image_label;
+	private JScrollPane scrollPane;
+	private ImageIcon icon;
+	private JComboBox combox;
+	private JPasswordField pwf;
+	private JButton login_btn;
+	private String cbname, password;
+	
+	private Font font1 = new Font("¸¼Àº °íµñ", Font.BOLD, 18);
+	private Font font2 = new Font("¸¼Àº °íµñ", Font.BOLD, 30);
 
-	Color y_color = new Color(255, 255, 255);
-	LineBorder line = new LineBorder(new Color(3, 102, 53), 5, true);
+	private Color y_color = new Color(255, 255, 255);
+	private LineBorder line = new LineBorder(new Color(3, 102, 53), 5, true);
 	static int count = 0;
 
 	public LoginFrame() {
-
 		setTitle("Login Page");
 
 		JPanel panel = new JPanel();

@@ -21,8 +21,10 @@ import swing.frame.OrderFrame;
 import swing.frame.StockManagementFrame;
 
 public class ChangePageActionForChooseFrame implements ActionListener {
+	
 	private JFrame frame;
 	private String grade, order_name;
+	
 	public ChangePageActionForChooseFrame(JFrame frame, String grade, String order_name) {
 		this.order_name = order_name;
 		this.frame = frame;
@@ -39,8 +41,8 @@ public class ChangePageActionForChooseFrame implements ActionListener {
 				frame.dispose();
 				new EmployeesManagementFrame(grade, order_name);	
 			} else {
-				UIManager.put("OptionPane.messageFont", new Font("맑은 고딕", Font.BOLD, 45));
-				JOptionPane.showMessageDialog(null, "님목두 지시입니다. 돌아가세요", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
+				UIManager.put("OptionPane.messageFont", new Font("맑은 고딕", Font.PLAIN, 12));
+				JOptionPane.showMessageDialog(null, "접근 권한이 없습니다.", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
 			}
 			break;
 		case "판매 등록":

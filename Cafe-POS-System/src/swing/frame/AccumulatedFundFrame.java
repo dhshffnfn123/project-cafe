@@ -45,9 +45,12 @@ public class AccumulatedFundFrame extends JFrame {
 	private Toolkit kit;
 	private Image image;
 	private String grade, order_name;
+	
 	public AccumulatedFundFrame(String grade, String order_name) {
+		
 		this.grade = grade;
 		this.order_name = order_name;
+		
 		//(프레임)====================================================================
 		//기본 프레임 설정
 		kit = Toolkit.getDefaultToolkit();
