@@ -415,15 +415,17 @@ public class OrderFrame extends DefaultFrame {
 
 		// «œ¥‹ø° ∆‰¿Ã¡ˆ ≥—±Ê πˆ∆∞ √ﬂ∞°
 		JButton prev = new JButton("<<");
-		prev.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
+		prev.setFont(new Font("±√º≠√º", Font.BOLD, 23));
 		prev.setHorizontalAlignment(SwingConstants.RIGHT);
 		prev.setContentAreaFilled(false);
 		prev.setBorderPainted(false);
-		JLabel pageNum = new JLabel("Page1");
+		
+		JLabel pageNum = new JLabel("( 1 / " + menuPanels.size() + " )");
 		pageNum.setHorizontalAlignment(JLabel.CENTER);
-		pageNum.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
+		pageNum.setFont(new Font("µ∏¿Ω", Font.BOLD, 23));
+		
 		JButton next = new JButton(">>");
-		next.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
+		next.setFont(new Font("±√º≠√º", Font.BOLD, 23));
 		next.setContentAreaFilled(false);
 		next.setBorderPainted(false);
 		next.setHorizontalAlignment(SwingConstants.LEFT);
