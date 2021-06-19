@@ -16,7 +16,7 @@ public class MenuOptionButtonAction implements ActionListener {
 	private JTable table;
 	private String name;
 	private int price;
-	private int quantity;
+	private int quantity = 1;
 	private int totalPrice;
 	int test = 0;
 
@@ -42,10 +42,17 @@ public class MenuOptionButtonAction implements ActionListener {
 		}
 
 		if (model.getRowCount() >= 1) {
+			
 			for (int i = 0; i < model.getRowCount(); ++i) {
 				model.setValueAt(i, i, 0);
+				
+				model.setValueAt("¤¤" + name, row, 1);
+				model.setValueAt(quantity, row, 2);
+				model.setValueAt(price, row, 3);
+				
 				test += Integer.parseInt((String.valueOf(model.getValueAt(i, 3))));
 			}
+			
 			DecimalFormat formatter = new DecimalFormat("###,###");
 
 			OrderFrame.getTotalmoney().setText(String.valueOf(formatter.format(test)));
