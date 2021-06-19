@@ -26,6 +26,7 @@ import jdbc.method.TotalComboAddData;
 import jdbc.method.TotalInfo;
 import swing.method.BackButtonImgScale;
 import swing.method.CurrentTimeClock;
+import swing.method.LoginEmployeeInfoLabel;
 
 public class CheckSalesFrame extends DefaultFrame {
 
@@ -115,14 +116,28 @@ public class CheckSalesFrame extends DefaultFrame {
 		clock.setForeground(Color.WHITE);
 		top_panel_body.add(clock, BorderLayout.CENTER);
 
-		// 오른쪽에 로그인한 사람 정보 뜨게할 예정
-		JLabel login_name = new JLabel("직원 정보");
-		login_name.setFont(new Font("맑은 고딕", Font.BOLD, 23));
+		// 오른쪽에 로그인한 사람 정보
+		JPanel empInfo = new JPanel(new GridLayout(2, 1));
+		empInfo.setBackground(new Color(3, 102, 53));
+		
+		JLabel label = new JLabel();
+		label.setText("* 환영합니다. 현재 로그인 *");
+		label.setFont(new Font("맑은 고딕", Font.PLAIN, 16));
+		label.setHorizontalAlignment(JLabel.CENTER);
+		label.setForeground(Color.WHITE);
+		label.setBackground(new Color(3, 102, 53));
+		
+		JLabel login_name = LoginEmployeeInfoLabel.getLabel();
+		login_name.setFont(new Font("맑은 고딕", Font.BOLD, 19));
 		login_name.setForeground(Color.WHITE);
 		login_name.setHorizontalAlignment(JLabel.CENTER);
 		login_name.setOpaque(true);
 		login_name.setBackground(new Color(3, 102, 53));
-		top_panel_body.add(login_name, BorderLayout.EAST);
+		
+		empInfo.add(label);
+		empInfo.add(login_name);
+		
+		top_panel_body.add(empInfo, BorderLayout.EAST);
 
 		add(top_panel_body, BorderLayout.NORTH);
 		add(center, BorderLayout.CENTER);

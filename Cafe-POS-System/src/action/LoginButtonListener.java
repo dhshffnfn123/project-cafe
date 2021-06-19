@@ -4,31 +4,31 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
-import javax.swing.UIManager;
 
 import jdbc.hikari.HikariCP;
 import swing.frame.ChoosePageFrame;
-import swing.frame.DefaultFrame;
+import swing.method.LoginEmployeeInfoLabel;
 
 public class LoginButtonListener implements ActionListener {
 	private JFrame frame;
-	private String cbname, getname, getpassword, pass;
+	private static String cbname;
+	private String getname, getpassword, pass;
 	char[] password;
 	private String sql = "SELECT employee_name ,employee_id || '_' || employee_name, employee_pw FROM employees_table WHERE employee_name = ?";
 	private JComboBox combox;
 	private JPasswordField pwf;
-	private Font font1 = new Font("맑은 고딕", Font.BOLD, 18);
 	private int exit_count = 0;
+	private JLabel empInfo;
+	private Font font1 = new Font("맑은 고딕", Font.BOLD, 18);
 
 	public LoginButtonListener(JComboBox combox, JPasswordField pwf, String cbname, JFrame frame) {
 		this.combox = combox;
@@ -68,7 +68,8 @@ public class LoginButtonListener implements ActionListener {
 
 		}
 		if (pass.equals(getpassword) && result.equals(getname)) {
-//
+			// 로그인 성공시 로그인 한 직원 정보 넘기기
+			LoginEmployeeInfoLabel.getLabel().setText(cbname);
 //			System.out.println("로그인 성공");
 //			System.out.println("얻어온 비밀번호 = " + pass);
 			frame.dispose();

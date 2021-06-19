@@ -21,6 +21,7 @@ import javax.swing.table.JTableHeader;
 import jdbc.hikari.HikariCP;
 import swing.frame.ChoosePageFrame;
 import swing.frame.DefaultFrame;
+import swing.method.LoginEmployeeInfoLabel;
 
 public class PasswordTextFieldListener implements ActionListener {
 
@@ -72,8 +73,9 @@ public class PasswordTextFieldListener implements ActionListener {
 		}
 
 		if (pass.equals(getpassword) && result.equals(getname)) {
-			System.out.println("로그인 성공");
-			System.out.println("얻어온 비밀번호 = " + pass);
+//			System.out.println("로그인 성공");
+//			System.out.println("얻어온 비밀번호 = " + pass);
+			LoginEmployeeInfoLabel.getLabel().setText(cbname);
 			frame.dispose();
 			new ChoosePageFrame();
 		} else {

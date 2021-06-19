@@ -39,6 +39,7 @@ import jdbc.model.MenuButtonData;
 import jdbc.model.OptionButton;
 import swing.method.BackButtonImgScale;
 import swing.method.CurrentTimeClock;
+import swing.method.LoginEmployeeInfoLabel;
 import swing.view.DrinkView;
 import swing.view.OptionView;
 import swing.view.ProductView;
@@ -149,13 +150,27 @@ public class OrderFrame extends DefaultFrame {
 		top.add(infoTime);
 
 		// info
-		JLabel infouser = new JLabel(" 사용자 : 관리자 ");
-		infouser.setOpaque(true);
-		infouser.setFont(new Font("맑은 고딕", Font.BOLD, 23));
-		infouser.setHorizontalAlignment(JLabel.CENTER);
-		infouser.setBackground(new Color(3, 102, 53));
-		infouser.setForeground(Color.WHITE);
-		top.add(infouser);
+		JPanel empInfo = new JPanel(new GridLayout(2, 1));
+		empInfo.setBackground(new Color(3, 102, 53));
+		
+		JLabel label = new JLabel();
+		label.setText("* 환영합니다. 현재 로그인 *");
+		label.setFont(new Font("맑은 고딕", Font.PLAIN, 16));
+		label.setHorizontalAlignment(JLabel.CENTER);
+		label.setForeground(Color.WHITE);
+		label.setBackground(new Color(3, 102, 53));
+		
+		JLabel login_name = LoginEmployeeInfoLabel.getLabel();
+		login_name.setFont(new Font("맑은 고딕", Font.BOLD, 19));
+		login_name.setForeground(Color.WHITE);
+		login_name.setHorizontalAlignment(JLabel.CENTER);
+		login_name.setOpaque(true);
+		login_name.setBackground(new Color(3, 102, 53));
+
+		empInfo.add(label);
+		empInfo.add(login_name);
+		
+		top.add(empInfo);
 
 		// ============================================== Menu Plus, Minus, Size 버튼 생성
 		JPanel plusMinus = new JPanel(new GridLayout(1, 2));

@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import swing.frame.LoginFrame;
+import swing.method.LoginEmployeeInfoLabel;
 
 public class LogoutButtonAction implements MouseListener {
 
@@ -21,6 +22,7 @@ public class LogoutButtonAction implements MouseListener {
 		int result = JOptionPane.showConfirmDialog(null, "로그인 화면으로 돌아가시겠습니까?", "Confirm", JOptionPane.YES_NO_OPTION);
 		
 		if (result == JOptionPane.YES_OPTION) {
+			LoginEmployeeInfoLabel.getLabel().setText("");
 			frame.dispose();
 			new LoginFrame();
 		} 
