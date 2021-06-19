@@ -1,25 +1,36 @@
 package swing.frame;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 import action.ChangePageActionForChooseFrame;
+import action.LogoutButtonAction;
+import swing.method.LogoutButtonImgScale;
 
 public class ChoosePageFrame extends DefaultFrame {
 
 	public ChoosePageFrame() {
 		setTitle("Choose Page");
+		setLayout(new BorderLayout());
 		// getContentPane() 후 배경색 지정해야 변경가능
 		getContentPane().setBackground(Color.white);
 		// new Color(255, 255, 227)
+
+		
+		JButton logout = new LogoutButtonImgScale().getLogoutBtn();
+		logout.setBounds(5, 5, 60, 60);
+		logout.setBackground(Color.WHITE);
+		logout.addMouseListener(new LogoutButtonAction(this));
+		add(logout);
+
 		String[] btns_name = { "직원 관리", "판매 등록", "매출 조회", "재고 관리" };
 		ArrayList<JButton> btns = new ArrayList<>();
 
@@ -28,7 +39,6 @@ public class ChoosePageFrame extends DefaultFrame {
 		}
 
 		JLabel logo = new JLabel();
-
 		ImageIcon infoImg = new ImageIcon("./image/logo.png");
 		JLabel info = new JLabel(infoImg);
 		info.setOpaque(true);
@@ -47,7 +57,7 @@ public class ChoosePageFrame extends DefaultFrame {
 		// btns.get(i).setBackground(new Color(53, 84, 0));
 		btns.get(0).setBackground(new Color(3, 102, 53));
 		btns.get(0).addActionListener(channel);
-		
+
 		add(btns.get(0));
 
 		// ==================================================== 판매 등록 벙튼
@@ -83,8 +93,9 @@ public class ChoosePageFrame extends DefaultFrame {
 
 		add(btns.get(3));
 
+
 		this.repaint();
-		// setVisible(true);
+//		setVisible(true);
 		// repaint() : AWT안에 구현되어있기 때문에 Frame을 상속받으면 바로 사용 가능
 		// 추가된 컴포넌트들을 다시 제대로 업데이트해준다.
 		// (안해주면 프레임에 마우스를 올려야지 버튼이 뜸, setvisible(true)도 같은 역할을 해주는데 여기서는 안돼서 repaint로

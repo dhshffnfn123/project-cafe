@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
+import action.BackButtonMouseAction;
 import action.ChangePageActionForChooseFrame;
 import action.CurrentTimeClock;
 import action.StockAddBtnListener;
@@ -24,6 +25,7 @@ import action.StockDeleteBtnListener;
 import action.StockGetTableVal;
 import action.StockTableAddData;
 import action.StockUpdateBtnListener;
+import swing.method.BackButtonImgScale;
 
 public class StockManagementFrame extends DefaultFrame {
 
@@ -48,19 +50,20 @@ public class StockManagementFrame extends DefaultFrame {
 		// [TOP]
 		topPanel = new JPanel(new GridLayout(1, 3));
 		// µÚ·Î °¡±â ¹öÆ°
-		JButton back_btn = new JButton("<<");
+//		JButton back_btn = new JButton("<<");
+		JButton back_btn = new BackButtonImgScale().getBackBtn();
 		back_btn.setPreferredSize(new Dimension(100, 70));
-		back_btn.setFont(new Font("±Ã¼­", Font.BOLD, 30));
+		back_btn.setFont(new Font("±Ã¼­", Font.BOLD, 23));
 		back_btn.setBackground(new Color(3, 102, 53));
 		back_btn.setForeground(Color.WHITE);
 		back_btn.setBorderPainted(false);
 		topPanel.add(back_btn, BorderLayout.WEST);
 		back_btn.setHorizontalAlignment(SwingConstants.LEFT);
-		back_btn.addActionListener(new ChangePageActionForChooseFrame(this));
+		back_btn.addMouseListener(new BackButtonMouseAction(this));
 
 		// °¡¿îµ¥ ½Ã½ºÅÛ½Ã°è
 		JLabel clock = new CurrentTimeClock().setClock();
-		clock.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 25));
+		clock.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 23));
 		clock.setHorizontalAlignment(JLabel.CENTER);
 		clock.setOpaque(true);
 		clock.setBackground(new Color(3, 102, 53));
@@ -68,7 +71,7 @@ public class StockManagementFrame extends DefaultFrame {
 		topPanel.add(clock, BorderLayout.CENTER);
 		// ¿À¸¥ÂÊ¿¡ ·Î±×ÀÎÇÑ »ç¶÷ Á¤º¸ ¶ß°ÔÇÒ ¿¹Á¤
 		JLabel login_name = new JLabel("Á÷¿ø Á¤º¸");
-		login_name.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 30));
+		login_name.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 23));
 		login_name.setForeground(Color.WHITE);
 		login_name.setHorizontalAlignment(JLabel.CENTER);
 		login_name.setOpaque(true);
@@ -91,6 +94,7 @@ public class StockManagementFrame extends DefaultFrame {
 		scrollPane.setLocation(20, 20);
 		scrollPane.setSize(1160, 610);
 		scrollPane.setBorder(BorderFactory.createEmptyBorder()); // Å×ÀÌºí Å×µÎ¸® »èÁ¦
+		scrollPane.setBackground(Color.WHITE);
 
 		table.getTableHeader().setPreferredSize(new Dimension(100, 50));
 		table.getTableHeader().setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 25));

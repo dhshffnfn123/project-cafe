@@ -38,9 +38,6 @@ public class ChangePageActionForChooseFrame implements ActionListener {
 		case "재고 관리":
 			new StockManagementFrame();
 			break;
-		case "<<":
-			new ChoosePageFrame();
-			break;
 		}
 	}
 	

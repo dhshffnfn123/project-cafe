@@ -19,11 +19,13 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
+import action.BackButtonMouseAction;
 import action.ChangePageActionForChooseFrame;
 import action.CheckSalesSelectButton;
 import action.CurrentTimeClock;
 import jdbc.method.TotalComboAddData;
 import jdbc.method.TotalInfo;
+import swing.method.BackButtonImgScale;
 
 public class CheckSalesFrame extends DefaultFrame {
 
@@ -88,9 +90,11 @@ public class CheckSalesFrame extends DefaultFrame {
 		top_panel_body = new JPanel(new GridLayout());
 
 		// µÚ·Î °¡±â ¹öÆ°
-		JButton back_btn = new JButton("<<");
+//		JButton back_btn = new JButton("<<");
+		JButton back_btn = new BackButtonImgScale().getBackBtn();
 		back_btn.setPreferredSize(new Dimension(100, 70));
-		back_btn.setFont(new Font("±Ã¼­", Font.BOLD, 30));
+		back_btn.setFont(new Font("±Ã¼­", Font.BOLD, 23));
+		back_btn.addMouseListener(new BackButtonMouseAction(this));
 
 		// GridLayout¿¡ ¸ÂÃá ¹öÆ° ±Û¾¾ ¿ÞÂÊ Á¤·Ä
 		back_btn.setHorizontalAlignment(SwingConstants.LEFT);
@@ -104,7 +108,7 @@ public class CheckSalesFrame extends DefaultFrame {
 
 		// °¡¿îµ¥ ½Ã½ºÅÛ½Ã°è
 		JLabel clock = new CurrentTimeClock().setClock();
-		clock.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 25));
+		clock.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 23));
 		clock.setHorizontalAlignment(JLabel.CENTER);
 		clock.setOpaque(true);
 		clock.setBackground(new Color(3, 102, 53));
@@ -113,7 +117,7 @@ public class CheckSalesFrame extends DefaultFrame {
 
 		// ¿À¸¥ÂÊ¿¡ ·Î±×ÀÎÇÑ »ç¶÷ Á¤º¸ ¶ß°ÔÇÒ ¿¹Á¤
 		JLabel login_name = new JLabel("Á÷¿ø Á¤º¸");
-		login_name.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 30));
+		login_name.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 23));
 		login_name.setForeground(Color.WHITE);
 		login_name.setHorizontalAlignment(JLabel.CENTER);
 		login_name.setOpaque(true);

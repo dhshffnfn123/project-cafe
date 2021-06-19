@@ -25,6 +25,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
+import action.BackButtonMouseAction;
 import action.ChangePageActionForChooseFrame;
 import action.CurrentTimeClock;
 import action.EmployeeInfoAddButtonAction;
@@ -32,6 +33,7 @@ import action.EmployeeInfoDelButtonAction;
 import action.EmployeeInfoUpdateButtonAction;
 import action.GetTableInfoForMouseAction;
 import jdbc.method.SelectEmployeeInfo;
+import swing.method.BackButtonImgScale;
 
 public class EmployeesManagementFrame extends DefaultFrame {
 	/**
@@ -93,15 +95,16 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		right_panel_tab = new JTabbedPane();
 		right_panel_tab.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 		right_panel_tab.setBackground(Color.WHITE);
-		right_panel_tab.addTab("등　록", enrollTab());
-		right_panel_tab.addTab("수　정", updateTab());
-		right_panel_tab.addTab("삭　제", delTab());
+		right_panel_tab.addTab("등록", enrollTab());
+		right_panel_tab.addTab("수정", updateTab());
+		right_panel_tab.addTab("삭제", delTab());
 		right_panel_tab.setUI(new BasicTabbedPaneUI()); // tab 테두리 삭제
 
 		// -- [CENTER-TOP] --
 		top_panel_body = new JPanel(new GridLayout());
 		// 뒤로 가기 버튼
-		JButton back_btn = new JButton("<<");
+//		JButton back_btn = new JButton("<<");
+		JButton back_btn = new BackButtonImgScale().getBackBtn();
 		back_btn.setFont(new Font("맑은 고딕", Font.BOLD, 23));
 		back_btn.setPreferredSize(new Dimension(100, 70));
 		// GridLayout에 맞춘 버튼 글씨 왼쪽 정렬
@@ -111,7 +114,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		// 버튼 테두리 없애기
 		back_btn.setBorderPainted(false);
 		// 이미지 넣어서 MouseListener로 변경.
-		back_btn.addActionListener(new ChangePageActionForChooseFrame(this));
+		back_btn.addMouseListener(new BackButtonMouseAction(this));
 		
 		top_panel_body.add(back_btn, BorderLayout.WEST);
 		// 가운데 시스템시계

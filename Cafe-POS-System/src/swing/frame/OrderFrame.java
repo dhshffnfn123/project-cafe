@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
+import action.BackButtonMouseAction;
 import action.ChangePageActionForChooseFrame;
 import action.CurrentTimeClock;
 import action.MenuButtonAction;
@@ -40,6 +41,7 @@ import action.TableAllDelete;
 import jdbc.model.MenuButton;
 import jdbc.model.MenuButtonData;
 import jdbc.model.OptionButton;
+import swing.method.BackButtonImgScale;
 import swing.method.RoundJTextField;
 import swing.view.DrinkView;
 import swing.view.OptionView;
@@ -131,14 +133,14 @@ public class OrderFrame extends DefaultFrame {
 		totalmoney.setHorizontalAlignment(JLabel.CENTER);
 
 		// µÚ·Î°¡±â ¹öÆ°
-		JButton choosepage = new JButton("<<");
+//		JButton choosepage = new JButton("<<");
+		JButton choosepage = new BackButtonImgScale().getBackBtn();
 		choosepage.setOpaque(true);
 		choosepage.setBackground(new Color(3, 102, 53));
 		choosepage.setBorderPainted(false);
 		choosepage.setHorizontalAlignment(JButton.LEFT);
-		choosepage.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 23));
 		choosepage.setForeground(Color.WHITE);
-		choosepage.addActionListener(new ChangePageActionForChooseFrame(this));
+		choosepage.addMouseListener(new BackButtonMouseAction(this));
 		top.add(choosepage);
 
 		// infoTime

@@ -167,7 +167,6 @@ public class CheckSalesSelectButton implements ActionListener {
 			// 특정년도 특정월 모든 일 조회
 			} else if ((!(year.equals("전체 년도") && year.equals("년도 선택")))
 					&& (!(month.equals("전체 월") && month.equals("월 선택")))) {
-				System.out.println("월 조회됨");
 
 				pstmt_m.setString(1, String.format("%%%s%%", year)); //where문에 콤보박스 year값 삽입
 				pstmt_m.setString(2, String.format("%%%s%%", month)); //where문에 콤보박스 year값 삽입
