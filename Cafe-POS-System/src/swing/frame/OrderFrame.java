@@ -140,7 +140,6 @@ public class OrderFrame extends DefaultFrame {
 		choosepage.setBorderPainted(false);
 		choosepage.setHorizontalAlignment(JButton.LEFT);
 		choosepage.setForeground(Color.WHITE);
-		choosepage.addMouseListener(new BackButtonMouseAction(this));
 		top.add(choosepage);
 
 		// infoTime
@@ -292,9 +291,8 @@ public class OrderFrame extends DefaultFrame {
 		MinusBtn.addActionListener(new MenuMinusButton(table, totalmoney, tablemoney));
 		allDelBtn.addActionListener(new TableAllDelete(table, tableInfo));
 		plusBtn.addActionListener(new MenuPlusButton(table));
+		choosepage.addMouseListener(new BackButtonMouseAction(this, table));
 		
-		center_left.add(scrollPane, BorderLayout.CENTER);
-		center_left.add(left_south, BorderLayout.SOUTH);
 
 		plusMinus.add(plusBtn);
 		plusMinus.add(MinusBtn);
@@ -304,6 +302,9 @@ public class OrderFrame extends DefaultFrame {
 			sizeBtn.get(i).addActionListener(new MenuOptionButtonAction(table, sizeName.get(i), sizePrice.get(i)));
 		}
 
+		center_left.add(scrollPane, BorderLayout.CENTER);
+		center_left.add(left_south, BorderLayout.SOUTH);
+		
 		left_south.add(total); // ÃÑ ÇÕ°è
 		left_south.add(totalmoney); // ÃÑ ±Ý¾×
 		left_south.add(plusMinus); // ÇÃ-¸¶ ¹öÆ°
