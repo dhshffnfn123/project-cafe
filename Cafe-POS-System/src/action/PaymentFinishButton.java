@@ -7,20 +7,28 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import jdbc.method.ReceiptLabel;
+import swing.frame.OrderFrame;
 
 // 결제완료시 영수증출력 후 테이블 정보 삭제
-public class PaymentFinishButton implements ActionListener{
+public class PaymentFinishButton implements ActionListener {
+
 	DefaultTableModel model;
 	JTable table;
 
 	public PaymentFinishButton(JTable table) {
 		this.table = table;
-		this.model = (DefaultTableModel)table.getModel();
+		this.model = (DefaultTableModel) table.getModel();
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		new ReceiptLabel(table);
-		model.setNumRows(0);
-
+		model = (DefaultTableModel) table.getModel();
+		model.setRowCount(0);
+		
+		OrderFrame.GettableInfo().removeAll(OrderFrame.GettableInfo());
+//		tableInfo.removeAll(tableInfo);
+		OrderFrame.GetMenuHash().clear();
+		OrderFrame.getTotalmoney().setText(String.valueOf(0));
 	}
 }
