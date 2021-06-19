@@ -28,6 +28,7 @@ import action.AccumulatedFundButton;
 import action.AccumulatedFundTextFiel;
 import action.ExitAccumulatedResults;
 import action.SignUp;
+import swing.method.AccumulatedRoundedButton;
 import swing.method.RoundJTextField;
 
 
@@ -100,13 +101,14 @@ public class AccumulatedFundFrame extends DefaultFrame{
 		panelR.get(2).setBounds(435,170,200,60);
 		
 		//회원등록,나가기 버튼 추가
-		JButton register = new JButton("회원등록");
-		JButton exit = new JButton("나가기");
+		
+		AccumulatedRoundedButton exit = new AccumulatedRoundedButton("나가기");
+		AccumulatedRoundedButton register = new AccumulatedRoundedButton("회원등록");
 		
 		register_exit_style(register);
 		register_exit_style(exit);
 		
-		register.setBounds(400, 402, 100, 37);
+		register.setBounds(400, 402, 105, 37);
 		exit.setBounds(515, 402, 95, 37);
 	
 		ArrayList<JButton> numBtns = new ArrayList<>();
@@ -176,10 +178,7 @@ public class AccumulatedFundFrame extends DefaultFrame{
 	}
 	//회원등록,나가기 버튼 스타일
 	private void register_exit_style(JButton btn) {
-		btn.setFont(new Font("맑은 고딕",Font.PLAIN,16));
-		btn.setForeground(Color.white);
-		btn.setBackground(new Color(0,66,56));
-		btn.setBorderPainted(false);
+		btn.setFont(new Font("맑은 고딕",Font.BOLD,14));
 	}
     //phone,point,coupon 패널
 	private void panelL_style(JPanel panel) {

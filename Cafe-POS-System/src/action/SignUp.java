@@ -39,7 +39,11 @@ public class SignUp extends MouseAdapter {
 		if (Pattern.matches("0\\d{2}\\d{3,4}\\d{4}", guestName)) {
 			guestName = guestName.replaceAll("(0\\d{2})(\\d{3,4})(\\d{4})","$1-$2-$3");
 		}
-		
+		if (guestName.endsWith("전화번호를 입력하세요")) {
+			new AccrualCompletionJOP().showMessageDialog(null, "번호를 입력해주세요.", 
+					"경고", JOptionPane.OK_CANCEL_OPTION);
+			return;
+		}
 		try (
 				Connection conn = HikariCP.getConnection(); 
 				PreparedStatement pstmt = conn.prepareStatement(guestNameSql);
