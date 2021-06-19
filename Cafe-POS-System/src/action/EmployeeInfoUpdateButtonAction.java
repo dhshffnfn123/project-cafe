@@ -52,10 +52,11 @@ public class EmployeeInfoUpdateButtonAction implements ActionListener {
 				try (
 						Connection conn = HikariCP.getConnection();
 						PreparedStatement pstmt = conn.prepareStatement(sql);
-						) {
+					) {
+					
 					this.employee_id = fields.get(0).getText();
 					this.employee_name = fields.get(1).getText();
-					this.employee_pw = fields.get(2).getText();
+					this.employee_pw = fields.get(2).getText().trim();
 					this.employee_grade = (String)grade_box.getSelectedItem();
 					
 					pstmt.setString(1, employee_pw);
