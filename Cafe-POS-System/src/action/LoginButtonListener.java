@@ -13,11 +13,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
-import javax.swing.UIManager;
 
 import jdbc.hikari.HikariCP;
+import jdbc.method.getEmployeeGrade;
 import swing.frame.ChoosePageFrame;
 import swing.method.LoginEmployeeInfoLabel;
+import swing.method.ReceiptLabel;
 
 public class LoginButtonListener implements ActionListener {
 	private JFrame frame;
@@ -46,6 +47,7 @@ public class LoginButtonListener implements ActionListener {
 
 		password = pwf.getPassword();
 		pass = new String(password); // 입력한 값
+		String grade = new getEmployeeGrade(result).getGrade();
 
 		try (Connection conn = HikariCP.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
 
@@ -74,9 +76,9 @@ public class LoginButtonListener implements ActionListener {
 //			System.out.println("로그인 성공");
 //			System.out.println("얻어온 비밀번호 = " + pass);
 			frame.dispose();
-			new ChoosePageFrame();
+			new ChoosePageFrame(grade, result);
 		} else {
-			UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
+//			UIManager.put("OptionPane.messageFont", font1);
 			JOptionPane.showMessageDialog(null, "비밀번호가 맞지 않습니다.", "SYSTEM", JOptionPane.CANCEL_OPTION);
 		}
 

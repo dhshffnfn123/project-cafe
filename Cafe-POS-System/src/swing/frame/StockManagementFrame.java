@@ -29,7 +29,7 @@ import swing.method.CurrentTimeClock;
 import swing.method.LoginEmployeeInfoLabel;
 
 public class StockManagementFrame extends DefaultFrame {
-
+	private String grade, order_name;
 	private JPanel topPanel;
 	private JPanel center;
 	private JPanel right_panel;
@@ -44,7 +44,9 @@ public class StockManagementFrame extends DefaultFrame {
 	Font nomal_font = new Font("¸¼Àº °íµñ", Font.PLAIN, 15);
 	Font small_font = new Font("¸¼Àº °íµñ", Font.BOLD, 15);
 
-	public StockManagementFrame() {
+	public StockManagementFrame(String grade, String order_name) {
+		this.grade = grade;
+		this.order_name = order_name;
 		setLayout(new BorderLayout());
 		setTitle("Stock Management");
 
@@ -60,7 +62,7 @@ public class StockManagementFrame extends DefaultFrame {
 		back_btn.setBorderPainted(false);
 		topPanel.add(back_btn, BorderLayout.WEST);
 		back_btn.setHorizontalAlignment(SwingConstants.LEFT);
-		back_btn.addMouseListener(new BackButtonMouseAction(this));
+		back_btn.addMouseListener(new BackButtonMouseAction(this, grade, order_name));
 
 		// °¡¿îµ¥ ½Ã½ºÅÛ½Ã°è
 		JLabel clock = new CurrentTimeClock().setClock();

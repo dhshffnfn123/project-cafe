@@ -16,7 +16,7 @@ import swing.frame.ReceiptDefaultFrame;
 public class ReceiptLabel extends ReceiptDefaultFrame {
 	Random ran;
 	TextArea area;
-	String order_name;
+	String order_name, grade;
 	int receiptNumber;
 	JTable table;
 	StringBuilder str_menu;
@@ -24,15 +24,16 @@ public class ReceiptLabel extends ReceiptDefaultFrame {
 	private SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private SimpleDateFormat f2 = new SimpleDateFormat("yyyyMMdd");
 	private String html, totalVat, vat, totalPrice;
-	
-	public ReceiptLabel(JTable table) {
+	public ReceiptLabel(JTable table,String grade, String order_name) {
+		GetMenuInfo getmenu = new GetMenuInfo(table, grade, order_name);
+		this.grade = grade;
+		this.order_name = order_name;
 		new ReceiptUpNumber();
 		receiptNumber = new selectReceiptNumber().getReceiptNumber();
 		ran = new Random();
-		sum = new GetMenuInfo(table).getSum();
-		str_menu = new GetMenuInfo(table).getMenuInfo();
+		sum = getmenu.getSum();
+		str_menu = getmenu.getMenuInfo();
 		this.table = table;
-		order_name = new RoadEmployeeName().getEmployeeName();
 		totalVat = String.format("%s\t\t\t\t\t\t\t%11d\n", "부가세  과세물품가액", sum);
 		vat = String.format("%s\t\t\t\t\t\t%11d\n", "부          가          세 ", (int)(sum * 0.1));
 		totalPrice = String.format("%s\t\t\t\t\t\t\t\t%11d\n", "합 계 금 액", sum);

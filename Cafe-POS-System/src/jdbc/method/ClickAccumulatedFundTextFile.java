@@ -22,10 +22,12 @@ public class ClickAccumulatedFundTextFile {
 	private String fieldTesxt;
 	private String sql = "SELECT guest_name FROM guest_table";
 	private ArrayList<JPanel> panelR;
-
-	public ClickAccumulatedFundTextFile(RoundJTextField textField, ArrayList<JPanel> panelR) {
+	private String grade, order_name;
+	public ClickAccumulatedFundTextFile(RoundJTextField textField, ArrayList<JPanel> panelR, String grade, String order_name) {
 		this.textField = textField;
 		this.panelR = panelR;
+		this.grade = grade;
+		this.order_name = order_name;
 		fieldTesxt = textField.getText();
 		selectDB();
 	}
@@ -40,7 +42,7 @@ public class ClickAccumulatedFundTextFile {
 			){
 			while (rs.next()) {
 				if(rs.getString(1).equals(fieldTesxt)) {
-					new UpdatePointCoupon(fieldTesxt,panelR);
+					new UpdatePointCoupon(fieldTesxt,panelR, grade, order_name);
 					return;
 				}
 			}

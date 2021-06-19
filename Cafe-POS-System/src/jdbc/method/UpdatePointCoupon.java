@@ -24,14 +24,14 @@ public class UpdatePointCoupon {
 	AccumulatedFundFrame accumulatedFundFrame;
 	private ArrayList<JPanel> panelR;
 	
-	public UpdatePointCoupon(String fieldTesxt, ArrayList<JPanel> panelR) {
+	public UpdatePointCoupon(String fieldTesxt, ArrayList<JPanel> panelR, String grade, String order_name) {
 		this.panelR = panelR;
 		phoneNum = fieldTesxt;
 		
 		getPointCoupon();
 		//쿠폰이랑 포인트 DB에 업데이트시키기(try 바깥쪽에서 불러야지 다른 sql문을 실행할 수 있음)
 		DBUpdate();
-		new AccumulatedResultsFrame(phoneNum, point, coupon, panelR);
+		new AccumulatedResultsFrame(phoneNum, point, coupon, panelR, grade, order_name);
 	}
 	
 	private void getPointCoupon() {

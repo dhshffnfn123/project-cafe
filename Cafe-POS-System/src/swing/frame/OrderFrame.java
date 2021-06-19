@@ -70,6 +70,7 @@ public class OrderFrame extends DefaultFrame {
 	private static ArrayList<MenuButtonData> tableInfo;
 	private static JLabel totalmoney = new JLabel("");
 	private static Map<String, Integer> MenuHash = new HashMap<>();
+	private String grade, order_name;
 
 	static {
 		tableInfo = new ArrayList<MenuButtonData>();
@@ -111,7 +112,9 @@ public class OrderFrame extends DefaultFrame {
 		return table;
 	}
 
-	public OrderFrame() {
+	public OrderFrame(String grade, String order_name) {
+		this.order_name = order_name;
+		this.grade = grade;
 		setLayout(new BorderLayout());
 		setTitle("Point Of Sale");
 
@@ -307,9 +310,9 @@ public class OrderFrame extends DefaultFrame {
 		MinusBtn.addActionListener(new MenuMinusButton(table, totalmoney, tablemoney));
 		allDelBtn.addActionListener(new TableAllDelete(table, tableInfo));
 		plusBtn.addActionListener(new MenuPlusButton(table));
-		choosepage.addMouseListener(new BackButtonMouseActionForOrderFrame(this, table));
+		choosepage.addMouseListener(new BackButtonMouseActionForOrderFrame(this, table, grade, order_name));
 //		payment.addActionListener(new PaymentFinishButton(table));
-		payment.addActionListener(new PaymentButtonAction());
+		payment.addActionListener(new PaymentButtonAction(grade, order_name));
 		
 
 		plusMinus.add(plusBtn);

@@ -44,8 +44,10 @@ public class AccumulatedFundFrame extends JFrame {
 	
 	private Toolkit kit;
 	private Image image;
-	
-	public AccumulatedFundFrame() {
+	private String grade, order_name;
+	public AccumulatedFundFrame(String grade, String order_name) {
+		this.grade = grade;
+		this.order_name = order_name;
 		//(프레임)====================================================================
 		//기본 프레임 설정
 		kit = Toolkit.getDefaultToolkit();
@@ -111,8 +113,8 @@ public class AccumulatedFundFrame extends JFrame {
 		panelR.get(2).setBounds(435,170,200,60);
 		
 		//회원등록,나가기 버튼 추가
-		AccumulatedRoundedButton exit = new AccumulatedRoundedButton("나가기");
-		AccumulatedRoundedButton register = new AccumulatedRoundedButton("회원등록");
+		AccumulatedRoundedButton exit = new AccumulatedRoundedButton("나가기", grade, order_name);
+		AccumulatedRoundedButton register = new AccumulatedRoundedButton("회원등록", grade, order_name);
 		
 		register_exit_style(register);
 		register_exit_style(exit);
@@ -126,9 +128,9 @@ public class AccumulatedFundFrame extends JFrame {
 
 		//(액션)======================================================================
 		//나가기 버튼 액션
-		exit.addActionListener(new PaymentFinishButton(this, OrderFrame.getTable()));
+		exit.addActionListener(new PaymentFinishButton(this, OrderFrame.getTable(), grade, order_name));
 		//텍스트필드액션 불러오기
-		textField.addMouseListener(new AccumulatedFundTextFiel(textField));
+		textField.addMouseListener(new AccumulatedFundTextFiel(textField, grade, order_name));
 		//텍스트필드 비활성화 시켜서 키보드로 입력 못하게 막음.
 		textField.setEditable(false); 
 		
@@ -151,11 +153,11 @@ public class AccumulatedFundFrame extends JFrame {
 				num_button_style(numBtns,i);
 			}
 			//버튼 클릭시 일어나는 액션
-			numBtns.get(i).addMouseListener(new AccumulatedFundButton(this, textField, numBtns, phoneNum, panelR));
+			numBtns.get(i).addMouseListener(new AccumulatedFundButton(this, textField, numBtns, phoneNum, panelR, grade, order_name));
 		}
 		
 		//회원등록 버튼 액션
-		register.addMouseListener(new SignUp(textField, panelR));
+		register.addMouseListener(new SignUp(textField, panelR, grade, order_name));
 		
 		//(프레임에 추가하면서 마무리)========================================================
 		//번호패널에 번호 버튼들 추가

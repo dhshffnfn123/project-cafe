@@ -11,13 +11,18 @@ import java.awt.RenderingHints;
 import javax.swing.*;
 
 public class AccumulatedRoundedButton extends JButton {
-	public AccumulatedRoundedButton() {
+	private String grade, order_name;
+	public AccumulatedRoundedButton(String grade, String order_name) {
 		super();
+		this.order_name = order_name;
+		this.grade = grade;
 		decorate();
 	}
 
-	public AccumulatedRoundedButton(String text) {
+	public AccumulatedRoundedButton(String text, String grade, String order_name) {
 		super(text);
+		this.grade = grade;
+		this.order_name = order_name;
 		decorate();
 	}
 
@@ -43,6 +48,7 @@ public class AccumulatedRoundedButton extends JButton {
 
 	@Override
 	protected void paintComponent(Graphics g) {
+		
 		Color c = new Color(0,66,56); // 배경색 결정
 		Color o = Color.white; // 글자색 결정
 

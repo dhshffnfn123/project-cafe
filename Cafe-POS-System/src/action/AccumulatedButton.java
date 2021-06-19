@@ -14,12 +14,13 @@ public class AccumulatedButton extends MouseAdapter implements ActionListener {
 
 	RoundJTextField textField;
 	ArrayList<JButton> numBtns;
-	String btnNum;
-
+	String btnNum, grade, order_name;
 	// 적립금텍스트필드리스너 생성자에서 텍스트필드 매개변수로 받기
-	public AccumulatedButton(RoundJTextField textField, ArrayList<JButton> numBtns) {
+	public AccumulatedButton(RoundJTextField textField, ArrayList<JButton> numBtns, String grade, String order_name) {
 		this.textField = textField;
 		this.numBtns = numBtns;
+		this.grade = grade;
+		this.order_name = order_name;
 	}
 
 	@Override

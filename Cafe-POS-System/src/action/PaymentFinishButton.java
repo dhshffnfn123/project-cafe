@@ -17,8 +17,10 @@ public class PaymentFinishButton implements ActionListener {
 	DefaultTableModel model;
 	JTable table;
 	Frame frame;
-
-	public PaymentFinishButton(JFrame frame, JTable table) {
+	String grade, order_name;
+	public PaymentFinishButton(JFrame frame, JTable table, String grade, String order_name) {
+		this.grade = grade;
+		this.order_name = order_name;
 		this.frame = frame;
 		this.table = table;
 		this.model = (DefaultTableModel) table.getModel();
@@ -26,7 +28,7 @@ public class PaymentFinishButton implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		new ReceiptLabel(table);
+		new ReceiptLabel(table, grade, order_name);
 		model.setRowCount(0);
 		
 		OrderFrame.GettableInfo().removeAll(OrderFrame.GettableInfo());

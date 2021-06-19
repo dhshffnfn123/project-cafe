@@ -26,8 +26,10 @@ public class SignUp extends MouseAdapter {
 	private String guestName;
 	RoundJTextField textField;
 	ArrayList<JPanel> panelR;
-	
-	public SignUp(RoundJTextField textField, ArrayList<JPanel> panelR) {
+	private String order_name, grade;
+	public SignUp(RoundJTextField textField, ArrayList<JPanel> panelR, String grade, String order_name) {
+		this.grade = grade;
+		this.order_name = order_name;
 		this.textField = textField;
 		this.panelR = panelR;
 	}
@@ -81,7 +83,7 @@ public class SignUp extends MouseAdapter {
 			
 			new AccrualCompletionJOP().showMessageDialog(null, "회원등록이 완료되었습니다.", 
 					"완료", JOptionPane.INFORMATION_MESSAGE);
-			new UpdatePointCoupon(guestName, panelR);
+			new UpdatePointCoupon(guestName, panelR, grade, order_name);
 			
 		} catch (SQLException e1) {
 			e1.printStackTrace();

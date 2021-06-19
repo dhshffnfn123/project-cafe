@@ -18,15 +18,17 @@ public class AccumulatedFundButton extends MouseAdapter {
 	private String btnNum;
 	private StringBuilder phoneNum;
 	private ArrayList<JPanel> panelR;
-
+	private String grade, order_name;
 	// 적립금텍스트필드리스너 생성자에서 텍스트필드 매개변수로 받기
 	public AccumulatedFundButton(AccumulatedFundFrame accumulatedFundFrame, RoundJTextField textField,
-			ArrayList<JButton> numBtns, StringBuilder phoneNum, ArrayList<JPanel> panelR2) {
+			ArrayList<JButton> numBtns, StringBuilder phoneNum, ArrayList<JPanel> panelR2, String grade, String order_name) {
 		this.accumulatedFundFrame = accumulatedFundFrame;
 		this.textField = textField;
 		this.numBtns = numBtns;
 		this.phoneNum = phoneNum;
 		this.panelR = panelR2;
+		this.grade = grade;
+		this.order_name = order_name;
 	}
 
 	@Override // mouseReleased를 사용해야지 버튼들이 잘눌림
@@ -59,7 +61,7 @@ public class AccumulatedFundButton extends MouseAdapter {
 				}
 
 			} else if (btnNum.equals("적립")) {
-				new ClickAccumulatedFundTextFile(textField, panelR);
+				new ClickAccumulatedFundTextFile(textField, panelR, grade, order_name);
 				break; // 적립을 누르면 끝(break안하면 텍스트필드 값 여러번 뜸)
 			}
 
