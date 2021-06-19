@@ -42,14 +42,5 @@ public class RtdView extends Rtd {
 		} 
 	}
 	
-	public static void main(String[] args) {
-		ArrayList<String> name = new RtdView().getName();
-		System.out.println(name.toString());
-		System.out.println(name.size());
-		
-		ArrayList<Integer> price = new RtdView().getPrice();
-		System.out.println(price.toString());
-		System.out.println(price.size());
-	}
 
 }
