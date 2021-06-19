@@ -29,7 +29,7 @@ public class AccumulatedFundJOptionPane extends JOptionPane{
 					"오류", JOptionPane.OK_CANCEL_OPTION);
 		}else {
 			jOptionPaneUI();    
-			showMessageDialog(null, "일치하는 내용이 없습니다", 
+			showMessageDialog(null, "일치하는 정보가 없습니다.\n회원이 아니실 경우, 회원가입을 진행해주세요.\n", 
 					"오류", JOptionPane.OK_CANCEL_OPTION);
 		}
 	}

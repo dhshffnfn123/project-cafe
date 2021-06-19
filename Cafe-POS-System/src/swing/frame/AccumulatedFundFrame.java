@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -41,7 +42,7 @@ public class AccumulatedFundFrame extends DefaultFrame{
 		
 		//기본 프레임 설정
 		setTitle("적립 화면");
-		setSize(420,580);
+		setSize(680,520);
 		setLocation(500,100);
 		setResizable(false);
 		getContentPane().setBackground(new Color(243, 235, 207));
@@ -50,16 +51,38 @@ public class AccumulatedFundFrame extends DefaultFrame{
 		Font font = new Font("맑은 고딕", Font.PLAIN, 18);
 		RoundJTextField textField = new RoundJTextField(30);
 		textField.setFont(font);
-		textField.setBounds(76,60,260,65);
+		textField.setBounds(58,30,260,65);
 		textField.setForeground(new Color(160, 160, 160));
 		textField.setText("전화번호를 입력하세요");  
 		
 		//번호 버튼이 들어갈 패널 추가
 		JPanel num_panel = new JPanel();
-		num_panel.setPreferredSize(new Dimension(350,400));
-		num_panel.setBounds(55,160,300,330);
+		num_panel.setBounds(36,120,300,330);
 		num_panel.setLayout(new GridLayout(4,3,8,8));
 		num_panel.setBackground(new Color(245, 235, 208));
+		
+		//번호,포인트,쿠폰 필드 오른쪽에 추가
+		JPanel phone_panel = new JPanel();
+		JPanel point_panel = new JPanel();
+		JPanel coupon_panel = new JPanel();
+		right_panel_style(phone_panel);
+		right_panel_style(point_panel);
+		point_panel.setBounds(380, 100, 250, 60);
+		right_panel_style(coupon_panel);
+		coupon_panel.setBounds(380, 170, 250, 60);
+		
+		//오른쪽 필드들에 라벨 추가
+		JLabel phone_label = new JLabel("Phone");
+		JLabel point_label = new JLabel("Point");
+		JLabel coupon_label = new JLabel("Coupon");
+		
+		phone_label.setBounds(10, 0, 250, 70);
+		phone_label.setForeground(new Color(181,181,181));
+		phone_label.setFont(new Font("Yu Gothic Light",Font.BOLD,17));
+		
+		phone_panel.add(phone_label);
+		point_panel.add(point_label);
+		coupon_panel.add(coupon_label);
 		
 	
 		ArrayList<JButton> numBtns = new ArrayList<>();
@@ -107,6 +130,10 @@ public class AccumulatedFundFrame extends DefaultFrame{
 		}
 		
 		//프레임에 패널이랑 텍스트필드 추가
+		////////////////////////////////////////////
+		add(phone_panel);
+		add(point_panel);
+		add(coupon_panel);
 		add(num_panel);
 		add(textField);
 
@@ -121,6 +148,12 @@ public class AccumulatedFundFrame extends DefaultFrame{
 		numBtns.get(num).setForeground(Color.GRAY);
 		numBtns.get(num).setBorderPainted(false);
 		
+	}
+	
+	private void right_panel_style(JPanel panel) {
+		panel.setBounds(380,30,250,60);
+		panel.setLayout(null);
+		panel.setBackground(new Color(255, 255, 255));
 	}
 
 	public JFrame getAccumulatedFundFrame() {
