@@ -24,13 +24,14 @@ public class ReceiptLabel extends ReceiptDefaultFrame {
 	private SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private SimpleDateFormat f2 = new SimpleDateFormat("yyyyMMdd");
 	private String html, totalVat, vat, totalPrice;
-	
+	private GetMenuInfo menuInfo;
 	public ReceiptLabel(JTable table) {
 		new ReceiptUpNumber();
 		receiptNumber = new selectReceiptNumber().getReceiptNumber();
 		ran = new Random();
-		sum = new GetMenuInfo(table).getSum();
-		str_menu = new GetMenuInfo(table).getMenuInfo();
+		menuInfo = new GetMenuInfo(table);
+		sum = menuInfo.getSum();
+		str_menu = menuInfo.getMenuInfo();
 		this.table = table;
 		order_name = new RoadEmployeeName().getEmployeeName();
 		totalVat = String.format("%s\t\t\t\t\t\t\t%11d\n", "부가세  과세물품가액", sum);
@@ -64,4 +65,5 @@ public class ReceiptLabel extends ReceiptDefaultFrame {
 			new DeletereceiptInfo();
 		}
 	}
+
 }
