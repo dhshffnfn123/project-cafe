@@ -2,6 +2,8 @@ package swing.frame;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,7 +18,7 @@ import action.AddConfirmBtn;
 import action.StockCancelBtn;
 import action.UpdateConfirmBtn;
 
-public class StockUpdateFrame extends DefaultFrame {
+public class StockUpdateFrame extends JFrame {
 	
 	private JTable table;
 	private JTextField count_tf, tf;
@@ -27,14 +29,19 @@ public class StockUpdateFrame extends DefaultFrame {
 	private int id, count;
 	private Color y_color = new Color(163, 148, 132);
 
+	private Toolkit kit;
+	private Image image;
 	private Font font = new Font("¸¼Àº °íµñ", Font.BOLD, 18);
 	private Font small_font = new Font("¸¼Àº °íµñ", Font.BOLD, 15);
 	
 	public StockUpdateFrame(String name, String id, int count, JTable table) {
+		kit = Toolkit.getDefaultToolkit();
+		image = kit.getImage("./Image/Icon.png");
+		setIconImage(image);
 		
 		setTitle("Stock Update");
 		setLayout(null);
-		setLocation(1000, 400);
+		setLocation(1000, 500);
 		setSize(450, 280);
 		setResizable(false);
 		getContentPane().setBackground(Color.WHITE);

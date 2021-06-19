@@ -36,7 +36,6 @@ public class StockDeleteBtnListener implements ActionListener {
 
 	public StockDeleteBtnListener(JTable table) {
 		this.table = table;
-
 	}
 
 	@Override
@@ -46,52 +45,61 @@ public class StockDeleteBtnListener implements ActionListener {
 
 		if (row == -1) {
 //			UIManager.put("OptionPane.messageFont", nomal_font);
-			JOptionPane.showMessageDialog(null, "정보가 없습니다.", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "정보가 없습니다. 확인 해주세요.", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
 		} else {
-			id = String.valueOf(model.getValueAt(row, 0));
+			String check = String.format("ID : %s\n이 름 : %s\n삭제하는 것이 맞습니까?", table.getValueAt(row, 0),
+					table.getValueAt(row, 1));
+			int result = JOptionPane.showConfirmDialog(null, check, "SYSTEM", JOptionPane.YES_NO_OPTION);
 
-			try (Connection conn = HikariCP.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
+			if (result == JOptionPane.YES_OPTION) {
+				id = String.valueOf(model.getValueAt(row, 0));
 
-				pstmt.setString(1, id);
-				ResultSet rs = pstmt.executeQuery();
-				rs.close();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+				try (Connection conn = HikariCP.getConnection();
+						PreparedStatement pstmt = conn.prepareStatement(sql);) {
+
+					pstmt.setString(1, id);
+					ResultSet rs = pstmt.executeQuery();
+					rs.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+
+				DefaultTableModel originmodel = (DefaultTableModel) table.getModel();
+
+				DefaultTableModel updatemodel = (DefaultTableModel) (new StockTableAddData().getStockTable()
+						.getModel());
+
+				originmodel.setRowCount(0);
+
+				table.setModel(updatemodel);
+
+				table.getTableHeader().setReorderingAllowed(false); // 테이블 헤더 이동 안되게 하기
+				table.getTableHeader().setBackground(new Color(163, 148, 132));// 컬럼의 색상을 설정
+				table.getTableHeader().setFont(new Font("맑은 고딕", Font.BOLD, 25));
+				table.getTableHeader().setForeground(Color.white);
+
+				String[] header = new StockTableAddData().give_header();
+
+				table.getColumn(header[0]).setPreferredWidth(160); // 컬럼당 넓이 설정인데 모든 컬럼을 테이블의 넓이에 '얼추' 맞게 설정해야함
+				table.getColumn(header[1]).setPreferredWidth(900);
+				table.getColumn(header[2]).setPreferredWidth(160);
+				table.setFont(nomal_font);
+
+				dtcr_center = new DefaultTableCellRenderer();
+
+				dtcr_center.setHorizontalAlignment(SwingConstants.CENTER); // dtcr_center의 위치를 center로 지정
+
+				TableColumnModel ts = table.getColumnModel(); // 정렬할 테이블의 columnModel을 가져옴
+				ts.getColumn(0).setCellRenderer(dtcr_center);// product_id 컬럼을 센터 정렬
+				ts.getColumn(1).setCellRenderer(dtcr_center);
+				ts.getColumn(2).setCellRenderer(dtcr_center);
+
+				updatemodel.fireTableDataChanged();
+
+//				UIManager.put("OptionPane.messageFont", system_font);
+				JOptionPane.showMessageDialog(null, "재고품목이 삭제되었습니다", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
 			}
-
-			DefaultTableModel originmodel = (DefaultTableModel) table.getModel();
-
-			DefaultTableModel updatemodel = (DefaultTableModel) (new StockTableAddData().getStockTable().getModel());
-
-			originmodel.setRowCount(0);
-
-			table.setModel(updatemodel);
-
-			table.getTableHeader().setReorderingAllowed(false); // 테이블 헤더 이동 안되게 하기
-			table.getTableHeader().setBackground(new Color(163, 148, 132));// 컬럼의 색상을 설정
-			table.getTableHeader().setFont(new Font("맑은 고딕", Font.BOLD, 25));
-			table.getTableHeader().setForeground(Color.white);
-
-			String[] header = new StockTableAddData().give_header();
-
-			table.getColumn(header[0]).setPreferredWidth(160); // 컬럼당 넓이 설정인데 모든 컬럼을 테이블의 넓이에 '얼추' 맞게 설정해야함
-			table.getColumn(header[1]).setPreferredWidth(900);
-			table.getColumn(header[2]).setPreferredWidth(160);
-			table.setFont(nomal_font);
-
-			dtcr_center = new DefaultTableCellRenderer();
-
-			dtcr_center.setHorizontalAlignment(SwingConstants.CENTER); // dtcr_center의 위치를 center로 지정
-
-			TableColumnModel ts = table.getColumnModel(); // 정렬할 테이블의 columnModel을 가져옴
-			ts.getColumn(0).setCellRenderer(dtcr_center);// product_id 컬럼을 센터 정렬
-			ts.getColumn(1).setCellRenderer(dtcr_center);
-			ts.getColumn(2).setCellRenderer(dtcr_center);
-
-			updatemodel.fireTableDataChanged();
-
-//			UIManager.put("OptionPane.messageFont", system_font);
-			JOptionPane.showMessageDialog(null, "재고품목이 삭제되었습니다", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
 		}
+
 	}
 }

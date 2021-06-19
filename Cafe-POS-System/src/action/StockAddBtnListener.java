@@ -2,6 +2,8 @@ package action;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,20 +24,26 @@ public class StockAddBtnListener implements ActionListener {
 	private JTable table;
 	private Color y_color = new Color(163, 148, 132);
 	private Font font = new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 15);
+	private Toolkit kit;
+	private Image image;
 
 	public StockAddBtnListener(JTable table) {
 		this.table = table;
 	}
 
 	private JFrame AddTableData() {
-		addFrame = new DefaultFrame();
-		addFrame.setTitle("Add Stock");
+		addFrame = new JFrame("Add Stock");
 		addFrame.setLayout(null);
-		addFrame.setLocation(1000, 400);
+		addFrame.setLocation(1000, 500);
 		addFrame.setSize(400, 200);
 		addFrame.setResizable(false);
 		addFrame.getContentPane().setBackground(Color.white);
 		addFrame.setVisible(true);
+		
+		kit = Toolkit.getDefaultToolkit();
+		image = kit.getImage("./Image/Icon.png");
+		addFrame.setIconImage(image);
+		
 
 		// ∂Û∫ß
 		nameL = new JLabel("¿Ã∏ß");
