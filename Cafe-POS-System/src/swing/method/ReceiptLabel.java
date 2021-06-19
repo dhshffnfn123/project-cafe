@@ -8,6 +8,7 @@ import java.util.Random;
 import javax.swing.JTable;
 
 import jdbc.method.DeletereceiptInfo;
+import jdbc.method.InsertOrderTable;
 import jdbc.method.ReceiptUpNumber;
 import jdbc.method.selectReceiptNumber;
 import swing.frame.ReceiptDefaultFrame;
@@ -58,7 +59,7 @@ public class ReceiptLabel extends ReceiptDefaultFrame {
 				+ "결  제  일  시 : " + f1.format(Calendar.getInstance().getTime());
 		
 		add(new ReceiptTextArea(html));
-//		new InsertOrderTable(sum);
+		new InsertOrderTable(sum);
 		if (receiptNumber == 99) {
 			new DeletereceiptInfo();
 		}
