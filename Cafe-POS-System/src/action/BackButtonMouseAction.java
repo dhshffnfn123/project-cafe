@@ -10,8 +10,9 @@ import swing.frame.ChoosePageFrame;
 public class BackButtonMouseAction implements MouseListener {
 
 	private JFrame frame;
-	private String grade;
-	public BackButtonMouseAction(JFrame frame, String grade) {
+	private String grade, order_name;
+	public BackButtonMouseAction(JFrame frame, String grade, String order_name) {
+		this.order_name = order_name;
 		this.frame = frame;
 		this.grade = grade;
 	}
@@ -19,7 +20,7 @@ public class BackButtonMouseAction implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		frame.dispose();
-		new ChoosePageFrame(grade);
+		new ChoosePageFrame(grade, order_name);
 	}
 
 	@Override

@@ -38,13 +38,15 @@ public class StockManagementFrame extends DefaultFrame {
 	private JLabel title_label;
 	private JButton add_btn, update_btn, delete_btn, null_btn;
 	private DefaultTableCellRenderer dtcr_center, dtcr_right;
-	private String grade;
+	private String grade, order_name;
 	Font bigger_font = new Font("¸¼Àº °íµñ", Font.BOLD, 40);
 	Font big_font = new Font("¸¼Àº °íµñ", Font.BOLD, 30);
 	Font nomal_font = new Font("¸¼Àº °íµñ", Font.PLAIN, 15);
 	Font small_font = new Font("¸¼Àº °íµñ", Font.BOLD, 15);
 
-	public StockManagementFrame(String grade) {
+	public StockManagementFrame(String grade, String order_name) {
+		this.grade = grade;
+		this.order_name = order_name;
 		setLayout(new BorderLayout());
 		setTitle("Stock Management");
 
@@ -60,7 +62,7 @@ public class StockManagementFrame extends DefaultFrame {
 		back_btn.setBorderPainted(false);
 		topPanel.add(back_btn, BorderLayout.WEST);
 		back_btn.setHorizontalAlignment(SwingConstants.LEFT);
-		back_btn.addMouseListener(new BackButtonMouseAction(this, grade));
+		back_btn.addMouseListener(new BackButtonMouseAction(this, grade, order_name));
 
 		// °¡¿îµ¥ ½Ã½ºÅÛ½Ã°è
 		JLabel clock = new CurrentTimeClock().setClock();

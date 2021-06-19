@@ -49,11 +49,12 @@ public class EmployeesManagementFrame extends DefaultFrame {
 	private ArrayList<JLabel> labels;
 	private ArrayList<TextField> fields;
 	private JButton btn;
-
+	private String order_name;
 	private Color darkGray = new Color(161, 161, 161);
 	private Font bold30 = new Font("맑은 고딕", Font.BOLD, 30);
 	
-	public EmployeesManagementFrame(String grade) {
+	public EmployeesManagementFrame(String grade, String order_name) {
+		this.order_name = order_name;
 		this.grade = grade;
 		setLayout(new BorderLayout());
 		setTitle("Employees Management");
@@ -114,7 +115,7 @@ public class EmployeesManagementFrame extends DefaultFrame {
 		// 버튼 테두리 없애기
 		back_btn.setBorderPainted(false);
 		// 이미지 넣어서 MouseListener로 변경.
-		back_btn.addMouseListener(new BackButtonMouseAction(this, grade));
+		back_btn.addMouseListener(new BackButtonMouseAction(this, grade, order_name));
 		
 		top_panel_body.add(back_btn, BorderLayout.WEST);
 		// 가운데 시스템시계

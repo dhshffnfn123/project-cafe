@@ -23,6 +23,7 @@ import jdbc.method.getEmployeeGrade;
 import swing.frame.ChoosePageFrame;
 import swing.frame.DefaultFrame;
 import swing.method.LoginEmployeeInfoLabel;
+import swing.method.ReceiptLabel;
 
 public class PasswordTextFieldListener implements ActionListener {
 
@@ -78,7 +79,7 @@ public class PasswordTextFieldListener implements ActionListener {
 //			System.out.println("얻어온 비밀번호 = " + pass);
 			LoginEmployeeInfoLabel.getLabel().setText(cbname);
 			frame.dispose();
-			new ChoosePageFrame(grade);
+			new ChoosePageFrame(grade, result);
 		} else {
 			UIManager.put("OptionPane.messageFont", font1);
 			JOptionPane.showMessageDialog(null, "비밀번호가 맞지 않습니다", "SYSTEM", JOptionPane.CANCEL_OPTION);

@@ -15,8 +15,9 @@ public class BackButtonMouseActionForOrderFrame implements MouseListener {
 	private JFrame frame;
 	private JTable table;
 	private DefaultTableModel model;
-	private String name, grade;
-	public BackButtonMouseActionForOrderFrame(JFrame frame, JTable table, String grade) {
+	private String order_name, grade;
+	public BackButtonMouseActionForOrderFrame(JFrame frame, JTable table, String grade, String order_name) {
+		this.order_name = order_name;
 		this.grade = grade;
 		this.frame = frame;
 		this.table = table;
@@ -34,7 +35,7 @@ public class BackButtonMouseActionForOrderFrame implements MouseListener {
 
 		frame.dispose();
 
-		new ChoosePageFrame(grade);
+		new ChoosePageFrame(grade, order_name);
 	}
 
 	@Override

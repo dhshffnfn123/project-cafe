@@ -106,7 +106,7 @@ public class OrderFrame extends DefaultFrame {
 		return tableInfo;
 	}
 
-	public OrderFrame(String grade) {
+	public OrderFrame(String grade, String order_name) {
 		this.grade = grade;
 		setLayout(new BorderLayout());
 		setTitle("Point Of Sale");
@@ -303,8 +303,8 @@ public class OrderFrame extends DefaultFrame {
 		MinusBtn.addActionListener(new MenuMinusButton(table, totalmoney, tablemoney));
 		allDelBtn.addActionListener(new TableAllDelete(table, tableInfo));
 		plusBtn.addActionListener(new MenuPlusButton(table));
-		choosepage.addMouseListener(new BackButtonMouseActionForOrderFrame(this, table, grade));
-		payment.addActionListener(new PaymentFinishButton(table));
+		choosepage.addMouseListener(new BackButtonMouseActionForOrderFrame(this, table, grade, order_name));
+		payment.addActionListener(new PaymentFinishButton(table, order_name));
 		
 
 		plusMinus.add(plusBtn);
