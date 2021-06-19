@@ -427,9 +427,4 @@ public class OrderFrame extends DefaultFrame {
 
 		return menuPanelBase;
 	}
-
-	public static void main(String[] args) {
-		new OrderFrame();
-	}
-
 }

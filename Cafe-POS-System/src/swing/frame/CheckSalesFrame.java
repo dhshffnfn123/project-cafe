@@ -183,9 +183,4 @@ public class CheckSalesFrame extends DefaultFrame {
 			tcm.getColumn(i).setCellRenderer(dtcr);
 		}
 	}
-
-	public static void main(String[] args) {
-		new CheckSalesFrame();
-	}
-
 }

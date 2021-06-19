@@ -100,9 +100,4 @@ public class ChoosePageFrame extends DefaultFrame {
 		// (안해주면 프레임에 마우스를 올려야지 버튼이 뜸, setvisible(true)도 같은 역할을 해주는데 여기서는 안돼서 repaint로
 		// 함)
 	}
-
-	public static void main(String[] args) {
-		new ChoosePageFrame();
-	}
-
 }

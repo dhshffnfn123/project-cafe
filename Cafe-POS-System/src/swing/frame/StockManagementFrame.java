@@ -177,8 +177,4 @@ public class StockManagementFrame extends DefaultFrame {
 		setVisible(true);
 	}
 
-	public static void main(String[] args) {
-		new StockManagementFrame();
-	}
-
 }
