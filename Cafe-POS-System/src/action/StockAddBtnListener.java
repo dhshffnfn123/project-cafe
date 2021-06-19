@@ -2,17 +2,16 @@ package action;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
-import jdbc.hikari.HikariCP;
+import swing.frame.DefaultFrame;
 
 public class StockAddBtnListener implements ActionListener {
 
@@ -29,14 +28,14 @@ public class StockAddBtnListener implements ActionListener {
 	}
 
 	private JFrame AddTableData() {
-		addFrame = new JFrame("ADD STOCK");
+		addFrame = new DefaultFrame();
+		addFrame.setTitle("Add Stock");
 		addFrame.setLayout(null);
-		addFrame.setLocation(200, 200);
+		addFrame.setLocation(1000, 400);
 		addFrame.setSize(400, 200);
 		addFrame.setResizable(false);
 		addFrame.getContentPane().setBackground(Color.white);
 		addFrame.setVisible(true);
-//		addFrame.getContentPane().setBackground(y_color);
 
 		// 라벨
 		nameL = new JLabel("이름");

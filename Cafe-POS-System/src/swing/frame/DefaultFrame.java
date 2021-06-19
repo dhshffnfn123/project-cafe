@@ -1,5 +1,6 @@
 package swing.frame;
 
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 
@@ -17,6 +18,7 @@ public class DefaultFrame extends JFrame {
 		
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 17));
 		setSize(1500, 1000);
 		setLocation(450, 200);
 		setResizable(false);
