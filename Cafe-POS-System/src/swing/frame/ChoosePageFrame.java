@@ -19,7 +19,6 @@ public class ChoosePageFrame extends DefaultFrame {
 
 	public ChoosePageFrame() {
 		setTitle("Choose Page");
-		setLayout(new BorderLayout());
 		// getContentPane() 후 배경색 지정해야 변경가능
 		getContentPane().setBackground(Color.white);
 		// new Color(255, 255, 227)
