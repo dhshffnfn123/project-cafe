@@ -17,7 +17,7 @@ public class DefaultFrame extends JFrame {
 		setIconImage(image);
 		
 		setLayout(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 17));
 		setSize(1500, 1000);
 		setLocation(450, 200);

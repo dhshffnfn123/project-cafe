@@ -15,7 +15,9 @@ import javax.swing.border.LineBorder;
 
 import action.LoginButtonListener;
 import action.PasswordTextFieldListener;
+import action.PowerOffButtonAction;
 import jdbc.method.LoginComboxData;
+import swing.method.PowerOffButtonImgScale;
 import swing.method.RoundedPanel;
 
 public class LoginFrame extends DefaultFrame {
@@ -24,10 +26,11 @@ public class LoginFrame extends DefaultFrame {
 	private JLabel image_label;
 	private JScrollPane scrollPane;
 	private ImageIcon icon;
-	private JComboBox combox;
+	private JComboBox<String> combox;
 	private JPasswordField pwf;
 	private JButton login_btn;
 	private String cbname, password;
+	private JButton powerOffBtn;
 	
 	private Font font1 = new Font("맑은 고딕", Font.BOLD, 18);
 	private Font font2 = new Font("맑은 고딕", Font.BOLD, 30);
@@ -94,12 +97,19 @@ public class LoginFrame extends DefaultFrame {
 		pwf.setFont(font1);
 
 		login_panel.add(pwf);
+		
+		// ============================================= 전원 버튼
+		powerOffBtn = new PowerOffButtonImgScale().getPowerOffBtn();
+		powerOffBtn.setBounds(1410, 890, 50, 50);
+
+		panel.add(powerOffBtn);
 
 		// PasswordField 엔터 누르기
 		pwf.addActionListener(new PasswordTextFieldListener(combox, cbname, pwf, this));
 		// 로그인 버튼 누르기
 		login_btn.addActionListener(new LoginButtonListener(combox, pwf, cbname, this));
-
+		// power Off 버튼 누르기
+		powerOffBtn.addActionListener(new PowerOffButtonAction(this));
 		
 		setVisible(true);
 		this.repaint();
