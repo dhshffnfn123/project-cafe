@@ -5,9 +5,9 @@ import javax.swing.JButton;
 public class OptionButton extends JButton {
 	
 	private String name;
-	private int price;
+	private Integer price;
 	
-	public OptionButton(String name, int price) {
+	public OptionButton(String name, Integer price) {
 		super("<HTML><body style='text-align:center;'>" + name + "<br>+" + price + "</HTML>");
 		this.setName(name);
 		this.setPrice(price);
@@ -21,11 +21,11 @@ public class OptionButton extends JButton {
 		this.name = name;
 	}
 
-	public int getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 	
