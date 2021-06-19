@@ -16,7 +16,7 @@ import action.AddConfirmBtn;
 import action.StockCancelBtn;
 import action.UpdateConfirmBtn;
 
-public class StockUpdateFrame extends JFrame {
+public class StockUpdateFrame extends DefaultFrame {
 	
 	private JTable table;
 	private JTextField count_tf, tf;
@@ -32,9 +32,9 @@ public class StockUpdateFrame extends JFrame {
 	
 	public StockUpdateFrame(String name, String id, int count, JTable table) {
 		
-		setTitle("STOCK_UPDATE");
+		setTitle("Stock Update");
 		setLayout(null);
-		setLocation(200, 200);
+		setLocation(1000, 400);
 		setSize(450, 280);
 		setResizable(false);
 		getContentPane().setBackground(Color.WHITE);
