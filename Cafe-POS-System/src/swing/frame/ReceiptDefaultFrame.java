@@ -6,8 +6,9 @@ import javax.swing.JLabel;
 import swing.method.ReceiptJScrollPane;
 import swing.method.ReceiptLabel;
 
-public class ReceiptDefaultFrame extends JFrame {
+public class ReceiptDefaultFrame extends DefaultFrame {
 	public ReceiptDefaultFrame() {
+		setTitle("Receipt");
 		new ReceiptJScrollPane();
 		setLayout(null);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
