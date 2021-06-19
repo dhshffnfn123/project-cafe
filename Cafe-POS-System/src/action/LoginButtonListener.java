@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.UIManager;
 
 import jdbc.hikari.HikariCP;
 import swing.frame.ChoosePageFrame;
@@ -75,7 +76,7 @@ public class LoginButtonListener implements ActionListener {
 			frame.dispose();
 			new ChoosePageFrame();
 		} else {
-//			UIManager.put("OptionPane.messageFont", font1);
+			UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
 			JOptionPane.showMessageDialog(null, "비밀번호가 맞지 않습니다.", "SYSTEM", JOptionPane.CANCEL_OPTION);
 		}
 

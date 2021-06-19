@@ -72,8 +72,8 @@ public class AddConfirmBtn implements ActionListener {
 				table.setModel(updatemodel);
 				
 				table.getTableHeader().setReorderingAllowed(false); // 테이블 헤더 이동 안되게 하기
-				table.getTableHeader().setBackground(y_color);// 컬럼의 색상을 설정
-				table.getTableHeader().setFont(big_font);
+				table.getTableHeader().setBackground(new Color(0, 66, 56));// 컬럼의 색상을 설정
+				table.getTableHeader().setFont(new Font("맑은 고딕", Font.PLAIN, 25));
 				table.getTableHeader().setForeground(Color.white);
 				
 				String[] header = new StockTableAddData().give_header();
@@ -81,7 +81,7 @@ public class AddConfirmBtn implements ActionListener {
 				table.getColumn(header[0]).setPreferredWidth(160); // 컬럼당 넓이 설정인데 모든 컬럼을 테이블의 넓이에 '얼추' 맞게 설정해야함
 				table.getColumn(header[1]).setPreferredWidth(900);
 				table.getColumn(header[2]).setPreferredWidth(160);
-				table.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+				table.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 				
 				dtcr_center = new DefaultTableCellRenderer();
 				
@@ -94,17 +94,17 @@ public class AddConfirmBtn implements ActionListener {
 				
 				updatemodel.fireTableDataChanged();
 				
-//			UIManager.put("OptionPane.messageFont", nomal_font);
+				UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
 				JOptionPane.showMessageDialog(null, "데이터가 추가되었습니다.", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
 				frame.dispose();
 			}
 		} catch (SQLDataException e3) {
-//            UIManager.put("OptionPane.messageFont", system_font);
+			UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
             JOptionPane.showMessageDialog(null, "입력 가능한 숫자를 벗어났습니다.", "SYSTEM", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException e1) {
 			e1.printStackTrace();
 		} catch (NumberFormatException e2) {
-//			UIManager.put("OptionPane.messageFont", nomal_font);
+			UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
 			JOptionPane.showMessageDialog(null, "수량을 잘못 입력하셨습니다.", "SYSTEM", JOptionPane.ERROR_MESSAGE);
 			System.out.println(e2);
 		}

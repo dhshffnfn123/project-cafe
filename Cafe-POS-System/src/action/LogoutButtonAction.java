@@ -1,10 +1,12 @@
 package action;
 
+import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 import swing.frame.LoginFrame;
 import swing.method.LoginEmployeeInfoLabel;
@@ -20,7 +22,7 @@ public class LogoutButtonAction implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		int result = JOptionPane.showConfirmDialog(null, "로그인 화면으로 돌아가시겠습니까?", "Confirm", JOptionPane.YES_NO_OPTION);
-		
+		UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
 		if (result == JOptionPane.YES_OPTION) {
 			LoginEmployeeInfoLabel.getLabel().setText("");
 			frame.dispose();

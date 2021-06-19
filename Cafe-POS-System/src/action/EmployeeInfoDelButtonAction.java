@@ -14,6 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -40,10 +41,12 @@ public class EmployeeInfoDelButtonAction implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (fields.get(0).getText().isEmpty()) {
+			UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
 			JOptionPane.showMessageDialog(null, "삭제할 직원 정보를 선택해주세요.", "Guide Message", JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			String message = String.format("직원 아이디: %s\n이 름: %s\n삭제하는 것이 맞습니까?", fields.get(0).getText(), fields.get(1).getText());
 			// 사용자의 응답을 int로 반환
+			UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
 			int result = JOptionPane.showConfirmDialog(null, message, "Confirm Message", JOptionPane.YES_NO_OPTION);
 			// YES인 경우에만 정보 삭제
 			if (result == JOptionPane.YES_OPTION) {

@@ -66,7 +66,7 @@ public class UpdateConfirmBtn implements ActionListener {
          table.setModel(updatemodel);
          
          table.getTableHeader().setReorderingAllowed(false); // 테이블 헤더 이동 안되게 하기
-         table.getTableHeader().setBackground(new Color(163, 148, 132));// 컬럼의 색상을 설정
+         table.getTableHeader().setBackground(new Color(0, 66, 56));// 컬럼의 색상을 설정
          table.getTableHeader().setFont(new Font("맑은 고딕", Font.BOLD, 25));
          table.getTableHeader().setForeground(Color.white);
          
@@ -88,17 +88,17 @@ public class UpdateConfirmBtn implements ActionListener {
          
          updatemodel.fireTableDataChanged();
          
-//         UIManager.put("OptionPane.messageFont", system_font);
+         UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
          JOptionPane.showMessageDialog(null, "재고수량이 수정되었습니다", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
          frame.dispose();
       } catch (SQLDataException e3) {
-//        UIManager.put("OptionPane.messageFont", system_font);
-        JOptionPane.showMessageDialog(null, "입력 가능한 숫자를 벗어났습니다.", "SYSTEM", JOptionPane.ERROR_MESSAGE);
+    	  UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
+    	  JOptionPane.showMessageDialog(null, "입력 가능한 숫자를 벗어났습니다.", "SYSTEM", JOptionPane.ERROR_MESSAGE);
       } catch (SQLException e1) {
          e1.printStackTrace();
       } catch (NumberFormatException e2) {
-//         UIManager.put("OptionPane.messageFont", system_font);
-         JOptionPane.showMessageDialog(null, "수량을 잘못 입력하셨습니다.", "SYSTEM", JOptionPane.ERROR_MESSAGE);
+    	  UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
+    	  JOptionPane.showMessageDialog(null, "수량을 잘못 입력하셨습니다.", "SYSTEM", JOptionPane.ERROR_MESSAGE);
       }
 
    }

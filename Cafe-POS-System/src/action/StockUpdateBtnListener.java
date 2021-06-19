@@ -39,7 +39,7 @@ public class StockUpdateBtnListener implements ActionListener {
 		TableModel model = table.getModel();
 	
 		if (row == -1) {
-//			UIManager.put("OptionPane.messageFont", nomal_font);
+			UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
 			JOptionPane.showMessageDialog(null, "정보가 없습니다.", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			id = String.valueOf(model.getValueAt(row, 0));

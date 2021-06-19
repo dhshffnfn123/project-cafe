@@ -1,5 +1,6 @@
 package action;
 
+import java.awt.Font;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -43,11 +45,13 @@ public class EmployeeInfoUpdateButtonAction implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (fields.get(0).getText().isEmpty()) {
+			UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
 			JOptionPane.showMessageDialog(null, "변경할 직원 정보를 선택해주세요.", "Guide Message", JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			String message = String.format("직원 아이디: %s\n이 름: %s\n수정하시겠습니까?", fields.get(0).getText(), fields.get(1).getText());
+			UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
 			int result = JOptionPane.showConfirmDialog(null, message, "Confirm Message", JOptionPane.YES_NO_OPTION);
-			
+
 			if (result == JOptionPane.YES_OPTION) {
 				try (
 						Connection conn = HikariCP.getConnection();

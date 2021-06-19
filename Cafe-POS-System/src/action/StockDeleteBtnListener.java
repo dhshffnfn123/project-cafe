@@ -74,7 +74,7 @@ public class StockDeleteBtnListener implements ActionListener {
 				table.setModel(updatemodel);
 
 				table.getTableHeader().setReorderingAllowed(false); // 테이블 헤더 이동 안되게 하기
-				table.getTableHeader().setBackground(new Color(163, 148, 132));// 컬럼의 색상을 설정
+				table.getTableHeader().setBackground(new Color(0, 66, 56));// 컬럼의 색상을 설정
 				table.getTableHeader().setFont(new Font("맑은 고딕", Font.BOLD, 25));
 				table.getTableHeader().setForeground(Color.white);
 
@@ -96,7 +96,7 @@ public class StockDeleteBtnListener implements ActionListener {
 
 				updatemodel.fireTableDataChanged();
 
-//				UIManager.put("OptionPane.messageFont", system_font);
+				UIManager.put("OptionPane.messageFont",new Font("맑은 고딕",Font.PLAIN,12));
 				JOptionPane.showMessageDialog(null, "재고품목이 삭제되었습니다", "SYSTEM", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}

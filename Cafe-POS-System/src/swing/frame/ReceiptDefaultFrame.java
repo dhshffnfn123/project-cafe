@@ -13,9 +13,8 @@ public class ReceiptDefaultFrame extends DefaultFrame {
 		setLayout(null);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(650, 1000);
-		setLocation(700, 0);
+		setLocation(1000, 250);
 		setResizable(false);
 		setVisible(true);
-	
 	}
 }

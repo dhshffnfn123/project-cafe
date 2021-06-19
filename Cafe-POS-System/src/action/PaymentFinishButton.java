@@ -30,7 +30,6 @@ public class PaymentFinishButton implements ActionListener {
 		model.setRowCount(0);
 		
 		OrderFrame.GettableInfo().removeAll(OrderFrame.GettableInfo());
-//		tableInfo.removeAll(tableInfo);
 		OrderFrame.GetMenuHash().clear();
 		OrderFrame.getTotalmoney().setText(String.valueOf(0));
 		

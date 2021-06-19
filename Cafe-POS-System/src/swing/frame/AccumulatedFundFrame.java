@@ -7,6 +7,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -40,13 +42,20 @@ public class AccumulatedFundFrame extends JFrame {
 	 * 
 	 * */
 	
+	private Toolkit kit;
+	private Image image;
+	
 	public AccumulatedFundFrame() {
 		//(프레임)====================================================================
 		//기본 프레임 설정
-		setTitle("적립 화면");
+		kit = Toolkit.getDefaultToolkit();
+		image = kit.getImage("./Image/Icon.png");
+		setIconImage(image);
+		
+		setTitle("Membership Page");
 		setLayout(null);
 		setSize(680,520);
-		setLocation(500,100);
+		setLocation(1000,500);
 		setResizable(false);
 		getContentPane().setBackground(new Color(222,222,222));
 		
