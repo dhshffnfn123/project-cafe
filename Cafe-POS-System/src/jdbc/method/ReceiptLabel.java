@@ -38,7 +38,7 @@ public class ReceiptLabel extends ReceiptDefaultFrame {
 		vat = String.format("%s\t\t\t\t\t\t%11d\n", "부          가          세 ", (int)(sum * 0.1));
 		totalPrice = String.format("%s\t\t\t\t\t\t\t\t%11d\n", "합 계 금 액", sum);
 		html = "\t\t\t\t  영　수　증\n"
-				+ "[매장명]　몽승커피강남효성점\n"
+				+ "[매장명]　커피포레스트강남효성점\n"
 				+ "[사업자]　123-45-67890\n"
 				+ "[주   소]　서울특별시 강남구 역삼동 826-27 11, 12층\n"
 				+ "[대표자]　서예림\t\t\t\t\t[T  E  L] 031-123-4678	\n"
