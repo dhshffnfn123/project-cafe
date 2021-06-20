@@ -19,7 +19,7 @@ import javax.swing.UIManager;
 import javax.swing.table.JTableHeader;
 
 import jdbc.hikari.HikariCP;
-import jdbc.method.getEmployeeGrade;
+import jdbc.method.GetEmployeeGrade;
 import swing.frame.ChoosePageFrame;
 import swing.frame.DefaultFrame;
 import swing.method.LoginEmployeeInfoLabel;
@@ -54,7 +54,7 @@ public class PasswordTextFieldListener implements ActionListener {
 
 		password = pwf.getPassword();
 		pass = new String(password); // 입력한 값
-		grade = new getEmployeeGrade(result).getGrade();
+		grade = new GetEmployeeGrade(result).getGrade();
 		try (Connection conn = HikariCP.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
 			pstmt.setString(1, result);
 			ResultSet rs = pstmt.executeQuery();

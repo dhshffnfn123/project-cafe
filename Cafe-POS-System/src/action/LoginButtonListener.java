@@ -16,7 +16,7 @@ import javax.swing.JPasswordField;
 import javax.swing.UIManager;
 
 import jdbc.hikari.HikariCP;
-import jdbc.method.getEmployeeGrade;
+import jdbc.method.GetEmployeeGrade;
 import swing.frame.ChoosePageFrame;
 import swing.method.LoginEmployeeInfoLabel;
 import swing.method.ReceiptLabel;
@@ -48,7 +48,7 @@ public class LoginButtonListener implements ActionListener {
 
 		password = pwf.getPassword();
 		pass = new String(password); // 입력한 값
-		String grade = new getEmployeeGrade(result).getGrade();
+		String grade = new GetEmployeeGrade(result).getGrade();
 
 		try (Connection conn = HikariCP.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
 
