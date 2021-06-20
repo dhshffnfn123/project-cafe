@@ -62,6 +62,7 @@ public class AccumulatedFundFrame extends JFrame {
 		setSize(680,520);
 		setLocation(1000,500);
 		setResizable(false);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		getContentPane().setBackground(new Color(222,222,222));
 		
 		//입력 필드 설정, 글씨 설정
