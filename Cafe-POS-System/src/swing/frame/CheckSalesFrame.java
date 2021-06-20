@@ -38,7 +38,7 @@ public class CheckSalesFrame extends DefaultFrame {
 		this.grade = grade;
 		this.order_name = order_name;
 		setLayout(new BorderLayout());
-		setTitle("매출 조회");
+		setTitle("Check Sales");
 
 		center = new JPanel(new BorderLayout());
 		center_top = new JPanel(new GridLayout());
