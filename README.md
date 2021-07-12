@@ -1,8 +1,8 @@
 # project-cafe
 카페를 주제로 선정하고 업종에 필요한 시스템을 제작한 프로젝트.
 
-## *Introduction*
-### implemented function
+## *소개*
+### 구현한 기능
 > * 로그인
 > * 메뉴 선택 화면
 > * 직원 관리
@@ -11,7 +11,7 @@
 > * 재고 관리
 > * 매출 조회
 
-### used program
+### 사용된 프로그램
 > * [Java SE 11](https://www.oracle.com/kr/java/technologies/javase-downloads.html "java SE 11 link")
 > * [Eclipse](https://www.eclipse.org/downloads/ "eclipse IDE link")
 > * [Oracle XE](https://www.oracle.com/kr/database/technologies/xe-downloads.html "oracle XE link")
