@@ -34,7 +34,17 @@
 > ![image](https://user-images.githubusercontent.com/80576569/125296323-2363ad80-e361-11eb-9617-14316ecefded.png)
 
 
-## *시스템 작동 화면*
+## *시스템 실행 화면*
 ### 1. 로그인 화면
 > ![image](https://user-images.githubusercontent.com/80576569/125297155-f5cb3400-e361-11eb-960b-dafa261db1bc.png)
 
+### 2. 메뉴 선택 화면
+> ![image](https://user-images.githubusercontent.com/80576569/125297469-37f47580-e362-11eb-9522-94109bc2083c.png)
+
+### 3. 직원 관리 화면
+> * 직원 등록 탭
+> ![image](https://user-images.githubusercontent.com/80576569/125298101-d41e7c80-e362-11eb-853b-5ed4caddf408.png)
+> 
+> * 직원 수정 탭
+> ![image](https://user-images.githubusercontent.com/80576569/125298339-0203c100-e363-11eb-8135-19560024104a.png)
+> * 직원 삭제 탭
