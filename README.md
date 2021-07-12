@@ -72,6 +72,3 @@
 
 ### 6. 매출 조회 화면
 > ![image](https://user-images.githubusercontent.com/80576569/125300281-d550a900-e364-11eb-9d40-19e15df351cb.png)
-
-# P.S.
-세부적인 기능 동작 모습은 
