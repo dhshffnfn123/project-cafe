@@ -32,3 +32,9 @@
 
 ### Package 구성도
 > ![image](https://user-images.githubusercontent.com/80576569/125296323-2363ad80-e361-11eb-9617-14316ecefded.png)
+
+
+## *시스템 작동 화면*
+### 1. 로그인 화면
+> ![image](https://user-images.githubusercontent.com/80576569/125297155-f5cb3400-e361-11eb-960b-dafa261db1bc.png)
+
