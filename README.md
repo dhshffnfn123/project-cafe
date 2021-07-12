@@ -14,7 +14,7 @@
 ### used program
 > * [Java SE 11](https://www.oracle.com/kr/java/technologies/javase-downloads.html, "java SE 11 link")
 > * [Eclipse](https://www.eclipse.org/downloads/, "eclipse IDE link")
-> * [Oracle XE](https://www.oracle.com/kr/database/technologies/xe-downloads.html, "oracle XE link"
+> * [Oracle XE](https://www.oracle.com/kr/database/technologies/xe-downloads.html, "oracle XE link")
 > * [Oracle SQL Developer 20.4.1](https://www.oracle.com/tools/downloads/sqldev-downloads.html, "oracle sql developer link")
 
 ### Usecase Diagram
