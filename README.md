@@ -23,8 +23,9 @@
 
 ### Diagram
 > * Usecase Diagram
+> <br>
 > ![image](https://user-images.githubusercontent.com/80576569/125247310-c39fdf00-e32d-11eb-9876-cd185c636f53.png)
-> 
+> <br>
 > * E-R Diagram
 > ![image](https://user-images.githubusercontent.com/80576569/125249555-4fb30600-e330-11eb-90d4-c3b53fd98a42.png)
 
