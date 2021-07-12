@@ -1,5 +1,5 @@
 # project-cafe
-카페를 주제로 선정하고 그 업종에 필요한 시스템을 제작한 프로젝트.
+카페를 주제로 선정하고 업종에 필요한 시스템을 제작한 프로젝트.
 
 ## *Introduction*
 ### implemented function
