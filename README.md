@@ -43,8 +43,15 @@
 
 ### 3. 직원 관리 화면
 > * 직원 등록 탭
-> ![image](https://user-images.githubusercontent.com/80576569/125298101-d41e7c80-e362-11eb-853b-5ed4caddf408.png)
 > 
+> ![image](https://user-images.githubusercontent.com/80576569/125298717-60c93a80-e363-11eb-8c58-7ed56bdee2d5.png)
+>
 > * 직원 수정 탭
-> ![image](https://user-images.githubusercontent.com/80576569/125298339-0203c100-e363-11eb-8135-19560024104a.png)
+>
+> ![image](https://user-images.githubusercontent.com/80576569/125298797-72aadd80-e363-11eb-8c18-7f78bade6ded.png)
+>
 > * 직원 삭제 탭
+> 
+> ![image](https://user-images.githubusercontent.com/80576569/125298884-88b89e00-e363-11eb-8976-40af107922c5.png)
+
+
