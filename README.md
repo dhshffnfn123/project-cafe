@@ -64,7 +64,8 @@
 > ![image](https://user-images.githubusercontent.com/80576569/125299543-375cde80-e364-11eb-8772-57ee319d7442.png)
 > 
 > * 영수증 출력 화면
-> ![image](https://user-images.githubusercontent.com/80576569/125299714-5ce9e800-e364-11eb-909b-a05d940e1042.png)
+> 
+> <img src="https://user-images.githubusercontent.com/80576569/125299714-5ce9e800-e364-11eb-909b-a05d940e1042.png" width="100px" height="200px"></img><br>
 
 ### 5. 재고 관리 화면
 > ![image](https://user-images.githubusercontent.com/80576569/125299846-7b4fe380-e364-11eb-8d4e-23560646713e.png)
