@@ -6,3 +6,5 @@
 ### Usecase Diagram
 > ![image](https://user-images.githubusercontent.com/80576569/125247310-c39fdf00-e32d-11eb-9876-cd185c636f53.png)
 
+### E-R Diagram
+> 
