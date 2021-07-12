@@ -7,11 +7,11 @@
 > 2021.06.07 ~ 2021.06.20
 
 ### 구현한 기능
-> * 로그인
-> * 메뉴 선택 화면
+> * DB에 저장된 직원 정보 로그인
+> * 직급에 따른 접근 권한 부여
 > * 직원 관리
 > * 판매 등록
-> * 적립 화면
+> * 결제 및 적립, 영수증 출력
 > * 재고 관리
 > * 매출 조회
 
@@ -54,4 +54,22 @@
 > 
 > ![image](https://user-images.githubusercontent.com/80576569/125298884-88b89e00-e363-11eb-8976-40af107922c5.png)
 
+### 4. 판매 등록 화면
+> * 메뉴 등록 화면
+> 
+> ![image](https://user-images.githubusercontent.com/80576569/125299407-14cac580-e364-11eb-8db1-c33e3e9e9c65.png)
+> 
+> * 적립 화면
+> 
+> ![image](https://user-images.githubusercontent.com/80576569/125299543-375cde80-e364-11eb-8772-57ee319d7442.png)
+> 
+> * 영수증 출력 화면
+> ![image](https://user-images.githubusercontent.com/80576569/125299714-5ce9e800-e364-11eb-909b-a05d940e1042.png)
 
+### 5. 재고 관리 화면
+> ![image](https://user-images.githubusercontent.com/80576569/125299846-7b4fe380-e364-11eb-8d4e-23560646713e.png)
+
+### 6. 매출 조회 화면
+> ![image](https://user-images.githubusercontent.com/80576569/125300281-d550a900-e364-11eb-9d40-19e15df351cb.png)
+
+# 
